@@ -14,6 +14,7 @@
 		2CAA63CB238DB857008FDB31 /* Part1Solver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA63CA238DB857008FDB31 /* Part1Solver.swift */; };
 		2CAA63D4238DBA2F008FDB31 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAA63B3238DA39F008FDB31 /* Common.framework */; };
 		2CAA63D5238DBA2F008FDB31 /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAA63B3238DA39F008FDB31 /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2CAA63EB238DBF5F008FDB31 /* SortExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA63EA238DBF5F008FDB31 /* SortExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		2CAA63C3238DB82D008FDB31 /* Day1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Day1; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CAA63C5238DB82D008FDB31 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		2CAA63CA238DB857008FDB31 /* Part1Solver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Part1Solver.swift; sourceTree = "<group>"; };
+		2CAA63EA238DBF5F008FDB31 /* SortExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				2CAA63B6238DA39F008FDB31 /* Info.plist */,
 				2CAA63BD238DB794008FDB31 /* Solver.swift */,
 				2CAA63BB238DA3A7008FDB31 /* Combinations.swift */,
+				2CAA63EA238DBF5F008FDB31 /* SortExtensions.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CAA63BE238DB794008FDB31 /* Solver.swift in Sources */,
+				2CAA63EB238DBF5F008FDB31 /* SortExtensions.swift in Sources */,
 				2CAA63BC238DA3A7008FDB31 /* Combinations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
