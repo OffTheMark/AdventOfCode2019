@@ -18,11 +18,6 @@ public struct LinkedList<Element> {
     public init() {}
 
     public init<S: Sequence>(_ sequence: S) where Element == S.Element {
-        if let linkedList = sequence as? LinkedList<Element> {
-            self = linkedList
-            return
-        }
-
         for element in sequence {
             append(element)
         }
@@ -70,7 +65,7 @@ public struct LinkedList<Element> {
 
     // MARK: Removing Elements
 
-    public mutating func removeFirst() -> Element {
+    @discardableResult public mutating func removeFirst() -> Element {
         precondition(head != nil, "List is empty.")
 
         if !isKnownUniquelyReferenced(&head) {
@@ -93,7 +88,7 @@ public struct LinkedList<Element> {
         return headNode.value
     }
 
-    public mutating func removeLast() -> Element {
+    @discardableResult public mutating func removeLast() -> Element {
         precondition(tail != nil, "List is empty.")
 
         if !isKnownUniquelyReferenced(&tail) {
@@ -237,6 +232,7 @@ extension LinkedList: Collection {
         return startIndex ..< endIndex
     }
 
+    /// The first element of the collection.
     public var first: Element? {
         return head?.value
     }
@@ -254,6 +250,9 @@ extension LinkedList: Collection {
 // MARK: BidirectionalCollection
 
 extension LinkedList: BidirectionalCollection {
+    /// The last element of the collection.
+    ///
+    /// - complexity: O(1)
     public var last: Element? {
         return tail?.value
     }
@@ -307,6 +306,8 @@ extension LinkedList: Equatable where Element: Equatable {
 // MARK: ExpressibleByArrayLiteral
 
 extension LinkedList: ExpressibleByArrayLiteral {
+    public typealias ArrayLiteralElement = Element
+    
     public init(arrayLiteral elements: Element...) {
         self.init(elements)
     }
