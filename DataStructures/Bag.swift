@@ -31,8 +31,14 @@ public struct Bag<Element: Hashable> {
         return contents.count
     }
 
+    public func count(of element: Element) -> Int {
+        return contents[element, default: 0]
+    }
+
     public var totalCount: Int {
-        return contents.values.reduce(0, { $0 + $1 })
+        return contents.values.reduce(0, { result, currentCount in
+            return result + currentCount
+        })
     }
 
     public mutating func add(_ member: Element, occurences: Int = 1) {

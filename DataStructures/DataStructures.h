@@ -2,7 +2,7 @@
 //  DataStructures.h
 //  DataStructures
 //
-//  Created by Marc-Antoine Malépart on 2019-11-26.
+//  Created by Marc-Antoine Malépart on 2019-11-27.
 //  Copyright © 2019 Marc-Antoine Malépart. All rights reserved.
 //
 
