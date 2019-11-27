@@ -70,7 +70,11 @@ public struct Deque<Element> {
 // MARK: Sequence
 
 extension Deque: Sequence {
+    // MARK: Creating an Iterator
+
     public typealias Element = Element
+
+    public typealias Iterator = AnyIterator<Element>
 
     public func makeIterator() -> AnyIterator<Element> {
         var iterator = contents.makeIterator()
@@ -85,6 +89,8 @@ extension Deque: Sequence {
 
 extension Deque: Collection {
     public typealias Index = Int
+
+    // MARK: Manipulating Indices
 
     public var startIndex: Int {
         return contents.startIndex
@@ -102,8 +108,18 @@ extension Deque: Collection {
         return contents.index(after: i)
     }
 
+    // MARK: Instance Properties
+
     public var count: Int {
         return contents.count
+    }
+
+    public var first: Element? {
+        return contents.first
+    }
+
+    public var isEmpty: Bool {
+        return contents.isEmpty
     }
 }
 
@@ -122,6 +138,8 @@ extension Deque: BidirectionalCollection {
 // MARK: MutableCollection
 
 extension Deque: MutableCollection {
+    // MARK: Accessing a Collection's Elements
+
     public subscript(position: Int) -> Element {
         get {
             return contents[position]

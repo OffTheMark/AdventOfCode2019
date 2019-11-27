@@ -191,7 +191,11 @@ public struct LinkedList<Element> {
 // MARK: Sequence
 
 extension LinkedList: Sequence {
+    // MARK: Creating an Iterator
+
     public typealias Element = Element
+
+    public typealias Iterator = Iterator
 
     public func makeIterator() -> Iterator {
         return Iterator(node: head)
@@ -220,6 +224,8 @@ extension LinkedList: Sequence {
 extension LinkedList: Collection {
     public typealias Index = Int
 
+    // MARK: Manipulating Indices
+
     public var startIndex: Int {
         return 0
     }
@@ -232,6 +238,13 @@ extension LinkedList: Collection {
         return startIndex ..< endIndex
     }
 
+    public func index(after i: Int) -> Int {
+        precondition(indices.contains(i), "Index out of range.")
+        return i + 1
+    }
+
+    // MARK: Instance Properties
+
     /// The first element of the collection.
     public var first: Element? {
         return head?.value
@@ -239,11 +252,6 @@ extension LinkedList: Collection {
 
     public var isEmpty: Bool {
         return count == 0
-    }
-
-    public func index(after i: Int) -> Int {
-        precondition(indices.contains(i), "Index out of range.")
-        return i + 1
     }
 }
 
@@ -266,6 +274,8 @@ extension LinkedList: BidirectionalCollection {
 // MARK: MutableCollection
 
 extension LinkedList: MutableCollection {
+    // MARK: Accessing a Collection's Elements
+
     public subscript(position: Int) -> Element {
         get {
             precondition(indices.contains(position), "Index out of range.")
@@ -307,7 +317,7 @@ extension LinkedList: Equatable where Element: Equatable {
 
 extension LinkedList: ExpressibleByArrayLiteral {
     public typealias ArrayLiteralElement = Element
-    
+
     public init(arrayLiteral elements: Element...) {
         self.init(elements)
     }
