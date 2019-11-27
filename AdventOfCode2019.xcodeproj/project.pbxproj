@@ -22,7 +22,7 @@
 		2CAA641C238EB9B4008FDB31 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA641B238EB9B3008FDB31 /* LinkedList.swift */; };
 		2CAA6420238EBCF7008FDB31 /* LinkedListAddTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA641F238EBCF7008FDB31 /* LinkedListAddTests.swift */; };
 		2CAA6422238EC113008FDB31 /* LinkedListRemoveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA6421238EC113008FDB31 /* LinkedListRemoveTests.swift */; };
-		2CAA6424238ECDD6008FDB31 /* LinkedListSubscriptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA6423238ECDD6008FDB31 /* LinkedListSubscriptTests.swift */; };
+		2CAA6424238ECDD6008FDB31 /* LinkedListAccessElementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA6423238ECDD6008FDB31 /* LinkedListAccessElementsTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,7 +85,7 @@
 		2CAA641B238EB9B3008FDB31 /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
 		2CAA641F238EBCF7008FDB31 /* LinkedListAddTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedListAddTests.swift; sourceTree = "<group>"; };
 		2CAA6421238EC113008FDB31 /* LinkedListRemoveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedListRemoveTests.swift; sourceTree = "<group>"; };
-		2CAA6423238ECDD6008FDB31 /* LinkedListSubscriptTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedListSubscriptTests.swift; sourceTree = "<group>"; };
+		2CAA6423238ECDD6008FDB31 /* LinkedListAccessElementsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedListAccessElementsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,7 +191,7 @@
 				2CAA6411238EB8DF008FDB31 /* Info.plist */,
 				2CAA641F238EBCF7008FDB31 /* LinkedListAddTests.swift */,
 				2CAA6421238EC113008FDB31 /* LinkedListRemoveTests.swift */,
-				2CAA6423238ECDD6008FDB31 /* LinkedListSubscriptTests.swift */,
+				2CAA6423238ECDD6008FDB31 /* LinkedListAccessElementsTests.swift */,
 			);
 			path = DataStructuresTests;
 			sourceTree = "<group>";
@@ -398,7 +398,7 @@
 			files = (
 				2CAA6422238EC113008FDB31 /* LinkedListRemoveTests.swift in Sources */,
 				2CAA6420238EBCF7008FDB31 /* LinkedListAddTests.swift in Sources */,
-				2CAA6424238ECDD6008FDB31 /* LinkedListSubscriptTests.swift in Sources */,
+				2CAA6424238ECDD6008FDB31 /* LinkedListAccessElementsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
