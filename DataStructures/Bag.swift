@@ -11,7 +11,11 @@ import Foundation
 // MARK: Bag
 
 public struct Bag<Element: Hashable> {
+    // MARK: Properties
+
     private var contents: [Element: Int] = [:]
+
+    // MARK: Creating a Bag
 
     public init() {}
 
@@ -27,6 +31,8 @@ public struct Bag<Element: Hashable> {
         }
     }
 
+    // MARK: Inspecting a Bag
+
     public var uniqueCount: Int {
         return contents.count
     }
@@ -41,11 +47,15 @@ public struct Bag<Element: Hashable> {
         })
     }
 
+    // MARK: Adding Elements
+
     public mutating func add(_ member: Element, occurences: Int = 1) {
         precondition(occurences > 0, "Occurences must be positive.")
 
         contents[member, default: 0] += occurences
     }
+
+    // MARK: Removing Elements
 
     public mutating func remove(_ member: Element, occurences: Int = 1) {
         guard let currentCount = contents[member], currentCount >= occurences else {
@@ -60,6 +70,10 @@ public struct Bag<Element: Hashable> {
         else {
             contents.removeValue(forKey: member)
         }
+    }
+
+    public mutating func removeAll() {
+        contents.removeAll()
     }
 }
 
