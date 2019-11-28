@@ -7,27 +7,40 @@
 //
 
 import XCTest
+@testable import DataStructures
 
-class BagAddTests: XCTestCase {
+final class BagAddTests: XCTestCase {
+    // MARK: Adding Elements to an Empty Bag
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func test_EmptyBag_AfterAddingItem_ContainsOneOfItem() {
+        var bag = Bag<String>()
+
+        bag.add("item")
+
+        XCTAssertEqual(bag, ["item": 1])
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func test_EmptyBag_AfterAddingMultiplesOfItem_ContainsCorrectNumberOfItem() {
+        var bag = Bag<String>()
+
+        bag.add("item", count: 5)
+
+        XCTAssertEqual(bag, ["item": 5])
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func test_BagWithMultipleOfItemAndOthers_AfterAddingItem_ContainsCorrectCountOfAddedItemAndSameCountOfOthers() {
+        var bag: Bag = ["item": 2, "otherItem": 1]
+
+        bag.add("item")
+
+        XCTAssertEqual(bag, ["item": 3, "otherItem": 1])
     }
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+    func test_BagWithMultiplesOfItemAndOthers_AfterAddingMultiplesOfItem_ContainsCorrectCountOfAddedItemAndSameCountOfOthers() {
+        var bag: Bag = ["item": 2, "otherItem": 1]
 
+        bag.add("item", count: 3)
+
+        XCTAssertEqual(bag, ["item": 5, "otherItem": 1])
+    }
 }

@@ -12,6 +12,8 @@
 		2C3472F2238FFA3500014156 /* DequeRemoveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3472F1238FFA3500014156 /* DequeRemoveTests.swift */; };
 		2C3472F4238FFB1D00014156 /* DequeRotateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3472F3238FFB1D00014156 /* DequeRotateTests.swift */; };
 		2C3472F623901A3F00014156 /* DequeAccessElementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3472F523901A3F00014156 /* DequeAccessElementsTests.swift */; };
+		2C3472F9239046BB00014156 /* BagAddTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3472F8239046BB00014156 /* BagAddTests.swift */; };
+		2C3472FB23904A8700014156 /* BagRemoveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3472FA23904A8700014156 /* BagRemoveTests.swift */; };
 		2CAA63B7238DA39F008FDB31 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CAA63B5238DA39F008FDB31 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2CAA63BC238DA3A7008FDB31 /* Combinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA63BB238DA3A7008FDB31 /* Combinations.swift */; };
 		2CAA63BE238DB794008FDB31 /* Solver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA63BD238DB794008FDB31 /* Solver.swift */; };
@@ -75,6 +77,8 @@
 		2C3472F1238FFA3500014156 /* DequeRemoveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DequeRemoveTests.swift; sourceTree = "<group>"; };
 		2C3472F3238FFB1D00014156 /* DequeRotateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DequeRotateTests.swift; sourceTree = "<group>"; };
 		2C3472F523901A3F00014156 /* DequeAccessElementsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DequeAccessElementsTests.swift; sourceTree = "<group>"; };
+		2C3472F8239046BB00014156 /* BagAddTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagAddTests.swift; sourceTree = "<group>"; };
+		2C3472FA23904A8700014156 /* BagRemoveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagRemoveTests.swift; sourceTree = "<group>"; };
 		2CAA63B3238DA39F008FDB31 /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CAA63B5238DA39F008FDB31 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		2CAA63B6238DA39F008FDB31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -151,6 +155,15 @@
 			path = Deque;
 			sourceTree = "<group>";
 		};
+		2C3472F7239046A500014156 /* Bag */ = {
+			isa = PBXGroup;
+			children = (
+				2C3472F8239046BB00014156 /* BagAddTests.swift */,
+				2C3472FA23904A8700014156 /* BagRemoveTests.swift */,
+			);
+			path = Bag;
+			sourceTree = "<group>";
+		};
 		2CAA638C238DA2CA008FDB31 = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +232,7 @@
 			children = (
 				2C3472ED238FF75B00014156 /* LinkedList */,
 				2C3472EE238FF76700014156 /* Deque */,
+				2C3472F7239046A500014156 /* Bag */,
 				2CAA6411238EB8DF008FDB31 /* Info.plist */,
 			);
 			path = DataStructuresTests;
@@ -426,9 +440,11 @@
 			files = (
 				2C3472F623901A3F00014156 /* DequeAccessElementsTests.swift in Sources */,
 				2CAA6422238EC113008FDB31 /* LinkedListRemoveTests.swift in Sources */,
+				2C3472F9239046BB00014156 /* BagAddTests.swift in Sources */,
 				2CAA6420238EBCF7008FDB31 /* LinkedListAddTests.swift in Sources */,
 				2C3472F0238FF7C900014156 /* DequeAddTests.swift in Sources */,
 				2CAA6424238ECDD6008FDB31 /* LinkedListAccessElementsTests.swift in Sources */,
+				2C3472FB23904A8700014156 /* BagRemoveTests.swift in Sources */,
 				2C3472F2238FFA3500014156 /* DequeRemoveTests.swift in Sources */,
 				2C3472F4238FFB1D00014156 /* DequeRotateTests.swift in Sources */,
 			);

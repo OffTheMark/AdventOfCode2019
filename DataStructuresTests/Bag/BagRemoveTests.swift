@@ -7,27 +7,51 @@
 //
 
 import XCTest
+@testable import DataStructures
 
-class BagRemoveTests: XCTestCase {
+final class BagRemoveTests: XCTestCase {
+    // MARK: Removing Elements in a Non-Empty List
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func test_BagWithOneOfAnItem_AfterRemovingOneOfItem_IsEmpty() {
+        var bag: Bag = ["item"]
+
+        let removed = bag.remove("item")
+
+        XCTAssertEqual(removed.item, "item")
+        XCTAssertEqual(removed.count, 1)
+        XCTAssertEqual(bag, [:])
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func test_BagWithMultiplesOfAnItem_AfterRemovingLessThanCountOfItem_ContainsCorrectNumberOfItems() {
+        var bag: Bag = ["item": 5]
+
+        let removed = bag.remove("item", count: 2)
+
+        XCTAssertEqual(removed.item, "item")
+        XCTAssertEqual(removed.count, 2)
+        XCTAssertEqual(bag, ["item": 3])
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func test_BagWithMultiplesOfAnItem_AfterRemovingSameNumberOfItem_IsEmpty() {
+        var bag: Bag = ["item": 2]
+
+        let removed = bag.remove("item", count: 2)
+
+        XCTAssertEqual(removed.item, "item")
+        XCTAssertEqual(removed.count, 2)
+        XCTAssertEqual(bag, [:])
     }
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func test_BagWithMultiplesOfAnItem_AfterRemovingAllOfItem_IsEmpty() {
+        var bag: Bag = ["item": 2]
+
+        let removed = bag.removeAll(of: "item")
+
+        XCTAssertEqual(removed.item, "item")
+        XCTAssertEqual(removed.count, 2)
+        XCTAssertEqual(bag, [:])
     }
+
+    // MARK: 
 
 }
