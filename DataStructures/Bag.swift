@@ -10,22 +10,22 @@ import Foundation
 
 // MARK: Bag
 
-public struct Bag<Element: Hashable> {
+public struct Bag<Item: Hashable> {
     // MARK: Properties
 
-    private var contents: [Element: Int] = [:]
+    private var contents: [Item: Int] = [:]
 
     // MARK: Creating a Bag
 
     public init() {}
 
-    public init<S: Sequence>(_ sequence: S) where S.Iterator.Element == Element {
+    public init<S: Sequence>(_ sequence: S) where S.Iterator.Element == Item {
         for element in sequence {
             add(element)
         }
     }
 
-    public init<S: Sequence>(_ sequence: S) where S.Iterator.Element == (key: Element, value: Int) {
+    public init<S: Sequence>(_ sequence: S) where S.Iterator.Element == (key: Item, value: Int) {
         for (element, count) in sequence {
             add(element, count: count)
         }
@@ -37,33 +37,44 @@ public struct Bag<Element: Hashable> {
         return contents.count
     }
 
-    public func count(of element: Element) -> Int {
+    public func count(of element: Item) -> Int {
         return contents[element, default: 0]
     }
 
     // MARK: Adding Elements
 
-    public mutating func add(_ member: Element, count: Int = 1) {
+    public mutating func add(_ item: Item, count: Int = 1) {
         precondition(count > 0, "Count must be positive.")
 
-        contents[member, default: 0] += count
+        contents[item, default: 0] += count
     }
 
     // MARK: Removing Elements
 
-    public mutating func remove(_ member: Element, count: Int = 1) {
-        guard let currentCount = contents[member], currentCount >= count else {
-            preconditionFailure("Bag should contain at least \(count) occurence(s) of member \(member).")
+    @discardableResult public mutating func remove(_ item: Item, count: Int = 1) -> Self.Element {
+        guard let currentCount = contents[item] else {
+            preconditionFailure("Bag should already contain item \(item).")
+        }
+
+        guard currentCount >= count else {
+            preconditionFailure("Bag should contain at least \(count) occurence(s) of item \(item).")
         }
 
         precondition(count > 0, "Count must be positive.")
 
         if currentCount > count {
-            contents[member] = currentCount - count
+            contents[item] = currentCount - count
         }
         else {
-            contents.removeValue(forKey: member)
+            contents.removeValue(forKey: item)
         }
+
+        return (item, count)
+    }
+
+    @discardableResult public mutating func removeAll(of item: Item) -> Self.Element {
+        let removedCount = contents.removeValue(forKey: item) ?? 0
+        return (item, removedCount)
     }
 
     public mutating func removeAll() {
@@ -74,7 +85,7 @@ public struct Bag<Element: Hashable> {
 // MARK: Sequence
 
 extension Bag: Sequence {
-    public typealias Element = (element: Element, count: Int)
+    public typealias Element = (item: Item, count: Int)
 
     public typealias Iterator = AnyIterator<Self.Element>
 
@@ -90,7 +101,7 @@ extension Bag: Sequence {
 // MARK: Collection
 
 extension Bag: Collection {
-    public typealias Index = BagIndex<Element>
+    public typealias Index = BagIndex<Item>
 
     // MARK: Manipulating Indices
 
@@ -132,7 +143,7 @@ extension Bag: Collection {
         precondition(indices.contains(position), "Index is out of bounds")
 
         let dictionaryElement = contents[position.index]
-        return (element: dictionaryElement.key, count: dictionaryElement.value)
+        return (dictionaryElement.key, dictionaryElement.value)
     }
 }
 
@@ -147,7 +158,7 @@ extension Bag: CustomStringConvertible {
 // MARK: ExpressibleByArrayLiteral
 
 extension Bag: ExpressibleByArrayLiteral {
-    public init(arrayLiteral elements: Element...) {
+    public init(arrayLiteral elements: Item...) {
         self.init(elements)
     }
 }
@@ -155,11 +166,19 @@ extension Bag: ExpressibleByArrayLiteral {
 // MARK: ExpressibleByDictionaryLiteral
 
 extension Bag: ExpressibleByDictionaryLiteral {
-    public init(dictionaryLiteral elements: (Element, Int)...) {
+    public init(dictionaryLiteral elements: (Item, Int)...) {
         let pairs = elements.map({ (key, value) in
             return (key: key, value: value)
         })
         self.init(pairs)
+    }
+}
+
+// MARK: Equatable
+
+extension Bag: Equatable where Item: Equatable {
+    public static func == (lhs: Bag<Item>, rhs: Bag<Item>) -> Bool {
+        return lhs.contents == rhs.contents
     }
 }
 
