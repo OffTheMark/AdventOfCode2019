@@ -27,7 +27,7 @@ public struct Bag<Element: Hashable> {
 
     public init<S: Sequence>(_ sequence: S) where S.Iterator.Element == (key: Element, value: Int) {
         for (element, count) in sequence {
-            add(element, occurences: count)
+            add(element, count: count)
         }
     }
 
@@ -41,31 +41,25 @@ public struct Bag<Element: Hashable> {
         return contents[element, default: 0]
     }
 
-    public var totalCount: Int {
-        return contents.values.reduce(0, { result, currentCount in
-            return result + currentCount
-        })
-    }
-
     // MARK: Adding Elements
 
-    public mutating func add(_ member: Element, occurences: Int = 1) {
-        precondition(occurences > 0, "Occurences must be positive.")
+    public mutating func add(_ member: Element, count: Int = 1) {
+        precondition(count > 0, "Count must be positive.")
 
-        contents[member, default: 0] += occurences
+        contents[member, default: 0] += count
     }
 
     // MARK: Removing Elements
 
-    public mutating func remove(_ member: Element, occurences: Int = 1) {
-        guard let currentCount = contents[member], currentCount >= occurences else {
-            preconditionFailure("Bag should contain at least \(occurences) occurence(s) of member \(member).")
+    public mutating func remove(_ member: Element, count: Int = 1) {
+        guard let currentCount = contents[member], currentCount >= count else {
+            preconditionFailure("Bag should contain at least \(count) occurence(s) of member \(member).")
         }
 
-        precondition(occurences > 0, "Occurences must be positive.")
+        precondition(count > 0, "Count must be positive.")
 
-        if currentCount > occurences {
-            contents[member] = currentCount - occurences
+        if currentCount > count {
+            contents[member] = currentCount - count
         }
         else {
             contents.removeValue(forKey: member)
@@ -80,7 +74,9 @@ public struct Bag<Element: Hashable> {
 // MARK: Sequence
 
 extension Bag: Sequence {
-    public typealias Iterator = AnyIterator<(element: Element, count: Int)>
+    public typealias Element = (element: Element, count: Int)
+
+    public typealias Iterator = AnyIterator<Self.Element>
 
     public func makeIterator() -> Iterator {
         var iterator = contents.makeIterator()
@@ -96,6 +92,8 @@ extension Bag: Sequence {
 extension Bag: Collection {
     public typealias Index = BagIndex<Element>
 
+    // MARK: Manipulating Indices
+
     public var startIndex: Index {
         return BagIndex(contents.startIndex)
     }
@@ -104,15 +102,37 @@ extension Bag: Collection {
         return BagIndex(contents.endIndex)
     }
 
-    public subscript(position: Index) -> Iterator.Element {
+    public func index(after i: Index) -> Index {
+        return Index(contents.index(after: i.index))
+    }
+
+    // MARK: Instance Properties
+
+    public var count: Int {
+        return contents.values.reduce(0, { result, currentCount in
+            return result + currentCount
+        })
+    }
+
+    var first: Self.Element? {
+        let dictionaryElement = contents.first
+
+        return dictionaryElement.map({ key, value in
+            return (element: key, count: value)
+        })
+    }
+
+    public var isEmpty: Bool {
+        return contents.isEmpty
+    }
+
+    // MARK: Accessing a Collection's Elements
+
+    public subscript(position: Index) -> Self.Element {
         precondition(indices.contains(position), "Index is out of bounds")
 
         let dictionaryElement = contents[position.index]
         return (element: dictionaryElement.key, count: dictionaryElement.value)
-    }
-
-    public func index(after i: Index) -> Index {
-        return Index(contents.index(after: i.index))
     }
 }
 
