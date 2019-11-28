@@ -31,27 +31,6 @@ public struct Deque<Element> {
         contents.append(value)
     }
 
-    public mutating func rotate(by numberOfPositions: Int = 1) {
-        let effectiveNumberOfPositions = numberOfPositions % count
-
-        if effectiveNumberOfPositions == 0 {
-            return
-        }
-
-        if effectiveNumberOfPositions < 0 {
-            for _ in 0 ..< abs(effectiveNumberOfPositions) {
-                let removed = removeFirst()
-                append(removed)
-            }
-        }
-        else {
-            for _ in 0 ..< effectiveNumberOfPositions {
-                let removed = removeLast()
-                prepend(removed)
-            }
-        }
-    }
-
     // MARK: Removing Elements
 
     @discardableResult public mutating func removeFirst() -> Element {
@@ -64,6 +43,46 @@ public struct Deque<Element> {
 
     public mutating func removeAll() {
         contents.removeAll()
+    }
+
+    // MARK: Moving Elements
+
+    public mutating func rotateRight(by positions: Int = 1) {
+        precondition(positions > 0, "Number of positions must be positive.")
+
+        if isEmpty {
+            return
+        }
+
+        let effectivePositions = positions % count
+
+        if effectivePositions == 0 {
+            return
+        }
+
+        for _ in 0 ..< effectivePositions {
+            let removed = removeLast()
+            prepend(removed)
+        }
+    }
+
+    public mutating func rotateLeft(by positions: Int = 1) {
+        precondition(positions > 0, "Number of positions must be positive.")
+
+        if isEmpty {
+            return
+        }
+
+        let effectivePositions = positions % count
+
+        if effectivePositions == 0 {
+            return
+        }
+
+        for _ in 0 ..< effectivePositions {
+            let removed = removeFirst()
+            append(removed)
+        }
     }
 }
 
