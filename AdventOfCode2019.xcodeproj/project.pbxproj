@@ -122,6 +122,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C3472ED238FF75B00014156 /* LinkedList */ = {
+			isa = PBXGroup;
+			children = (
+				2CAA641F238EBCF7008FDB31 /* LinkedListAddTests.swift */,
+				2CAA6421238EC113008FDB31 /* LinkedListRemoveTests.swift */,
+				2CAA6423238ECDD6008FDB31 /* LinkedListAccessElementsTests.swift */,
+			);
+			path = LinkedList;
+			sourceTree = "<group>";
+		};
 		2CAA638C238DA2CA008FDB31 = {
 			isa = PBXGroup;
 			children = (
@@ -188,10 +198,8 @@
 		2CAA640E238EB8DF008FDB31 /* DataStructuresTests */ = {
 			isa = PBXGroup;
 			children = (
+				2C3472ED238FF75B00014156 /* LinkedList */,
 				2CAA6411238EB8DF008FDB31 /* Info.plist */,
-				2CAA641F238EBCF7008FDB31 /* LinkedListAddTests.swift */,
-				2CAA6421238EC113008FDB31 /* LinkedListRemoveTests.swift */,
-				2CAA6423238ECDD6008FDB31 /* LinkedListAccessElementsTests.swift */,
 			);
 			path = DataStructuresTests;
 			sourceTree = "<group>";

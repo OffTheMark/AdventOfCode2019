@@ -65,7 +65,6 @@ final class LinkedListAddTests: XCTestCase {
 
     // MARK: Adding Elements to a Copy of a Non-Empty List (Copy-on-Write)
 
-
     func test_CopyOfListWithOneElement_AfterPrependingNewElement_ContainsNewElementFollowedByExistingElementAndOriginalIsUnchanged() {
         let original: LinkedList = [1]
         var copy = original
