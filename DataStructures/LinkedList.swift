@@ -195,8 +195,6 @@ extension LinkedList: Sequence {
 
     public typealias Element = Element
 
-    public typealias Iterator = Iterator
-
     public func makeIterator() -> Iterator {
         return Iterator(node: head)
     }
