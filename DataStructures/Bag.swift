@@ -38,7 +38,15 @@ public struct Bag<Item: Hashable> {
     }
 
     public func count(of element: Item) -> Int {
-        return contents[element, default: 0]
+        return self[element, default: 0]
+    }
+
+    public subscript(item: Item) -> Int? {
+        return contents[item]
+    }
+
+    public subscript(item: Item, default defaultValue: @autoclosure () -> Int) -> Int {
+        return contents[item, default: defaultValue()]
     }
 
     // MARK: Adding Elements
@@ -51,30 +59,31 @@ public struct Bag<Item: Hashable> {
 
     // MARK: Removing Elements
 
-    @discardableResult public mutating func remove(_ item: Item, count: Int = 1) -> Self.Element {
-        guard let currentCount = contents[item] else {
-            preconditionFailure("Bag should already contain item \(item).")
-        }
-
-        guard currentCount >= count else {
-            preconditionFailure("Bag should contain at least \(count) occurence(s) of item \(item).")
-        }
-
+    /// Removes `count` of the given `item`.
+    ///
+    /// - Parameter item: Item to remove.
+    /// - Parameter count: Number of the given item to remove.
+    ///
+    /// - Returns: The number of items that were actually removed, or `nil` if the bag did non contain the given `item`.
+    ///
+    /// If the bag contains
+    @discardableResult public mutating func remove(_ item: Item, count: Int = 1) -> Int? {
         precondition(count > 0, "Count must be positive.")
 
-        if currentCount > count {
-            contents[item] = currentCount - count
-        }
-        else {
-            contents.removeValue(forKey: item)
+        guard let currentCount = contents[item] else {
+            return nil
         }
 
-        return (item, count)
+        if currentCount <= count {
+            return contents.removeValue(forKey: item)
+        }
+
+        contents[item] = currentCount - count
+        return count
     }
 
-    @discardableResult public mutating func removeAll(of item: Item) -> Self.Element {
-        let removedCount = contents.removeValue(forKey: item) ?? 0
-        return (item, removedCount)
+    @discardableResult public mutating func removeAll(of item: Item) -> Int? {
+        return contents.removeValue(forKey: item)
     }
 
     public mutating func removeAll() {
@@ -129,7 +138,7 @@ extension Bag: Collection {
         let dictionaryElement = contents.first
 
         return dictionaryElement.map({ key, value in
-            return (element: key, count: value)
+            return (key, value)
         })
     }
 
