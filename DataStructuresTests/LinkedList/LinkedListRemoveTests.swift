@@ -10,6 +10,18 @@ import XCTest
 @testable import DataStructures
 
 final class LinkedListRemoveTests: XCTestCase {
+    // MARK: Removing Elements in an Empty List
+    
+    func test_EmptyList_AfterRemovingAll_isEmpty() {
+        var list = LinkedList<Int>()
+        
+        list.removeAll()
+        
+        XCTAssertTrue(list.isEmpty)
+        XCTAssertEqual(list.count, 0)
+        XCTAssertEqual(list, [])
+    }
+    
     // MARK: Removing Elements in Non-Empty List
 
     func test_ListWithOneElement_AfterRemovingFirst_IsEmpty() {
@@ -18,7 +30,9 @@ final class LinkedListRemoveTests: XCTestCase {
         let removed = list.removeFirst()
 
         XCTAssertEqual(removed, 0)
+        
         XCTAssertTrue(list.isEmpty)
+        XCTAssertEqual(list.count, 0)
         XCTAssertEqual(list, [])
     }
 
@@ -28,7 +42,9 @@ final class LinkedListRemoveTests: XCTestCase {
         let removed = list.removeLast()
 
         XCTAssertEqual(removed, 0)
+        
         XCTAssertTrue(list.isEmpty)
+        XCTAssertEqual(list.count, 0)
         XCTAssertEqual(list, [])
     }
 
@@ -38,6 +54,9 @@ final class LinkedListRemoveTests: XCTestCase {
         let removed = list.removeFirst()
 
         XCTAssertEqual(removed, 0)
+        
+        XCTAssertFalse(list.isEmpty)
+        XCTAssertEqual(list.count, 5)
         XCTAssertEqual(list, [1, 2, 3, 4, 5])
     }
 
@@ -47,6 +66,9 @@ final class LinkedListRemoveTests: XCTestCase {
         let removed = list.removeLast()
 
         XCTAssertEqual(removed, 5)
+        
+        XCTAssertFalse(list.isEmpty)
+        XCTAssertEqual(list.count, 5)
         XCTAssertEqual(list, [0, 1, 2, 3, 4])
     }
 
@@ -56,6 +78,7 @@ final class LinkedListRemoveTests: XCTestCase {
         list.removeAll()
 
         XCTAssertTrue(list.isEmpty)
+        XCTAssertEqual(list.count, 0)
         XCTAssertEqual(list, [])
     }
 

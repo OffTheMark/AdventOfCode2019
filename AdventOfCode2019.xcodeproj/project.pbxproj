@@ -29,6 +29,7 @@
 		2CAA6420238EBCF7008FDB31 /* LinkedListAddTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA641F238EBCF7008FDB31 /* LinkedListAddTests.swift */; };
 		2CAA6422238EC113008FDB31 /* LinkedListRemoveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA6421238EC113008FDB31 /* LinkedListRemoveTests.swift */; };
 		2CAA6424238ECDD6008FDB31 /* LinkedListAccessElementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA6423238ECDD6008FDB31 /* LinkedListAccessElementsTests.swift */; };
+		34E7BCA023930028009833D1 /* LinkedListRangeReplaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7BC9F23930028009833D1 /* LinkedListRangeReplaceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		2CAA641F238EBCF7008FDB31 /* LinkedListAddTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedListAddTests.swift; sourceTree = "<group>"; };
 		2CAA6421238EC113008FDB31 /* LinkedListRemoveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedListRemoveTests.swift; sourceTree = "<group>"; };
 		2CAA6423238ECDD6008FDB31 /* LinkedListAccessElementsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedListAccessElementsTests.swift; sourceTree = "<group>"; };
+		34E7BC9F23930028009833D1 /* LinkedListRangeReplaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedListRangeReplaceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 				2CAA641F238EBCF7008FDB31 /* LinkedListAddTests.swift */,
 				2CAA6421238EC113008FDB31 /* LinkedListRemoveTests.swift */,
 				2CAA6423238ECDD6008FDB31 /* LinkedListAccessElementsTests.swift */,
+				34E7BC9F23930028009833D1 /* LinkedListRangeReplaceTests.swift */,
 			);
 			path = LinkedList;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				2C3472F0238FF7C900014156 /* DequeAddTests.swift in Sources */,
 				2CAA6424238ECDD6008FDB31 /* LinkedListAccessElementsTests.swift in Sources */,
 				2C3472FB23904A8700014156 /* BagRemoveTests.swift in Sources */,
+				34E7BCA023930028009833D1 /* LinkedListRangeReplaceTests.swift in Sources */,
 				2C3472F2238FFA3500014156 /* DequeRemoveTests.swift in Sources */,
 				2C3472F4238FFB1D00014156 /* DequeRotateTests.swift in Sources */,
 			);
