@@ -18,103 +18,21 @@ public struct LinkedList<Element> {
     public init() {}
 
     public init<S: Sequence>(_ sequence: S) where Element == S.Element {
-        for element in sequence {
-            append(element)
-        }
+        let chain = NodeChain(sequence)
+        
+        self.head = chain.head
+        self.tail = chain.tail
+        self.count = chain.count
     }
 
     // MARK: Adding Elements
 
-    public mutating func append(_ value: Element) {
-        let newNode = Node(value: value)
-
-        if tail != nil {
-            if !isKnownUniquelyReferenced(&tail) {
-                copyNodes()
-            }
-
-            newNode.previous = tail
-            tail?.next = newNode
-        }
-        else {
-            head = newNode
-        }
-
-        tail = newNode
-        count += 1
-    }
-
     public mutating func prepend(_ value: Element) {
-        let newNode = Node(value: value)
-
-        if head != nil {
-            if !isKnownUniquelyReferenced(&head) {
-                copyNodes()
-            }
-
-            newNode.next = head
-            head?.previous = newNode
-        }
-        else {
-            tail = newNode
-        }
-
-        head = newNode
-        count += 1
+        replaceSubrange(startIndex..<startIndex, with: [value])
     }
-
-    // MARK: Removing Elements
-
-    @discardableResult public mutating func removeFirst() -> Element {
-        precondition(head != nil, "List is empty.")
-
-        if !isKnownUniquelyReferenced(&head) {
-            copyNodes()
-        }
-
-        let headNode = self.head!
-        let next = headNode.next
-
-        if let next = next {
-            next.previous = nil
-        }
-        else {
-            tail = nil
-        }
-
-        head = next
-        count -= 1
-
-        return headNode.value
-    }
-
-    @discardableResult public mutating func removeLast() -> Element {
-        precondition(tail != nil, "List is empty.")
-
-        if !isKnownUniquelyReferenced(&tail) {
-            copyNodes()
-        }
-
-        let tailNode = tail!
-        let previous = tailNode.previous
-
-        if let previous = previous {
-            previous.next = nil
-        }
-        else {
-            head = nil
-        }
-
-        tail = previous
-        count -= 1
-
-        return tailNode.value
-    }
-
-    public mutating func removeAll() {
-        head = nil
-        tail = nil
-        count = 0
+    
+    public mutating func prepend<S: Sequence>(contentsOf sequence: S) where S.Element == Element {
+        replaceSubrange(startIndex..<startIndex, with: sequence)
     }
 
     // MARK: Private Methods
@@ -134,8 +52,11 @@ public struct LinkedList<Element> {
     }
 
     private mutating func copyNodes() {
+        guard var currentExistingNode = head else {
+            return
+        }
+        
         var currentIndex = startIndex
-        var currentExistingNode = head!
         var currentNewNode = Node(value: currentExistingNode.value)
         let newHeadNode = currentNewNode
         currentIndex = index(after: currentIndex)
@@ -148,27 +69,6 @@ public struct LinkedList<Element> {
             nextNode.previous = currentNewNode
             currentNewNode = nextNode
             currentIndex = index(after: currentIndex)
-        }
-
-        head = newHeadNode
-        tail = currentNewNode
-    }
-
-    private mutating func copyNodes(settingNodeAt index: Index, to value: Element) {
-        var currentIndex = startIndex
-        var currentExistingNode = head!
-        var currentNewNode = Node(value: currentIndex == index ? value : currentExistingNode.value)
-        let newHeadNode = currentNewNode
-        currentIndex = self.index(after: currentIndex)
-
-        while currentIndex < endIndex {
-            currentExistingNode = currentExistingNode.next!
-
-            let nextNode = Node(value: currentIndex == index ? value : currentExistingNode.value)
-            currentNewNode.next = nextNode
-            nextNode.previous = currentNewNode
-            currentNewNode = nextNode
-            currentIndex = self.index(after: currentIndex)
         }
 
         head = newHeadNode
@@ -237,7 +137,6 @@ extension LinkedList: Collection {
     }
 
     public func index(after i: Int) -> Int {
-        precondition(indices.contains(i), "Index out of range.")
         return i + 1
     }
 
@@ -264,7 +163,6 @@ extension LinkedList: BidirectionalCollection {
     }
 
     public func index(before i: Int) -> Int {
-        precondition(i > startIndex && i <= endIndex, "Index out of range.")
         return i - 1
     }
 }
@@ -284,13 +182,155 @@ extension LinkedList: MutableCollection {
         set {
             precondition(indices.contains(position), "Index out of range.")
 
-            guard isKnownUniquelyReferenced(&head) else {
-                copyNodes(settingNodeAt: position, to: newValue)
-                return
+            if !isKnownUniquelyReferenced(&head) {
+                copyNodes()
             }
 
             let node = self.node(at: position)
             node.value = newValue
+        }
+    }
+}
+
+// MARK: RangeReplaceableCollection
+
+extension LinkedList: RangeReplaceableCollection {
+    public mutating func replaceSubrange<S: Sequence>(_ subrange: Range<Int>, with newElements: __owned S) where Element == S.Element {
+        precondition(subrange.lowerBound >= startIndex, "Subrange bounds are out of range.")
+        precondition(subrange.upperBound <= endIndex, "Subrange bounds are out of range.")
+        
+        let chain = NodeChain(newElements)
+        
+        if chain.isEmpty {
+            removeElements(at: subrange)
+            return
+        }
+        
+        if subrange == indices {
+            head = chain.head
+            tail = chain.tail
+            count = chain.count
+            return
+        }
+        
+        if head != nil, !isKnownUniquelyReferenced(&head) {
+            copyNodes()
+        }
+        
+        defer {
+            count += chain.count - subrange.count
+        }
+        
+        if subrange.upperBound == startIndex {
+            head?.previous = chain.tail
+            chain.tail?.next = head
+            head = chain.head
+            return
+        }
+        
+        if subrange.lowerBound == endIndex {
+            tail?.next = chain.head
+            chain.head?.previous = tail
+            tail = chain.tail
+            return
+        }
+        
+        if subrange.lowerBound == startIndex {
+            let nodeAfterChainTail = node(at: subrange.upperBound)
+            nodeAfterChainTail.previous = chain.tail
+            
+            head = chain.head
+            return
+        }
+        if subrange.upperBound == endIndex {
+            let nodeBeforeChainHead = node(at: index(before: subrange.lowerBound))
+            nodeBeforeChainHead.next = chain.head
+            
+            tail = chain.tail
+            return
+        }
+        
+        let nodeAtChainHead = node(at: subrange.lowerBound)
+        let nodeAfterChainTail = node(at: subrange.upperBound)
+        
+        nodeAfterChainTail.previous = chain.tail
+        nodeAtChainHead.previous?.next = chain.head
+    }
+    
+    private mutating func removeElements(at range: Range<Int>) {
+        if range.isEmpty {
+            return
+        }
+        
+        if range == indices {
+            head = nil
+            tail = nil
+            count = 0
+            return
+        }
+        
+        if !isKnownUniquelyReferenced(&head) {
+            copyNodes()
+        }
+        
+        defer {
+            count -= range.count
+        }
+        
+        if range.lowerBound == startIndex {
+            let newHead = node(at: range.upperBound)
+            
+            head = newHead
+            head?.previous = nil
+            return
+        }
+        
+        if range.upperBound == endIndex {
+            let nodePastNewTail = node(at: range.lowerBound)
+            
+            tail = nodePastNewTail.previous
+            tail?.next = nil
+            return
+        }
+        
+        let nodeAtUpperBound = node(at: range.upperBound)
+        let nodeBeforeLowerBound = node(at: index(before: range.lowerBound))
+        
+        nodeAtUpperBound.previous = nodeBeforeLowerBound
+        nodeBeforeLowerBound.next = nodeAtUpperBound
+    }
+    
+    fileprivate struct NodeChain {
+        let head: Node?
+        let tail: Node?
+        var count = 0
+        
+        var isEmpty: Bool {
+            return count == 0
+        }
+        
+        init<S: Sequence>(_ sequence: S) where Element == S.Element {
+            var iterator = sequence.makeIterator()
+            
+            guard let firstValue = iterator.next() else {
+                head = nil
+                tail = nil
+                return
+            }
+            
+            var currentNode = Node(value: firstValue)
+            head = currentNode
+            count += 1
+            
+            while let nextValue = iterator.next() {
+                let nextNode = Node(value: nextValue)
+                currentNode.next = nextNode
+                nextNode.previous = currentNode
+                currentNode = nextNode
+                count += 1
+            }
+            
+            tail = currentNode
         }
     }
 }
