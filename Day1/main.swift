@@ -116,3 +116,9 @@ let part1Total = part1.solve()
 print("Part 1")
 print("Total: \(part1Total)")
 
+print()
+
+let part2 = Part2Solver(input: input)
+let part2Total = part2.solve()
+print("Part 2")
+print("Total: \(part2Total)")
