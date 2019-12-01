@@ -9,6 +9,8 @@
 import Foundation
 import Common
 
+// MARK: Part1Solver
+
 final class Part1Solver: Solver {
     let parser: Day1.Parser
     
@@ -17,18 +19,16 @@ final class Part1Solver: Solver {
     }
     
     func solve() -> Int {
-        let massPerModule = parser.parse()
-        let totalFuelRequired = massPerModule.reduce(0, { result, mass in
-            return result + self.fuelRequired(for: mass)
+        let modules = parser.parse()
+        let totalFuelRequired = modules.reduce(0, { result, module in
+            return result + module.fuelRequired()
         })
         
         return totalFuelRequired
     }
-    
-    private func fuelRequired(for mass: Int) -> Int {
-        return (mass / 3) - 2
-    }
 }
+
+// MARK: - Part2Solver
 
 final class Part2Solver: Solver {
     let parser: Day1.Parser
@@ -38,25 +38,49 @@ final class Part2Solver: Solver {
     }
     
     func solve() -> Int {
-        let massPerModule = parser.parse()
-        
-        let totalFuelRequired = massPerModule.reduce(0, { result, mass in
-            let fuelForModuleOnly = self.fuelRequired(for: mass)
-            var totalFuelForModule = fuelForModuleOnly
-            
-            var fuelForCurrentFuel = self.fuelRequired(for: fuelForModuleOnly)
-            while fuelForCurrentFuel > 0 {
-                totalFuelForModule += fuelForCurrentFuel
-                fuelForCurrentFuel = self.fuelRequired(for: fuelForCurrentFuel)
-            }
-            
-            return result + totalFuelForModule
+        let modules = parser.parse()
+        let totalFuelRequired = modules.reduce(0, { result, module in
+            return result + module.fuelRequired(accountForMassOfFuel: true)
         })
         
         return totalFuelRequired
     }
+}
+
+// MARK: - Module
+
+struct Module {
+    let mass: Int
     
-    private func fuelRequired(for mass: Int) -> Int {
-        return (mass / 3) - 2
+    init(mass: Int) {
+        self.mass = mass
+    }
+    
+    func fuelRequired(accountForMassOfFuel: Bool = false) -> Mass {
+        let fuelForModuleOnly = mass.fuelRequired
+        
+        if !accountForMassOfFuel {
+            return fuelForModuleOnly
+        }
+        
+        var totalFuel = fuelForModuleOnly
+        var fuelForCurrentFuel = fuelForModuleOnly.fuelRequired
+        
+        while fuelForCurrentFuel > 0 {
+            totalFuel += fuelForCurrentFuel
+            fuelForCurrentFuel = fuelForCurrentFuel.fuelRequired
+        }
+        
+        return totalFuel
+    }
+}
+
+// MARK: - Mass
+
+typealias Mass = Int
+
+extension Mass {
+    var fuelRequired: Mass {
+        return self / 3 - 2
     }
 }

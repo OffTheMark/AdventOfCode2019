@@ -16,7 +16,15 @@ final class Parser: Common.Parser {
         self.input = input
     }
     
-    func parse() -> [Int] {
-        return input.components(separatedBy: .newlines).compactMap({ Int($0) })
+    func parse() -> [Module] {
+        return input
+            .components(separatedBy: .newlines)
+            .compactMap({
+                guard let mass = Int($0) else {
+                    return nil
+                }
+                
+                return Module(mass: mass)
+            })
     }
 }
