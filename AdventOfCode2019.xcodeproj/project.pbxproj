@@ -18,7 +18,7 @@
 		2CAA63BC238DA3A7008FDB31 /* Combinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA63BB238DA3A7008FDB31 /* Combinations.swift */; };
 		2CAA63BE238DB794008FDB31 /* Solver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA63BD238DB794008FDB31 /* Solver.swift */; };
 		2CAA63C6238DB82D008FDB31 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA63C5238DB82D008FDB31 /* main.swift */; };
-		2CAA63CB238DB857008FDB31 /* Part1Solver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA63CA238DB857008FDB31 /* Part1Solver.swift */; };
+		2CAA63CB238DB857008FDB31 /* Solver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA63CA238DB857008FDB31 /* Solver.swift */; };
 		2CAA63D4238DBA2F008FDB31 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAA63B3238DA39F008FDB31 /* Common.framework */; };
 		2CAA63D5238DBA2F008FDB31 /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAA63B3238DA39F008FDB31 /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2CAA63EB238DBF5F008FDB31 /* SortExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA63EA238DBF5F008FDB31 /* SortExtensions.swift */; };
@@ -30,6 +30,8 @@
 		2CAA6422238EC113008FDB31 /* LinkedListRemoveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA6421238EC113008FDB31 /* LinkedListRemoveTests.swift */; };
 		2CAA6424238ECDD6008FDB31 /* LinkedListAccessElementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA6423238ECDD6008FDB31 /* LinkedListAccessElementsTests.swift */; };
 		34E7BCA023930028009833D1 /* LinkedListRangeReplaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7BC9F23930028009833D1 /* LinkedListRangeReplaceTests.swift */; };
+		34E7BCA32394065E009833D1 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7BCA22394065E009833D1 /* Parser.swift */; };
+		34E7BCA5239406BB009833D1 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7BCA4239406BB009833D1 /* Parser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,7 +89,7 @@
 		2CAA63BD238DB794008FDB31 /* Solver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solver.swift; sourceTree = "<group>"; };
 		2CAA63C3238DB82D008FDB31 /* Day1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Day1; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CAA63C5238DB82D008FDB31 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		2CAA63CA238DB857008FDB31 /* Part1Solver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Part1Solver.swift; sourceTree = "<group>"; };
+		2CAA63CA238DB857008FDB31 /* Solver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solver.swift; sourceTree = "<group>"; };
 		2CAA63EA238DBF5F008FDB31 /* SortExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortExtensions.swift; sourceTree = "<group>"; };
 		2CAA6402238EB8DE008FDB31 /* DataStructures.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStructures.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CAA6404238EB8DF008FDB31 /* DataStructures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataStructures.h; sourceTree = "<group>"; };
@@ -100,6 +102,8 @@
 		2CAA6421238EC113008FDB31 /* LinkedListRemoveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedListRemoveTests.swift; sourceTree = "<group>"; };
 		2CAA6423238ECDD6008FDB31 /* LinkedListAccessElementsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedListAccessElementsTests.swift; sourceTree = "<group>"; };
 		34E7BC9F23930028009833D1 /* LinkedListRangeReplaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedListRangeReplaceTests.swift; sourceTree = "<group>"; };
+		34E7BCA22394065E009833D1 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		34E7BCA4239406BB009833D1 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +202,7 @@
 				2CAA63BD238DB794008FDB31 /* Solver.swift */,
 				2CAA63BB238DA3A7008FDB31 /* Combinations.swift */,
 				2CAA63EA238DBF5F008FDB31 /* SortExtensions.swift */,
+				34E7BCA22394065E009833D1 /* Parser.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -206,7 +211,8 @@
 			isa = PBXGroup;
 			children = (
 				2CAA63C5238DB82D008FDB31 /* main.swift */,
-				2CAA63CA238DB857008FDB31 /* Part1Solver.swift */,
+				2CAA63CA238DB857008FDB31 /* Solver.swift */,
+				34E7BCA4239406BB009833D1 /* Parser.swift */,
 			);
 			path = Day1;
 			sourceTree = "<group>";
@@ -413,6 +419,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CAA63BE238DB794008FDB31 /* Solver.swift in Sources */,
+				34E7BCA32394065E009833D1 /* Parser.swift in Sources */,
 				2CAA63EB238DBF5F008FDB31 /* SortExtensions.swift in Sources */,
 				2CAA63BC238DA3A7008FDB31 /* Combinations.swift in Sources */,
 			);
@@ -423,7 +430,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CAA63C6238DB82D008FDB31 /* main.swift in Sources */,
-				2CAA63CB238DB857008FDB31 /* Part1Solver.swift in Sources */,
+				2CAA63CB238DB857008FDB31 /* Solver.swift in Sources */,
+				34E7BCA5239406BB009833D1 /* Parser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
