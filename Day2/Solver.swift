@@ -24,3 +24,41 @@ final class Part1Solver: Common.Solver {
         return try computer.run()
     }
 }
+
+// MARK: - Part2Solver
+
+final class Part2Solver: Common.Solver {
+    let expectedOutput = 19690720
+    let program: [Int]
+
+    init(program: [Int]) {
+        self.program = program
+    }
+
+    func solve() throws -> Int {
+        let expectedInputs = try findExpectedInputs()
+        return expectedInputs.noun * 100 + expectedInputs.verb
+    }
+
+    private func findExpectedInputs() throws -> (noun: Int, verb: Int) {
+        for noun in 0...99 {
+            for verb in 0...99 {
+                let computer = Computer(program: program, noun: noun, verb: verb)
+                
+                do {
+                    let result = try computer.run()
+                    if result == expectedOutput {
+                        return (noun, verb)
+                    }
+                }
+                catch {
+                    break
+                }
+            }
+        }
+
+        throw CouldNotFindInputsError()
+    }
+}
+
+struct CouldNotFindInputsError: Error {}
