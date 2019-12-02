@@ -12,14 +12,13 @@ import Common
 // MARK: Part1Solver
 
 final class Part1Solver: Common.Solver {
-    let parser: Day2.Parser
+    let program: [Int]
 
-    init(input: String) {
-        self.parser = Parser(input: input)
+    init(program: [Int]) {
+        self.program = program
     }
 
     func solve() throws -> Int {
-        let program = parser.parse()
         let computer = Computer(program: program, noun: 12, verb: 2)
 
         return try computer.run()
