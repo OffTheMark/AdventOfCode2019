@@ -11,5 +11,5 @@ import Foundation
 public protocol Solver {
     associatedtype Solution
 
-    func solve() -> Solution
+    func solve() throws -> Solution
 }
