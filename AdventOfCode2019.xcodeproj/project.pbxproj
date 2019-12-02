@@ -17,6 +17,7 @@
 		2C3473372395408600014156 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3473362395408600014156 /* main.swift */; };
 		2C347341239540AE00014156 /* Solver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C347340239540AE00014156 /* Solver.swift */; };
 		2C347343239540DD00014156 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C347342239540DD00014156 /* Parser.swift */; };
+		2C36B26D23954BDF002FB26A /* Computer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C36B26C23954BDF002FB26A /* Computer.swift */; };
 		2C4BA1BD239547A900EF72B5 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAA63B3238DA39F008FDB31 /* Common.framework */; };
 		2C4BA1BE239547A900EF72B5 /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAA63B3238DA39F008FDB31 /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C4BA1C2239547B400EF72B5 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAA63B3238DA39F008FDB31 /* Common.framework */; };
@@ -125,6 +126,7 @@
 		2C3473362395408600014156 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		2C347340239540AE00014156 /* Solver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solver.swift; sourceTree = "<group>"; };
 		2C347342239540DD00014156 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		2C36B26C23954BDF002FB26A /* Computer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Computer.swift; sourceTree = "<group>"; };
 		2CAA63B3238DA39F008FDB31 /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CAA63B5238DA39F008FDB31 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		2CAA63B6238DA39F008FDB31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				2C3473362395408600014156 /* main.swift */,
 				2C347340239540AE00014156 /* Solver.swift */,
 				2C347342239540DD00014156 /* Parser.swift */,
+				2C36B26C23954BDF002FB26A /* Computer.swift */,
 			);
 			path = Day2;
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C36B26D23954BDF002FB26A /* Computer.swift in Sources */,
 				2C347341239540AE00014156 /* Solver.swift in Sources */,
 				2C3473372395408600014156 /* main.swift in Sources */,
 				2C347343239540DD00014156 /* Parser.swift in Sources */,
