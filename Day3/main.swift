@@ -32,7 +32,7 @@ print("Part 1")
 let part1 = Part1Solver(firstWireMoves: firstWireMoves, secondWireMoves: secondWireMoves)
 do {
     let solution = try part1.solve()
-    print(solution)
+    print(String(format: "%.0f",solution))
 }
 catch {
     print(error.localizedDescription)
@@ -43,7 +43,7 @@ print("Part 2")
 let part2 = Part2Solver(firstWireMoves: firstWireMoves, secondWireMoves: secondWireMoves)
 do {
     let solution = try part2.solve()
-    print(solution)
+    print(String(format: "%.0f",solution))
 }
 catch {
     print(error.localizedDescription)
