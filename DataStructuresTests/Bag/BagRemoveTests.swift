@@ -17,7 +17,8 @@ final class BagRemoveTests: XCTestCase {
 
         let removed = bag.remove("item")
 
-        XCTAssertEqual(removed, 1)
+        XCTAssertEqual(removed?.item, "item")
+        XCTAssertEqual(removed?.count, 1)
         XCTAssertEqual(bag, [:])
     }
 
@@ -26,7 +27,8 @@ final class BagRemoveTests: XCTestCase {
 
         let removed = bag.remove("item", count: 2)
 
-        XCTAssertEqual(removed, 2)
+        XCTAssertEqual(removed?.item, "item")
+        XCTAssertEqual(removed?.count, 2)
         XCTAssertEqual(bag, ["item": 3])
     }
 
@@ -34,8 +36,9 @@ final class BagRemoveTests: XCTestCase {
         var bag: Bag = ["item": 2]
 
         let removed = bag.remove("item", count: 2)
-
-        XCTAssertEqual(removed, 2)
+        
+        XCTAssertEqual(removed?.item, "item")
+        XCTAssertEqual(removed?.count, 2)
         XCTAssertEqual(bag, [:])
     }
 
@@ -43,8 +46,9 @@ final class BagRemoveTests: XCTestCase {
         var bag: Bag = ["item": 2]
 
         let removed = bag.removeAll(of: "item")
-
-        XCTAssertEqual(removed, 2)
+        
+        XCTAssertEqual(removed?.item, "item")
+        XCTAssertEqual(removed?.count, 2)
         XCTAssertEqual(bag, [:])
     }
 
