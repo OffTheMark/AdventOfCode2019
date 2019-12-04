@@ -12,59 +12,39 @@ import Common
 // MARK: Wire
 
 struct Wire {
-    let segments: [Segment]
+    let segments: [Line]
 
-    init(segments: [Segment]) {
+    init(segments: [Line]) {
         self.segments = segments
     }
 
     init(origin: Point, moves: [Move]) {
-        var segments = [Segment]()
+        var segments = [Line]()
         var currentPoint = origin
 
         for move in moves {
-            let segment = Segment(start: currentPoint, move: move)
-            segments.append(segment)
+            let start = currentPoint
+            let end = currentPoint.applying(move)
+            let segment = Line(start: start, end: end)
 
-            currentPoint.apply(move)
+            segments.append(segment)
+            currentPoint = end
         }
 
         self.init(segments: segments)
     }
-    
-    var points: [Point] {
-        var points = [Point]()
-        
-        guard let firstSegment = segments.first else {
-            return points
-        }
-        
-        points.append(contentsOf: firstSegment.points)
-        
-        for segment in segments.dropFirst() {
-            points.append(contentsOf: segment.points.dropFirst())
-        }
-        
-        return points
-    }
-}
 
-// MARK: - Segment
-
-struct Segment {
-    let points: [Point]
-
-    init(start: Point, move: Move) {
-        var points = [start]
-        
-        if move.distance > 0 {
-            let partialMoves = (1...Int(move.distance)).map({
-                return Move(direction: move.direction, distance: Float($0))
-            })
-            let otherPoints = partialMoves.map({ start.applying($0) })
-            points.append(contentsOf: otherPoints)
+    func steps(to point: Point) -> Float? {
+        guard let firstIndex = segments.firstIndex(where: { $0.intersects(with: point) }) else {
+            return nil
         }
 
-        self.points = points
+        let stepsInPreviousSegments = segments[0..<firstIndex]
+        .reduce(0, { result, line in
+            return result + line.length
+        })
+        let stepsInIntersectingSegment = segments[firstIndex].start.linearDistance(to: point)
+
+        return stepsInPreviousSegments + stepsInIntersectingSegment
     }
 }

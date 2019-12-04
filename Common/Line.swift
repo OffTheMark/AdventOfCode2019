@@ -53,4 +53,15 @@ public struct Line {
             y: self.start.y + ab * self.deltaY
         )
     }
+
+    public func intersects(with other: Line) -> Bool {
+        return intersection(with: other) != nil
+    }
+
+    public func intersects(with point: Point) -> Bool {
+        let distanceToStart = start.linearDistance(to: point)
+        let distanceToEnd = end.linearDistance(to: point)
+
+        return distanceToStart + distanceToEnd - self.length < 0.0001
+    }
 }

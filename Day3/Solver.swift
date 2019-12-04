@@ -21,8 +21,18 @@ final class Part1Solver: Solver {
     }
 
     func solve() throws -> Float {
-        let intersections = Set(firstWire.points)
-            .intersection(secondWire.points)
+        var segmentPairs = [(first: Line, second: Line)]()
+        for firstSegment in firstWire.segments {
+            for secondSegment in secondWire.segments {
+                segmentPairs.append((firstSegment, secondSegment))
+            }
+        }
+
+        let points = segmentPairs
+            .compactMap({ first, second in
+                return first.intersection(with: second)
+            })
+        let intersections = Set(points)
             .subtracting([.zero])
         
         if intersections.isEmpty {
@@ -54,30 +64,43 @@ final class Part2Solver: Solver {
     }
 
     func solve() throws -> Float {
-        let pointsInFirstWire = firstWire.points
-        let pointsInSecondWire = secondWire.points
+        var segmentPairs = [(first: Line, second: Line)]()
+        for firstSegment in firstWire.segments {
+            for secondSegment in secondWire.segments {
+                segmentPairs.append((firstSegment, secondSegment))
+            }
+        }
+
+        let intersectionsWithSegments: [(intersection: Point, first: Line, second: Line)] = segmentPairs
+            .compactMap({ first, second in
+                guard let intersection = first.intersection(with: second), intersection != .zero else {
+                    return nil
+                }
+
+                return (intersection, first, second)
+            })
         
-        let intersections = Set(pointsInFirstWire)
-            .intersection(pointsInSecondWire)
-            .subtracting([.zero])
-        
-        if intersections.isEmpty {
+        if intersectionsWithSegments.isEmpty {
             throw CouldNotFindClosestPointError()
         }
-        
-        let sortedSteps: [(point: Point, steps: Float)] = intersections
-            .map({ point in
-                let stepsInFirstWire = pointsInFirstWire.firstIndex(of: point)!
-                let stepsInSecondWire = pointsInSecondWire.firstIndex(of: point)!
-                let combinedSteps = stepsInFirstWire + stepsInSecondWire
-                
-                return (point, Float(combinedSteps))
+
+        let intersectionsWithSteps: [(intersection: Point, steps: Float)] = intersectionsWithSegments
+            .compactMap({ point, first, second in
+                guard let firstSteps = firstWire.steps(to: point) else {
+                    return nil
+                }
+
+                guard let secondSteps = secondWire.steps(to: point) else {
+                    return nil
+                }
+
+                return (point, firstSteps + secondSteps)
             })
-            .sorted(by: {
-                return $0.steps < $1.steps
+            .sorted(by: { first, second in
+                return first.steps < second.steps
             })
 
-        return sortedSteps.first!.steps
+        return intersectionsWithSteps.first!.steps
     }
 }
 

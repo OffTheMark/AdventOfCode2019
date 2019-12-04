@@ -23,6 +23,10 @@ public struct Point {
         return abs(other.x - self.x) + abs(other.y - self.y)
     }
 
+    public func linearDistance(to other: Point) -> Float {
+        return sqrt(pow(other.x - self.x, 2) + pow(other.y - self.y, 2))
+    }
+
     public static var zero: Point {
         return Point(x: 0, y: 0)
     }
