@@ -25,6 +25,10 @@ public struct Line {
         return end.y - start.y
     }
     
+    public var length: Float {
+        return sqrt(pow(end.x - start.x, 2) + pow(end.y - start.y, 2))
+    }
+    
     public func intersection(with other: Line) -> Point? {
         let determinant = self.deltaX * other.deltaY - self.deltaY * other.deltaX
         
