@@ -37,3 +37,14 @@ do {
 catch {
     print(error.localizedDescription)
 }
+
+print()
+print("Part 2")
+let part2 = Part2Solver(firstWireMoves: firstWireMoves, secondWireMoves: secondWireMoves)
+do {
+    let solution = try part2.solve()
+    print(solution)
+}
+catch {
+    print(error.localizedDescription)
+}

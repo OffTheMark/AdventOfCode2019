@@ -9,6 +9,8 @@
 import Foundation
 import Common
 
+// MARK: Part1Solver
+
 final class Part1Solver: Solver {
     let firstWire: Wire
     let secondWire: Wire
@@ -19,17 +21,63 @@ final class Part1Solver: Solver {
     }
 
     func solve() throws -> Int {
-        let intersections = firstWire.points
+        let intersections = Set(firstWire.points)
             .intersection(secondWire.points)
             .subtracting([.zero])
-
-        let distances = intersections.map({ $0.manhattanDistance(to: .zero) })
-
-        guard let closestDistance = distances.sorted().first else {
+        
+        if intersections.isEmpty {
             throw CouldNotFindClosestPointError()
         }
 
-        return closestDistance
+        let sortedDistances: [(point: Point, distance: Int)] = intersections
+            .map({ point in
+                let distance = point.manhattanDistance(to: .zero)
+                return (point, distance)
+            })
+            .sorted(by: {
+                return $0.distance < $1.distance
+            })
+
+        return sortedDistances.first!.distance
+    }
+}
+
+// MARK: - Part2Solver
+
+final class Part2Solver: Solver {
+    let firstWire: Wire
+    let secondWire: Wire
+    
+    init(firstWireMoves: [Move], secondWireMoves: [Move]) {
+        self.firstWire = Wire(origin: .zero, moves: firstWireMoves)
+        self.secondWire = Wire(origin: .zero, moves: secondWireMoves)
+    }
+
+    func solve() throws -> Int {
+        let pointsInFirstWire = firstWire.points
+        let pointsInSecondWire = secondWire.points
+        
+        let intersections = Set(pointsInFirstWire)
+            .intersection(pointsInSecondWire)
+            .subtracting([.zero])
+        
+        if intersections.isEmpty {
+            throw CouldNotFindClosestPointError()
+        }
+        
+        let sortedSteps: [(point: Point, steps: Int)] = intersections
+            .map({ point in
+                let stepsInFirstWire = pointsInFirstWire.firstIndex(of: point)!
+                let stepsInSecondWire = pointsInSecondWire.firstIndex(of: point)!
+                let combinedSteps = stepsInFirstWire + stepsInSecondWire
+                
+                return (point, combinedSteps)
+            })
+            .sorted(by: {
+                return $0.steps < $1.steps
+            })
+
+        return sortedSteps.first!.steps
     }
 }
 

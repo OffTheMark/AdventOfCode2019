@@ -31,11 +31,21 @@ struct Wire {
 
         self.init(segments: segments)
     }
-
-    var points: Set<Point> {
-        return segments.reduce(into: Set(), { result, segment in
-            result.formUnion(segment.points)
-        })
+    
+    var points: [Point] {
+        var points = [Point]()
+        
+        guard let firstSegment = segments.first else {
+            return points
+        }
+        
+        points.append(contentsOf: firstSegment.points)
+        
+        for segment in segments.dropFirst() {
+            points.append(contentsOf: segment.points.dropFirst())
+        }
+        
+        return points
     }
 }
 
@@ -45,11 +55,15 @@ struct Segment {
     let points: [Point]
 
     init(start: Point, move: Move) {
-        let partialMoves = (0..<move.distance).map({
-            return Move(direction: move.direction, distance: $0)
-        })
-
-        let points = partialMoves.map({ return start.applying($0) })
+        var points = [start]
+        
+        if move.distance > 0 {
+            let partialMoves = (1...move.distance).map({
+                return Move(direction: move.direction, distance: $0)
+            })
+            let otherPoints = partialMoves.map({ start.applying($0) })
+            points.append(contentsOf: otherPoints)
+        }
 
         self.points = points
     }
