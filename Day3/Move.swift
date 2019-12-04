@@ -27,20 +27,19 @@ extension Point {
 
 struct Move {
     let direction: Direction
-    let distance: Int
+    let distance: Float
 
-    init(direction: Direction, distance: Int) {
+    init(direction: Direction, distance: Float) {
         self.direction = direction
         self.distance = distance
     }
-
 
     init?(rawValue: String) {
         guard let firstCharacter = rawValue.first, let direction = Direction(rawValue: firstCharacter) else {
             return nil
         }
 
-        guard let distance = Int(rawValue.dropFirst()) else {
+        guard let distance = Float(rawValue.dropFirst()) else {
             return nil
         }
 

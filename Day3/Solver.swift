@@ -20,7 +20,7 @@ final class Part1Solver: Solver {
         self.secondWire = Wire(origin: .zero, moves: secondWireMoves)
     }
 
-    func solve() throws -> Int {
+    func solve() throws -> Float {
         let intersections = Set(firstWire.points)
             .intersection(secondWire.points)
             .subtracting([.zero])
@@ -29,7 +29,7 @@ final class Part1Solver: Solver {
             throw CouldNotFindClosestPointError()
         }
 
-        let sortedDistances: [(point: Point, distance: Int)] = intersections
+        let sortedDistances: [(point: Point, distance: Float)] = intersections
             .map({ point in
                 let distance = point.manhattanDistance(to: .zero)
                 return (point, distance)
@@ -53,7 +53,7 @@ final class Part2Solver: Solver {
         self.secondWire = Wire(origin: .zero, moves: secondWireMoves)
     }
 
-    func solve() throws -> Int {
+    func solve() throws -> Float {
         let pointsInFirstWire = firstWire.points
         let pointsInSecondWire = secondWire.points
         
@@ -65,13 +65,13 @@ final class Part2Solver: Solver {
             throw CouldNotFindClosestPointError()
         }
         
-        let sortedSteps: [(point: Point, steps: Int)] = intersections
+        let sortedSteps: [(point: Point, steps: Float)] = intersections
             .map({ point in
                 let stepsInFirstWire = pointsInFirstWire.firstIndex(of: point)!
                 let stepsInSecondWire = pointsInSecondWire.firstIndex(of: point)!
                 let combinedSteps = stepsInFirstWire + stepsInSecondWire
                 
-                return (point, combinedSteps)
+                return (point, Float(combinedSteps))
             })
             .sorted(by: {
                 return $0.steps < $1.steps

@@ -58,8 +58,8 @@ struct Segment {
         var points = [start]
         
         if move.distance > 0 {
-            let partialMoves = (1...move.distance).map({
-                return Move(direction: move.direction, distance: $0)
+            let partialMoves = (1...Int(move.distance)).map({
+                return Move(direction: move.direction, distance: Float($0))
             })
             let otherPoints = partialMoves.map({ start.applying($0) })
             points.append(contentsOf: otherPoints)

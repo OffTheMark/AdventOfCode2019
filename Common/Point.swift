@@ -11,15 +11,15 @@ import Foundation
 // MARK: Point
 
 public struct Point {
-    public var x: Int
-    public var y: Int
+    public var x: Float
+    public var y: Float
 
-    public init(x: Int, y: Int) {
+    public init(x: Float, y: Float) {
         self.x = x
         self.y = y
     }
 
-    public func manhattanDistance(to other: Point) -> Int {
+    public func manhattanDistance(to other: Point) -> Float {
         return abs(other.x - self.x) + abs(other.y - self.y)
     }
 
