@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C1F151F239696AD00047D7C /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F151E239696AD00047D7C /* Point.swift */; };
+		2C0DE6D82397E84400127D6D /* Geometry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0DE6CF2397E84400127D6D /* Geometry.framework */; };
+		2C0DE6DD2397E84400127D6D /* GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DE6DC2397E84400127D6D /* GeometryTests.swift */; };
+		2C0DE6DF2397E84400127D6D /* Geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0DE6D12397E84400127D6D /* Geometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2C0DE6E62397E84C00127D6D /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F151E239696AD00047D7C /* Point.swift */; };
+		2C0DE6E72397E85400127D6D /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340B1F5123975B1E0003F389 /* Line.swift */; };
+		2C0DE6E82397E86600127D6D /* Geometry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0DE6CF2397E84400127D6D /* Geometry.framework */; };
+		2C0DE6E92397E86600127D6D /* Geometry.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0DE6CF2397E84400127D6D /* Geometry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C1F1527239697D100047D7C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F1526239697D100047D7C /* main.swift */; };
 		2C1F152C2396980500047D7C /* Move.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F152B2396980500047D7C /* Move.swift */; };
 		2C1F152D2396980D00047D7C /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAA63B3238DA39F008FDB31 /* Common.framework */; };
@@ -41,13 +47,26 @@
 		2CAA6420238EBCF7008FDB31 /* LinkedListAddTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA641F238EBCF7008FDB31 /* LinkedListAddTests.swift */; };
 		2CAA6422238EC113008FDB31 /* LinkedListRemoveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA6421238EC113008FDB31 /* LinkedListRemoveTests.swift */; };
 		2CAA6424238ECDD6008FDB31 /* LinkedListAccessElementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA6423238ECDD6008FDB31 /* LinkedListAccessElementsTests.swift */; };
-		340B1F5223975B1E0003F389 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340B1F5123975B1E0003F389 /* Line.swift */; };
 		34E7BCA023930028009833D1 /* LinkedListRangeReplaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7BC9F23930028009833D1 /* LinkedListRangeReplaceTests.swift */; };
 		34E7BCA32394065E009833D1 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7BCA22394065E009833D1 /* Parser.swift */; };
 		34E7BCA5239406BB009833D1 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7BCA4239406BB009833D1 /* Parser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2C0DE6D92397E84400127D6D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2CAA638D238DA2CA008FDB31 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C0DE6CE2397E84400127D6D;
+			remoteInfo = Geometry;
+		};
+		2C0DE6EA2397E86600127D6D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2CAA638D238DA2CA008FDB31 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C0DE6CE2397E84400127D6D;
+			remoteInfo = Geometry;
+		};
 		2C1F152F2396980D00047D7C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2CAA638D238DA2CA008FDB31 /* Project object */;
@@ -101,6 +120,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				2C0DE6E92397E86600127D6D /* Geometry.framework in Embed Frameworks */,
 				2C1F152E2396980D00047D7C /* Common.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -149,6 +169,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2C0DE6CF2397E84400127D6D /* Geometry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Geometry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C0DE6D12397E84400127D6D /* Geometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Geometry.h; sourceTree = "<group>"; };
+		2C0DE6D22397E84400127D6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C0DE6D72397E84400127D6D /* GeometryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeometryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C0DE6DC2397E84400127D6D /* GeometryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryTests.swift; sourceTree = "<group>"; };
+		2C0DE6DE2397E84400127D6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C1F151E239696AD00047D7C /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		2C1F1524239697D100047D7C /* Day3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Day3; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C1F1526239697D100047D7C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -192,10 +218,26 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2C0DE6CC2397E84400127D6D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C0DE6D42397E84400127D6D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C0DE6D82397E84400127D6D /* Geometry.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2C1F1521239697D100047D7C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C0DE6E82397E86600127D6D /* Geometry.framework in Frameworks */,
 				2C1F152D2396980D00047D7C /* Common.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -241,6 +283,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C0DE6D02397E84400127D6D /* Geometry */ = {
+			isa = PBXGroup;
+			children = (
+				2C0DE6D12397E84400127D6D /* Geometry.h */,
+				2C1F151E239696AD00047D7C /* Point.swift */,
+				340B1F5123975B1E0003F389 /* Line.swift */,
+				2C0DE6D22397E84400127D6D /* Info.plist */,
+			);
+			path = Geometry;
+			sourceTree = "<group>";
+		};
+		2C0DE6DB2397E84400127D6D /* GeometryTests */ = {
+			isa = PBXGroup;
+			children = (
+				2C0DE6DC2397E84400127D6D /* GeometryTests.swift */,
+				2C0DE6DE2397E84400127D6D /* Info.plist */,
+			);
+			path = GeometryTests;
+			sourceTree = "<group>";
+		};
 		2C1F1525239697D100047D7C /* Day3 */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,6 +364,8 @@
 				2C1F1525239697D100047D7C /* Day3 */,
 				2CAA6403238EB8DF008FDB31 /* DataStructures */,
 				2CAA640E238EB8DF008FDB31 /* DataStructuresTests */,
+				2C0DE6D02397E84400127D6D /* Geometry */,
+				2C0DE6DB2397E84400127D6D /* GeometryTests */,
 				2CAA6396238DA2CB008FDB31 /* Products */,
 				2CAA63CC238DB880008FDB31 /* Frameworks */,
 			);
@@ -316,6 +380,8 @@
 				2CAA640A238EB8DF008FDB31 /* DataStructuresTests.xctest */,
 				2C3473342395408600014156 /* Day2 */,
 				2C1F1524239697D100047D7C /* Day3 */,
+				2C0DE6CF2397E84400127D6D /* Geometry.framework */,
+				2C0DE6D72397E84400127D6D /* GeometryTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -329,8 +395,6 @@
 				2CAA63BB238DA3A7008FDB31 /* Combinations.swift */,
 				2CAA63EA238DBF5F008FDB31 /* SortExtensions.swift */,
 				34E7BCA22394065E009833D1 /* Parser.swift */,
-				2C1F151E239696AD00047D7C /* Point.swift */,
-				340B1F5123975B1E0003F389 /* Line.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -378,6 +442,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		2C0DE6CA2397E84400127D6D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C0DE6DF2397E84400127D6D /* Geometry.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2CAA63AE238DA39F008FDB31 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -397,6 +469,42 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		2C0DE6CE2397E84400127D6D /* Geometry */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C0DE6E42397E84400127D6D /* Build configuration list for PBXNativeTarget "Geometry" */;
+			buildPhases = (
+				2C0DE6CA2397E84400127D6D /* Headers */,
+				2C0DE6CB2397E84400127D6D /* Sources */,
+				2C0DE6CC2397E84400127D6D /* Frameworks */,
+				2C0DE6CD2397E84400127D6D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Geometry;
+			productName = Geometry;
+			productReference = 2C0DE6CF2397E84400127D6D /* Geometry.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		2C0DE6D62397E84400127D6D /* GeometryTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C0DE6E52397E84400127D6D /* Build configuration list for PBXNativeTarget "GeometryTests" */;
+			buildPhases = (
+				2C0DE6D32397E84400127D6D /* Sources */,
+				2C0DE6D42397E84400127D6D /* Frameworks */,
+				2C0DE6D52397E84400127D6D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2C0DE6DA2397E84400127D6D /* PBXTargetDependency */,
+			);
+			name = GeometryTests;
+			productName = GeometryTests;
+			productReference = 2C0DE6D72397E84400127D6D /* GeometryTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		2C1F1523239697D100047D7C /* Day3 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C1F1528239697D100047D7C /* Build configuration list for PBXNativeTarget "Day3" */;
@@ -410,6 +518,7 @@
 			);
 			dependencies = (
 				2C1F15302396980D00047D7C /* PBXTargetDependency */,
+				2C0DE6EB2397E86600127D6D /* PBXTargetDependency */,
 			);
 			name = Day3;
 			productName = Day3;
@@ -519,6 +628,12 @@
 				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = "Marc-Antoine Malépart";
 				TargetAttributes = {
+					2C0DE6CE2397E84400127D6D = {
+						CreatedOnToolsVersion = 11.1;
+					};
+					2C0DE6D62397E84400127D6D = {
+						CreatedOnToolsVersion = 11.1;
+					};
 					2C1F1523239697D100047D7C = {
 						CreatedOnToolsVersion = 11.1;
 					};
@@ -560,11 +675,27 @@
 				2CAA63B2238DA39F008FDB31 /* Common */,
 				2CAA6401238EB8DE008FDB31 /* DataStructures */,
 				2CAA6409238EB8DF008FDB31 /* DataStructuresTests */,
+				2C0DE6CE2397E84400127D6D /* Geometry */,
+				2C0DE6D62397E84400127D6D /* GeometryTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2C0DE6CD2397E84400127D6D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C0DE6D52397E84400127D6D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2CAA63B1238DA39F008FDB31 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -589,6 +720,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2C0DE6CB2397E84400127D6D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C0DE6E62397E84C00127D6D /* Point.swift in Sources */,
+				2C0DE6E72397E85400127D6D /* Line.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C0DE6D32397E84400127D6D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C0DE6DD2397E84400127D6D /* GeometryTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2C1F1520239697D100047D7C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -615,9 +763,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CAA63BE238DB794008FDB31 /* Solver.swift in Sources */,
-				2C1F151F239696AD00047D7C /* Point.swift in Sources */,
 				34E7BCA32394065E009833D1 /* Parser.swift in Sources */,
-				340B1F5223975B1E0003F389 /* Line.swift in Sources */,
 				2CAA63EB238DBF5F008FDB31 /* SortExtensions.swift in Sources */,
 				2CAA63BC238DA3A7008FDB31 /* Combinations.swift in Sources */,
 			);
@@ -663,6 +809,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2C0DE6DA2397E84400127D6D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2C0DE6CE2397E84400127D6D /* Geometry */;
+			targetProxy = 2C0DE6D92397E84400127D6D /* PBXContainerItemProxy */;
+		};
+		2C0DE6EB2397E86600127D6D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2C0DE6CE2397E84400127D6D /* Geometry */;
+			targetProxy = 2C0DE6EA2397E86600127D6D /* PBXContainerItemProxy */;
+		};
 		2C1F15302396980D00047D7C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2CAA63B2238DA39F008FDB31 /* Common */;
@@ -691,6 +847,98 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		2C0DE6E02397E84400127D6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 86LYTBMP4A;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Geometry/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mantoinemalepart.Geometry;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		2C0DE6E12397E84400127D6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 86LYTBMP4A;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Geometry/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mantoinemalepart.Geometry;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		2C0DE6E22397E84400127D6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 86LYTBMP4A;
+				INFOPLIST_FILE = GeometryTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mantoinemalepart.GeometryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		2C0DE6E32397E84400127D6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 86LYTBMP4A;
+				INFOPLIST_FILE = GeometryTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mantoinemalepart.GeometryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		2C1F1529239697D100047D7C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1047,6 +1295,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2C0DE6E42397E84400127D6D /* Build configuration list for PBXNativeTarget "Geometry" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C0DE6E02397E84400127D6D /* Debug */,
+				2C0DE6E12397E84400127D6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2C0DE6E52397E84400127D6D /* Build configuration list for PBXNativeTarget "GeometryTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C0DE6E22397E84400127D6D /* Debug */,
+				2C0DE6E32397E84400127D6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2C1F1528239697D100047D7C /* Build configuration list for PBXNativeTarget "Day3" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Common
+import Geometry
 
 // MARK: Wire
 
