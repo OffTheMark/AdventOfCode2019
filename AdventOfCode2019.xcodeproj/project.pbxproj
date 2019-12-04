@@ -14,6 +14,9 @@
 		2C0DE6E72397E85400127D6D /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340B1F5123975B1E0003F389 /* Line.swift */; };
 		2C0DE6E82397E86600127D6D /* Geometry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0DE6CF2397E84400127D6D /* Geometry.framework */; };
 		2C0DE6E92397E86600127D6D /* Geometry.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0DE6CF2397E84400127D6D /* Geometry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2C0DE6F92398069E00127D6D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DE6F82398069E00127D6D /* main.swift */; };
+		2C0DE6FE239806E400127D6D /* Solver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DE6FD239806E400127D6D /* Solver.swift */; };
+		2C0DE702239811EA00127D6D /* Password.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DE701239811EA00127D6D /* Password.swift */; };
 		2C1F1527239697D100047D7C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F1526239697D100047D7C /* main.swift */; };
 		2C1F152C2396980500047D7C /* Move.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F152B2396980500047D7C /* Move.swift */; };
 		2C1F152D2396980D00047D7C /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAA63B3238DA39F008FDB31 /* Common.framework */; };
@@ -105,6 +108,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		2C0DE6F42398069E00127D6D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		2C1F1522239697D100047D7C /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -175,6 +187,10 @@
 		2C0DE6D72397E84400127D6D /* GeometryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeometryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C0DE6DC2397E84400127D6D /* GeometryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryTests.swift; sourceTree = "<group>"; };
 		2C0DE6DE2397E84400127D6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C0DE6F62398069E00127D6D /* Day4 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Day4; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C0DE6F82398069E00127D6D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		2C0DE6FD239806E400127D6D /* Solver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solver.swift; sourceTree = "<group>"; };
+		2C0DE701239811EA00127D6D /* Password.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Password.swift; sourceTree = "<group>"; };
 		2C1F151E239696AD00047D7C /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		2C1F1524239697D100047D7C /* Day3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Day3; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C1F1526239697D100047D7C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -230,6 +246,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C0DE6D82397E84400127D6D /* Geometry.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C0DE6F32398069E00127D6D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +326,16 @@
 			path = GeometryTests;
 			sourceTree = "<group>";
 		};
+		2C0DE6F72398069E00127D6D /* Day4 */ = {
+			isa = PBXGroup;
+			children = (
+				2C0DE6F82398069E00127D6D /* main.swift */,
+				2C0DE6FD239806E400127D6D /* Solver.swift */,
+				2C0DE701239811EA00127D6D /* Password.swift */,
+			);
+			path = Day4;
+			sourceTree = "<group>";
+		};
 		2C1F1525239697D100047D7C /* Day3 */ = {
 			isa = PBXGroup;
 			children = (
@@ -362,6 +395,7 @@
 				2CAA63C4238DB82D008FDB31 /* Day1 */,
 				2C3473352395408600014156 /* Day2 */,
 				2C1F1525239697D100047D7C /* Day3 */,
+				2C0DE6F72398069E00127D6D /* Day4 */,
 				2CAA6403238EB8DF008FDB31 /* DataStructures */,
 				2CAA640E238EB8DF008FDB31 /* DataStructuresTests */,
 				2C0DE6D02397E84400127D6D /* Geometry */,
@@ -382,6 +416,7 @@
 				2C1F1524239697D100047D7C /* Day3 */,
 				2C0DE6CF2397E84400127D6D /* Geometry.framework */,
 				2C0DE6D72397E84400127D6D /* GeometryTests.xctest */,
+				2C0DE6F62398069E00127D6D /* Day4 */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -504,6 +539,23 @@
 			productName = GeometryTests;
 			productReference = 2C0DE6D72397E84400127D6D /* GeometryTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2C0DE6F52398069E00127D6D /* Day4 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C0DE6FC2398069E00127D6D /* Build configuration list for PBXNativeTarget "Day4" */;
+			buildPhases = (
+				2C0DE6F22398069E00127D6D /* Sources */,
+				2C0DE6F32398069E00127D6D /* Frameworks */,
+				2C0DE6F42398069E00127D6D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Day4;
+			productName = Day4;
+			productReference = 2C0DE6F62398069E00127D6D /* Day4 */;
+			productType = "com.apple.product-type.tool";
 		};
 		2C1F1523239697D100047D7C /* Day3 */ = {
 			isa = PBXNativeTarget;
@@ -634,6 +686,9 @@
 					2C0DE6D62397E84400127D6D = {
 						CreatedOnToolsVersion = 11.1;
 					};
+					2C0DE6F52398069E00127D6D = {
+						CreatedOnToolsVersion = 11.1;
+					};
 					2C1F1523239697D100047D7C = {
 						CreatedOnToolsVersion = 11.1;
 					};
@@ -672,6 +727,7 @@
 				2CAA63C2238DB82D008FDB31 /* Day1 */,
 				2C3473332395408600014156 /* Day2 */,
 				2C1F1523239697D100047D7C /* Day3 */,
+				2C0DE6F52398069E00127D6D /* Day4 */,
 				2CAA63B2238DA39F008FDB31 /* Common */,
 				2CAA6401238EB8DE008FDB31 /* DataStructures */,
 				2CAA6409238EB8DF008FDB31 /* DataStructuresTests */,
@@ -734,6 +790,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C0DE6DD2397E84400127D6D /* GeometryTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C0DE6F22398069E00127D6D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C0DE702239811EA00127D6D /* Password.swift in Sources */,
+				2C0DE6FE239806E400127D6D /* Solver.swift in Sources */,
+				2C0DE6F92398069E00127D6D /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -934,6 +1000,28 @@
 					"@loader_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mantoinemalepart.GeometryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		2C0DE6FA2398069E00127D6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 86LYTBMP4A;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		2C0DE6FB2398069E00127D6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 86LYTBMP4A;
+				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -1309,6 +1397,15 @@
 			buildConfigurations = (
 				2C0DE6E22397E84400127D6D /* Debug */,
 				2C0DE6E32397E84400127D6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2C0DE6FC2398069E00127D6D /* Build configuration list for PBXNativeTarget "Day4" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C0DE6FA2398069E00127D6D /* Debug */,
+				2C0DE6FB2398069E00127D6D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
