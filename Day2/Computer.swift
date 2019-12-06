@@ -12,19 +12,13 @@ import Foundation
 
 final class Computer {
     let program: [Int]
-    let noun: Int
-    let verb: Int
 
-    init(program: [Int], noun: Int, verb: Int) {
+    init(program: [Int]) {
         self.program = program
-        self.noun = noun
-        self.verb = verb
     }
 
     func run() throws -> Int {
         var program = self.program
-        program[1] = noun
-        program[2] = verb
 
         var instructionPointer = 0
 
@@ -72,4 +66,3 @@ struct InvalidOpcodeError: LocalizedError {
         return "Invalid opcode: \(opcode)"
     }
 }
-

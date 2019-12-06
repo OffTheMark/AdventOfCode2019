@@ -19,7 +19,10 @@ final class Part1Solver: Common.Solver {
     }
 
     func solve() throws -> Int {
-        let computer = Computer(program: program, noun: 12, verb: 2)
+        var program = self.program
+        program[1] = 12
+        program[2] = 2
+        let computer = Computer(program: program)
 
         return try computer.run()
     }
@@ -43,7 +46,10 @@ final class Part2Solver: Common.Solver {
     private func findExpectedInputs() throws -> (noun: Int, verb: Int) {
         for noun in 0...99 {
             for verb in 0...99 {
-                let computer = Computer(program: program, noun: noun, verb: verb)
+                var program = self.program
+                program[1] = noun
+                program[2] = verb
+                let computer = Computer(program: program)
                 
                 do {
                     let result = try computer.run()
