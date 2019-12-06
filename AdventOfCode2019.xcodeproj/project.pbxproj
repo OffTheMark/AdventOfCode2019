@@ -57,6 +57,13 @@
 		34C610BE2399ED09001A5301 /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAA63B3238DA39F008FDB31 /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		34C610C32399ED1A001A5301 /* Solver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C610C22399ED1A001A5301 /* Solver.swift */; };
 		34C610C52399ED8A001A5301 /* Computer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C610C42399ED8A001A5301 /* Computer.swift */; };
+		34C610CD239AFC47001A5301 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C610CC239AFC47001A5301 /* main.swift */; };
+		34C610D2239AFC87001A5301 /* TreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C610D1239AFC87001A5301 /* TreeNode.swift */; };
+		34C610D3239AFEF6001A5301 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAA63B3238DA39F008FDB31 /* Common.framework */; };
+		34C610D4239AFEF6001A5301 /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAA63B3238DA39F008FDB31 /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		34C610D8239AFEF8001A5301 /* DataStructures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAA6402238EB8DE008FDB31 /* DataStructures.framework */; };
+		34C610D9239AFEF8001A5301 /* DataStructures.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAA6402238EB8DE008FDB31 /* DataStructures.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		34C610DD239B07A5001A5301 /* Solver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C610DC239B07A5001A5301 /* Solver.swift */; };
 		34E7BCA023930028009833D1 /* LinkedListRangeReplaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7BC9F23930028009833D1 /* LinkedListRangeReplaceTests.swift */; };
 		34E7BCA32394065E009833D1 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7BCA22394065E009833D1 /* Parser.swift */; };
 		34E7BCA5239406BB009833D1 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7BCA4239406BB009833D1 /* Parser.swift */; };
@@ -125,6 +132,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 2CAA63B2238DA39F008FDB31;
 			remoteInfo = Common;
+		};
+		34C610D5239AFEF6001A5301 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2CAA638D238DA2CA008FDB31 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2CAA63B2238DA39F008FDB31;
+			remoteInfo = Common;
+		};
+		34C610DA239AFEF8001A5301 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2CAA638D238DA2CA008FDB31 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2CAA6401238EB8DE008FDB31;
+			remoteInfo = DataStructures;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -230,6 +251,27 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		34C610C8239AFC47001A5301 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		34C610D7239AFEF6001A5301 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				34C610D9239AFEF8001A5301 /* DataStructures.framework in Embed Frameworks */,
+				34C610D4239AFEF6001A5301 /* Common.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -284,6 +326,10 @@
 		34C610B82399ECF0001A5301 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		34C610C22399ED1A001A5301 /* Solver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solver.swift; sourceTree = "<group>"; };
 		34C610C42399ED8A001A5301 /* Computer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Computer.swift; sourceTree = "<group>"; };
+		34C610CA239AFC47001A5301 /* Day6 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Day6; sourceTree = BUILT_PRODUCTS_DIR; };
+		34C610CC239AFC47001A5301 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		34C610D1239AFC87001A5301 /* TreeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeNode.swift; sourceTree = "<group>"; };
+		34C610DC239B07A5001A5301 /* Solver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solver.swift; sourceTree = "<group>"; };
 		34E7BC9F23930028009833D1 /* LinkedListRangeReplaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedListRangeReplaceTests.swift; sourceTree = "<group>"; };
 		34E7BCA22394065E009833D1 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		34E7BCA4239406BB009833D1 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
@@ -365,6 +411,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				34C610BD2399ED09001A5301 /* Common.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34C610C7239AFC47001A5301 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34C610D8239AFEF8001A5301 /* DataStructures.framework in Frameworks */,
+				34C610D3239AFEF6001A5301 /* Common.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +517,7 @@
 				2C1F1525239697D100047D7C /* Day3 */,
 				2C0DE6F72398069E00127D6D /* Day4 */,
 				34C610B72399ECF0001A5301 /* Day5 */,
+				34C610CB239AFC47001A5301 /* Day6 */,
 				2CAA6403238EB8DF008FDB31 /* DataStructures */,
 				2CAA640E238EB8DF008FDB31 /* DataStructuresTests */,
 				2C0DE6D02397E84400127D6D /* Geometry */,
@@ -484,6 +540,7 @@
 				2C0DE6D72397E84400127D6D /* GeometryTests.xctest */,
 				2C0DE6F62398069E00127D6D /* Day4 */,
 				34C610B62399ECF0001A5301 /* Day5 */,
+				34C610CA239AFC47001A5301 /* Day6 */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -526,6 +583,7 @@
 				2CAA6419238EB8ED008FDB31 /* Bag.swift */,
 				2CAA641B238EB9B3008FDB31 /* LinkedList.swift */,
 				2C3472EB238EF47F00014156 /* Deque.swift */,
+				34C610D1239AFC87001A5301 /* TreeNode.swift */,
 			);
 			path = DataStructures;
 			sourceTree = "<group>";
@@ -549,6 +607,15 @@
 				34C610C42399ED8A001A5301 /* Computer.swift */,
 			);
 			path = Day5;
+			sourceTree = "<group>";
+		};
+		34C610CB239AFC47001A5301 /* Day6 */ = {
+			isa = PBXGroup;
+			children = (
+				34C610CC239AFC47001A5301 /* main.swift */,
+				34C610DC239B07A5001A5301 /* Solver.swift */,
+			);
+			path = Day6;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -768,6 +835,26 @@
 			productReference = 34C610B62399ECF0001A5301 /* Day5 */;
 			productType = "com.apple.product-type.tool";
 		};
+		34C610C9239AFC47001A5301 /* Day6 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34C610CE239AFC47001A5301 /* Build configuration list for PBXNativeTarget "Day6" */;
+			buildPhases = (
+				34C610C6239AFC47001A5301 /* Sources */,
+				34C610C7239AFC47001A5301 /* Frameworks */,
+				34C610C8239AFC47001A5301 /* CopyFiles */,
+				34C610D7239AFEF6001A5301 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				34C610D6239AFEF6001A5301 /* PBXTargetDependency */,
+				34C610DB239AFEF8001A5301 /* PBXTargetDependency */,
+			);
+			name = Day6;
+			productName = Day6;
+			productReference = 34C610CA239AFC47001A5301 /* Day6 */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -810,6 +897,9 @@
 					34C610B52399ECF0001A5301 = {
 						CreatedOnToolsVersion = 11.2.1;
 					};
+					34C610C9239AFC47001A5301 = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
 				};
 			};
 			buildConfigurationList = 2CAA6390238DA2CA008FDB31 /* Build configuration list for PBXProject "AdventOfCode2019" */;
@@ -830,6 +920,7 @@
 				2C1F1523239697D100047D7C /* Day3 */,
 				2C0DE6F52398069E00127D6D /* Day4 */,
 				34C610B52399ECF0001A5301 /* Day5 */,
+				34C610C9239AFC47001A5301 /* Day6 */,
 				2CAA63B2238DA39F008FDB31 /* Common */,
 				2CAA6401238EB8DE008FDB31 /* DataStructures */,
 				2CAA6409238EB8DF008FDB31 /* DataStructuresTests */,
@@ -954,6 +1045,7 @@
 				2CAA641C238EB9B4008FDB31 /* LinkedList.swift in Sources */,
 				2CAA641A238EB8ED008FDB31 /* Bag.swift in Sources */,
 				2C3472EC238EF47F00014156 /* Deque.swift in Sources */,
+				34C610D2239AFC87001A5301 /* TreeNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -981,6 +1073,15 @@
 				34C610C52399ED8A001A5301 /* Computer.swift in Sources */,
 				34C610C32399ED1A001A5301 /* Solver.swift in Sources */,
 				34C610B92399ECF0001A5301 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34C610C6239AFC47001A5301 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34C610DD239B07A5001A5301 /* Solver.swift in Sources */,
+				34C610CD239AFC47001A5301 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1031,6 +1132,16 @@
 			isa = PBXTargetDependency;
 			target = 2CAA63B2238DA39F008FDB31 /* Common */;
 			targetProxy = 34C610BF2399ED09001A5301 /* PBXContainerItemProxy */;
+		};
+		34C610D6239AFEF6001A5301 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2CAA63B2238DA39F008FDB31 /* Common */;
+			targetProxy = 34C610D5239AFEF6001A5301 /* PBXContainerItemProxy */;
+		};
+		34C610DB239AFEF8001A5301 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2CAA6401238EB8DE008FDB31 /* DataStructures */;
+			targetProxy = 34C610DA239AFEF8001A5301 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1526,6 +1637,30 @@
 			};
 			name = Release;
 		};
+		34C610CF239AFC47001A5301 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 86LYTBMP4A;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		34C610D0239AFC47001A5301 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 86LYTBMP4A;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1624,6 +1759,15 @@
 			buildConfigurations = (
 				34C610BA2399ECF0001A5301 /* Debug */,
 				34C610BB2399ECF0001A5301 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		34C610CE239AFC47001A5301 /* Build configuration list for PBXNativeTarget "Day6" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34C610CF239AFC47001A5301 /* Debug */,
+				34C610D0239AFC47001A5301 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
