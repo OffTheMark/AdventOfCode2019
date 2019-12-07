@@ -8,6 +8,8 @@
 
 import Foundation
 
+// MARK: Combinations
+
 public extension Array {
     func combinations(ofSize size: Int) -> Array<Array<Element>> {
         guard count >= size else {
@@ -72,6 +74,8 @@ public extension Array {
     }
 }
 
+// MARK: - Permutations
+
 public extension Array {
     func permutationsWithoutRepetition(ofSize size: Int) -> [[Element]] {
         guard self.count >= size else {
@@ -89,6 +93,27 @@ public extension Array {
             
             let subPermutations = elementsExceptCurrent
                 .permutationsWithoutRepetition(ofSize: size - 1)
+                .map({ subPermutation in
+                    return [element] + subPermutation
+                })
+            permutations += subPermutations
+        }
+        
+        return permutations
+    }
+    
+    func permutationsWithRepetition(ofSize size: Int) -> [[Element]] {
+        guard self.count >= 0 && size > 0 else {
+            return [[]]
+        }
+        
+        if size == 1 {
+            return self.map({ [$0] })
+        }
+        
+        var permutations = [[Element]]()
+        for element in self {
+            let subPermutations = self.permutationsWithRepetition(ofSize: size - 1)
                 .map({ subPermutation in
                     return [element] + subPermutation
                 })

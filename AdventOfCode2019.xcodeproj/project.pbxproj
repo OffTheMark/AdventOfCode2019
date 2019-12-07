@@ -38,7 +38,7 @@
 		2C4BA1C2239547B400EF72B5 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAA63B3238DA39F008FDB31 /* Common.framework */; };
 		2C4BA1C3239547B400EF72B5 /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAA63B3238DA39F008FDB31 /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2CAA63B7238DA39F008FDB31 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CAA63B5238DA39F008FDB31 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2CAA63BC238DA3A7008FDB31 /* Combinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA63BB238DA3A7008FDB31 /* Combinations.swift */; };
+		2CAA63BC238DA3A7008FDB31 /* Combinatorics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA63BB238DA3A7008FDB31 /* Combinatorics.swift */; };
 		2CAA63BE238DB794008FDB31 /* Solver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA63BD238DB794008FDB31 /* Solver.swift */; };
 		2CAA63C6238DB82D008FDB31 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA63C5238DB82D008FDB31 /* main.swift */; };
 		2CAA63CB238DB857008FDB31 /* Solver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA63CA238DB857008FDB31 /* Solver.swift */; };
@@ -337,7 +337,7 @@
 		2CAA63B3238DA39F008FDB31 /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CAA63B5238DA39F008FDB31 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		2CAA63B6238DA39F008FDB31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2CAA63BB238DA3A7008FDB31 /* Combinations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Combinations.swift; sourceTree = "<group>"; };
+		2CAA63BB238DA3A7008FDB31 /* Combinatorics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Combinatorics.swift; sourceTree = "<group>"; };
 		2CAA63BD238DB794008FDB31 /* Solver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solver.swift; sourceTree = "<group>"; };
 		2CAA63C3238DB82D008FDB31 /* Day1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Day1; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CAA63C5238DB82D008FDB31 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -597,7 +597,7 @@
 				2CAA63B5238DA39F008FDB31 /* Common.h */,
 				2CAA63B6238DA39F008FDB31 /* Info.plist */,
 				2CAA63BD238DB794008FDB31 /* Solver.swift */,
-				2CAA63BB238DA3A7008FDB31 /* Combinations.swift */,
+				2CAA63BB238DA3A7008FDB31 /* Combinatorics.swift */,
 				2CAA63EA238DBF5F008FDB31 /* SortExtensions.swift */,
 				34E7BCA22394065E009833D1 /* Parser.swift */,
 			);
@@ -1103,7 +1103,7 @@
 				2CAA63BE238DB794008FDB31 /* Solver.swift in Sources */,
 				34E7BCA32394065E009833D1 /* Parser.swift in Sources */,
 				2CAA63EB238DBF5F008FDB31 /* SortExtensions.swift in Sources */,
-				2CAA63BC238DA3A7008FDB31 /* Combinations.swift in Sources */,
+				2CAA63BC238DA3A7008FDB31 /* Combinatorics.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
