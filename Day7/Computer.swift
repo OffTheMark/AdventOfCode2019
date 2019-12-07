@@ -1,8 +1,8 @@
 //
 //  Computer.swift
-//  Day5
+//  Day7
 //
-//  Created by Marc-Antoine Malépart on 2019-12-05.
+//  Created by Marc-Antoine Malépart on 2019-12-07.
 //  Copyright © 2019 Marc-Antoine Malépart. All rights reserved.
 //
 
@@ -11,16 +11,18 @@ import Foundation
 // MARK: Computer
 
 final class Computer {
-    let input: Int
     let program: [Int]
+    let inputs: [Int]
     
-    init(program: [Int], input: Int) {
+    init(program: [Int], inputs: [Int]) {
         self.program = program
-        self.input = input
+        self.inputs = inputs
     }
     
-    func run() throws -> Void {
+    func run() -> [Int] {
         var program = self.program
+        var inputs = self.inputs
+        var output = [Int]()
         
         var instructionPointer = 0
         
@@ -28,7 +30,7 @@ final class Computer {
             let potentialOperation = program[instructionPointer]
             
             guard let operation = Operation(rawValue: potentialOperation) else {
-                throw InvalidOperationError(operation: potentialOperation)
+                break
             }
             
             let rangeOfParameters = (instructionPointer + 1)...(instructionPointer + operation.code.parameterCount + 1)
@@ -78,12 +80,12 @@ final class Computer {
                 
             case .input:
                 let parameter = parameters[0]
-                program[parameter] = input
+                program[parameter] = inputs.removeFirst()
                 
             case .output:
                 let parameter = parameters[0]
                 let outputValue = program[parameter]
-                print(outputValue)
+                output.append(outputValue)
                 
             case .jumpIfTrue:
                 let firstParameter: Int = {
@@ -180,6 +182,8 @@ final class Computer {
             
             instructionPointer += operation.code.parameterCount + 1
         }
+        
+        return output
     }
     
     // MARK: - Operation

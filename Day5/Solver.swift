@@ -30,7 +30,7 @@ final class Part2Solver: Solver {
     }
     
     func solve() throws {
-        let computer = ThermalRadiatorComputer(program: program, input: 5)
+        let computer = Computer(program: program, input: 5)
         try computer.run()
     }
 }
