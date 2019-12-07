@@ -71,3 +71,30 @@ public extension Array {
         return allCombinations
     }
 }
+
+public extension Array {
+    func permutationsWithoutRepetition(ofSize size: Int) -> [[Element]] {
+        guard self.count >= size else {
+            return []
+        }
+        
+        guard self.count >= size && size > 0 else {
+            return [[]]
+        }
+        
+        var permutations = [[Element]]()
+        for (index, element) in self.enumerated() {
+            var elementsExceptCurrent = self
+            elementsExceptCurrent.remove(at: index)
+            
+            let subPermutations = elementsExceptCurrent
+                .permutationsWithoutRepetition(ofSize: size - 1)
+                .map({ subPermutation in
+                    return [element] + subPermutation
+                })
+            permutations += subPermutations
+        }
+        
+        return permutations
+    }
+}
