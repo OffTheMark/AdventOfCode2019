@@ -22,7 +22,7 @@ final class Part1Solver {
         var count = 0
         
         tree.recursiveForEach({ node in
-            count += node.depth()
+            count += node.depth
         })
         
         return count
@@ -47,14 +47,17 @@ final class Part2Solver {
             throw Day6Error.couldNotFindNode(value: "SAN")
         }
         
-        let commonAncestorOrNil = me.ancestors.first(where: { santa.ancestors.contains($0) })
-        
-        guard let commonAncestor = commonAncestorOrNil else {
+        guard let commonAncestor = me.ancestors.first(where: { santa.ancestors.contains($0) }) else {
             throw Day6Error.noCommonAncestor
         }
         
-        let depthForMe = me.depth(toReach: commonAncestor)!
-        let depthForSanta = santa.depth(toReach: commonAncestor)!
+        guard let depthForMe = me.depth(toReach: commonAncestor) else {
+            throw Day6Error.noCommonAncestor
+        }
+        
+        guard let depthForSanta = santa.depth(toReach: commonAncestor) else {
+            throw Day6Error.noCommonAncestor
+        }
         
         return depthForMe + depthForSanta
     }

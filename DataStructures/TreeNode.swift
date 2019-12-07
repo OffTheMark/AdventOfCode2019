@@ -40,16 +40,8 @@ public class TreeNode<Element>: NSObject {
         return recursiveCount
     }
     
-    public func depth() -> Int {
-        var ancestor = parent
-        var depth = 0
-        
-        while ancestor != nil {
-            depth += 1
-            ancestor = ancestor?.parent
-        }
-        
-        return depth
+    public var depth: Int {
+        return ancestors.count
     }
     
     public var ancestors: [TreeNode] {
