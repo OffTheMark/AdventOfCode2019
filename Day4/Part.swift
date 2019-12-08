@@ -9,7 +9,9 @@
 import Foundation
 import Common
 
-final class Part1Solver: Solver {
+// MARK: Part1
+
+final class Part1: Part {
     let validRange: ClosedRange<Int>
 
     init(validRange: ClosedRange<Int>) {
@@ -25,7 +27,9 @@ final class Part1Solver: Solver {
     }
 }
 
-final class Part2Solver: Solver {
+// MARK: - Part2
+
+final class Part2: Part {
     let validRange: ClosedRange<Int>
 
     init(validRange: ClosedRange<Int>) {

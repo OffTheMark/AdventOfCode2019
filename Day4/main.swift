@@ -15,13 +15,13 @@ let bounds = puzzleInput
 let validRange = bounds[0]...bounds[1]
 
 print("Part 1")
-let part1 = Part1Solver(validRange: validRange)
+let part1 = Part1(validRange: validRange)
 let part1Solution = part1.solve()
 print(part1Solution)
 
 print()
 
 print("Part 2")
-let part2 = Part2Solver(validRange: validRange)
+let part2 = Part2(validRange: validRange)
 let part2Solution = part2.solve()
 print(part2Solution)

@@ -29,7 +29,7 @@ let firstWireMoves = wireInputs[0].components(separatedBy: ",").compactMap({ Mov
 let secondWireMoves = wireInputs[1].components(separatedBy: ",").compactMap({ Move(rawValue: $0) })
 
 print("Part 1")
-let part1 = Part1Solver(firstWireMoves: firstWireMoves, secondWireMoves: secondWireMoves)
+let part1 = Part1(firstWireMoves: firstWireMoves, secondWireMoves: secondWireMoves)
 do {
     let solution = try part1.solve()
     print(String(format: "%.0f",solution))
@@ -40,7 +40,7 @@ catch {
 
 print()
 print("Part 2")
-let part2 = Part2Solver(firstWireMoves: firstWireMoves, secondWireMoves: secondWireMoves)
+let part2 = Part2(firstWireMoves: firstWireMoves, secondWireMoves: secondWireMoves)
 do {
     let solution = try part2.solve()
     print(String(format: "%.0f",solution))

@@ -9,9 +9,9 @@
 import Foundation
 import Common
 
-// MARK: Part1Solver
+// MARK: Part1
 
-final class Part1Solver: Common.Solver {
+final class Part1: Common.Part {
     let program: [Int]
 
     init(program: [Int]) {
@@ -28,9 +28,9 @@ final class Part1Solver: Common.Solver {
     }
 }
 
-// MARK: - Part2Solver
+// MARK: - Part2
 
-final class Part2Solver: Common.Solver {
+final class Part2: Common.Part {
     let expectedOutput = 19690720
     let program: [Int]
 

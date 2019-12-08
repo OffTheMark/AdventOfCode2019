@@ -10,9 +10,9 @@ import Foundation
 import Common
 import Geometry
 
-// MARK: Part1Solver
+// MARK: Part1
 
-final class Part1Solver: Solver {
+final class Part1: Part {
     let firstWire: Wire
     let secondWire: Wire
 
@@ -53,9 +53,9 @@ final class Part1Solver: Solver {
     }
 }
 
-// MARK: - Part2Solver
+// MARK: - Part2
 
-final class Part2Solver: Solver {
+final class Part2: Part {
     let firstWire: Wire
     let secondWire: Wire
     

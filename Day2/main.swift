@@ -18,7 +18,7 @@ let input = """
 let program = input.components(separatedBy: ",").compactMap({ Int($0) })
 
 print("Part 1")
-let part1 = Part1Solver(program: program)
+let part1 = Part1(program: program)
 do {
     let solution = try part1.solve()
     print(solution)
@@ -30,7 +30,7 @@ catch {
 print()
 
 print("Part 2")
-let part2 = Part2Solver(program: program)
+let part2 = Part2(program: program)
 do {
     let solution = try part2.solve()
     print(solution)

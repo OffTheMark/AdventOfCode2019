@@ -25,7 +25,7 @@ let part1Program = part1TestInput
     .compactMap({ Int($0) })
 
 print("Part 1")
-let part1 = Part1Solver(program: part1Program)
+let part1 = Part1(program: part1Program)
 do {
     let solution = try part1.solve()
     print(solution, terminator: "\n\n")
@@ -39,7 +39,7 @@ let part2Program = puzzleInput
     .compactMap({ Int($0) })
 
 print("Part 2")
-let part2 = Part2Solver(program: part2Program)
+let part2 = Part2(program: part2Program)
 do {
     let solution = try part2.solve()
     print(solution)

@@ -1,5 +1,5 @@
 //
-//  Solver.swift
+//  Part.swift
 //  Common
 //
 //  Created by Marc-Antoine Malépart on 2019-11-26.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol Solver {
+public protocol Part {
     associatedtype Solution
 
     func solve() throws -> Solution

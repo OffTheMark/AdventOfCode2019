@@ -1,5 +1,5 @@
 //
-//  Part1Solver.swift
+//  Part1.swift
 //  Day1
 //
 //  Created by Marc-Antoine Malépart on 2019-11-26.
@@ -9,9 +9,9 @@
 import Foundation
 import Common
 
-// MARK: Part1Solver
+// MARK: Part1
 
-final class Part1Solver: Solver {
+final class Part1: Part {
     let parser: Day1.Parser
     
     init(input: String) {
@@ -28,9 +28,9 @@ final class Part1Solver: Solver {
     }
 }
 
-// MARK: - Part2Solver
+// MARK: - Part2
 
-final class Part2Solver: Solver {
+final class Part2: Part {
     let parser: Day1.Parser
     
     init(input: String) {

@@ -9,7 +9,9 @@
 import Foundation
 import Common
 
-final class Part1Solver: Solver {
+// MARK: Part 1
+
+final class Part1: Part {
     let program: [Int]
     
     init(program: [Int]) {
@@ -22,7 +24,9 @@ final class Part1Solver: Solver {
     }
 }
 
-final class Part2Solver: Solver {
+// MARK: - Part2
+
+final class Part2: Part {
     let program: [Int]
     
     init(program: [Int]) {

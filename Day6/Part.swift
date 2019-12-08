@@ -10,7 +10,7 @@ import Foundation
 import Common
 import DataStructures
 
-final class Part1Solver {
+final class Part1: Part {
     let tree: TreeNode<String>
     
     init(relationships: [(parent: String, child: String)]) {
@@ -30,7 +30,7 @@ final class Part1Solver {
 }
 
 
-final class Part2Solver {
+final class Part2: Part {
     let tree: TreeNode<String>
     
     init(relationships: [(parent: String, child: String)]) {

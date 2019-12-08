@@ -934,12 +934,12 @@ let relationships: [(parent: String, child: String)] = puzzleInput
     })
 
 print("Part 1")
-let part1 = Part1Solver(relationships: relationships)
+let part1 = Part1(relationships: relationships)
 let part1Solution = part1.solve()
 print(part1Solution, terminator: "\n\n")
 
 print("Part 2")
-let part2 = Part2Solver(relationships: relationships)
+let part2 = Part2(relationships: relationships)
 do {
     let solution = try part2.solve()
     print(solution)
