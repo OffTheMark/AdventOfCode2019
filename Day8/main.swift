@@ -18,3 +18,7 @@ print("Part 1")
 let part1 = Part1(digits: digits)
 let part1Solution = part1.solve()
 print(part1Solution, terminator: "\n\n")
+
+print("Part 2")
+let part2 = Part2(digits: digits)
+part2.solve()
