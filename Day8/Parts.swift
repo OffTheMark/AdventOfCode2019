@@ -53,39 +53,42 @@ final class Part2: Part {
     
     func solve()  {
         let sizeOfLayer = 25 * 6
-        let layers: [[Int: Pixel]] = pixels.enumerated()
+        let layers: [[Pixel]] = pixels.enumerated()
             .reduce(into: [], { result, element in
                 let (index, pixel) = element
                 let layerIndex = index / sizeOfLayer
-                let pixelIndex = index % sizeOfLayer
+                
                 if !result.indices.contains(layerIndex) {
-                    result.append([:])
+                    result.append([])
                 }
-                result[layerIndex][pixelIndex] = pixel
+                
+                var layer = result[layerIndex]
+                layer.append(pixel)
+                result[layerIndex] = layer
             })
-        var renderedPixelByPosition: [Int: Pixel] = (0..<sizeOfLayer).reduce(into: [:], { result, index in
-            result[index] = .transparent
-        })
-        for layer in layers {
-            for (index, pixel) in layer {
-                switch (renderedPixelByPosition[index], pixel) {
-                case (.transparent, .transparent):
-                    continue
+        let renderedPixelByPosition: [Int: Pixel] = layers
+            .reduce(into: [:], { result, layer in
+                for (index, pixel) in layer.enumerated() {
+                    guard let existingPixel = result[index] else {
+                        result[index] = pixel
+                        continue
+                    }
                     
-                case (.transparent, .black), (.transparent, .white):
-                    renderedPixelByPosition[index] = pixel
-                    
-                default:
-                    continue
+                    switch (existingPixel, pixel) {
+                    case (.transparent, .black), (.transparent, .white):
+                        result[index] = pixel
+                        
+                    default:
+                        continue
+                    }
                 }
-            }
-        }
+        })
         let pixelsToRender: [Pixel] = renderedPixelByPosition
             .sorted(by: { first, second in
                 return first.key < second.key
             })
-            .reduce(into: [], { result, element in
-                result.append(element.value)
+            .map({ element in
+                return element.value
             })
         
         render(pixelsToRender, size: (25, 6))
