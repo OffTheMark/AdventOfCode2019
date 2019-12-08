@@ -9,6 +9,8 @@
 import Foundation
 import Common
 
+// MARK: Part1Solver
+
 final class Part1Solver: Solver {
     let program: [Int]
     
@@ -16,28 +18,79 @@ final class Part1Solver: Solver {
         self.program = program
     }
     
-    func solve() -> Int {
+    func solve() throws -> Int {
         let phaseSettings = Array(0...4)
-        let phasePermutations = phaseSettings.permutationsWithoutRepetition(ofSize: 5)
+        let phasePermutations = phaseSettings.permutationsWithoutRepetition(ofSize: phaseSettings.count)
         
-        var permutationOutputs = [Int]()
+        var outputByPermutation = [[Int]: Int]()
         
         for permutation in phasePermutations {
-            var outputs = [0]
+            var feedback = 0
             
-            for element in permutation {
-                let inputs = [element, outputs.last!]
-                let amplifier = Computer(program: program, inputs: inputs)
-                let amplifierOutputs = amplifier.run()
-                
-                outputs.append(amplifierOutputs.last!)
+            for phaseSetting in permutation {
+                let computer = Computer(program: program, inputs: [phaseSetting, feedback])
+                let outputs = try computer.run()
+                feedback = outputs.last!
             }
             
-            if let maximum = outputs.max() {
-                permutationOutputs.append(maximum)
-            }
+            outputByPermutation[permutation] = feedback
         }
         
-        return permutationOutputs.max()!
+        return outputByPermutation.values.max()!
+    }
+}
+
+// MARK: - Part2Solver
+
+final class Part2Solver: Solver {
+    let program: [Int]
+    
+    init(program: [Int]) {
+        self.program = program
+    }
+    
+    func solve() throws -> Int {
+        let phaseSettings = Array(5...9)
+        let phasePermutations = phaseSettings.permutationsWithoutRepetition(ofSize: phaseSettings.count)
+        
+        var outputByPermutation = [[Int]: Int]()
+        
+        for permutation in phasePermutations {
+            var feedback = 0
+            var amplifierIndex = 0
+            
+            var hasGivenPhaseSettings: [Bool] = .init(repeating: false, count: 5)
+            var stateByAmplifier = [Int: (program: [Int], pointer: Int)]()
+            
+            while true {
+                let phaseSetting = permutation[amplifierIndex]
+                let inputs: [Int]
+                if hasGivenPhaseSettings[amplifierIndex] == false {
+                    inputs = [phaseSetting, feedback]
+                    hasGivenPhaseSettings[amplifierIndex] = true
+                }
+                else {
+                    inputs = [feedback]
+                }
+                let state: (program: [Int], pointer: Int) = stateByAmplifier[amplifierIndex] ?? (program, 0)
+                
+                let computer = Computer(
+                    program: state.program,
+                    instructionPointer: state.pointer,
+                    inputs: inputs
+                )
+                guard let output = try computer.step() else {
+                    break
+                }
+                
+                stateByAmplifier[amplifierIndex] = (computer.program, computer.instructionPointer)
+                feedback = output
+                amplifierIndex = (amplifierIndex + 1) % 5
+            }
+            
+            outputByPermutation[permutation] = feedback
+        }
+        
+        return outputByPermutation.values.max()!
     }
 }

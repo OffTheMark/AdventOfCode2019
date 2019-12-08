@@ -11,230 +11,258 @@ import Foundation
 // MARK: Computer
 
 final class Computer {
-    let program: [Int]
-    let inputs: [Int]
+    private(set) var program: [Int]
+    private(set) var instructionPointer: Int
+    private(set) var inputs: [Int]
     
-    init(program: [Int], inputs: [Int]) {
+    init(
+        program: [Int],
+        instructionPointer: Int = 0,
+        inputs: [Int]
+    ) {
         self.program = program
+        self.instructionPointer = instructionPointer
         self.inputs = inputs
     }
     
-    func run() -> [Int] {
-        var program = self.program
-        var inputs = self.inputs
-        var output = [Int]()
-        
-        var instructionPointer = 0
+    func run() throws -> [Int] {
+        var outputs = [Int]()
         
         while true {
-            let potentialOperation = program[instructionPointer]
+            let instruction = try nextInstruction()
+            let result = execute(instruction)
             
-            guard let operation = Operation(rawValue: potentialOperation) else {
-                break
-            }
-            
-            let rangeOfParameters = (instructionPointer + 1)...(instructionPointer + operation.code.parameterCount + 1)
-            let parameters = Array(program[rangeOfParameters])
-            
-            switch operation.code {
+            switch result {
+            case .continue:
+                continue
+                
+            case .outputAndContinue(let output):
+                outputs.append(output)
+                
             case .halt:
-                break
-                
-            case .add:
-                let firstParameter: Int = {
-                    if operation.parameterModes[0] == 1 {
-                        return parameters[0]
-                    }
-                    
-                    return program[parameters[0]]
-                }()
-                let secondParameter: Int = {
-                    if operation.parameterModes[1] == 1 {
-                        return parameters[1]
-                    }
-                    
-                    return program[parameters[1]]
-                }()
-                let outputAddress = parameters[2]
-                
-                program[outputAddress] = firstParameter + secondParameter
-                
-            case .multiply:
-                let firstParameter: Int = {
-                    if operation.parameterModes[0] == 1 {
-                        return parameters[0]
-                    }
-                    
-                    return program[parameters[0]]
-                }()
-                let secondParameter: Int = {
-                    if operation.parameterModes[1] == 1 {
-                        return parameters[1]
-                    }
-                    
-                    return program[parameters[1]]
-                }()
-                let outputAddress = parameters[2]
-                
-                program[outputAddress] = firstParameter * secondParameter
-                
-            case .input:
-                let parameter = parameters[0]
-                program[parameter] = inputs.removeFirst()
-                
-            case .output:
-                let parameter = parameters[0]
-                let outputValue = program[parameter]
-                output.append(outputValue)
-                
-            case .jumpIfTrue:
-                let firstParameter: Int = {
-                    if operation.parameterModes[0] == 1 {
-                        return parameters[0]
-                    }
-                    
-                    return program[parameters[0]]
-                }()
-                let secondParameter: Int = {
-                    if operation.parameterModes[1] == 1 {
-                        return parameters[1]
-                    }
-                    
-                    return program[parameters[1]]
-                }()
-                
-                if firstParameter != 0 {
-                    instructionPointer = secondParameter
-                    continue
-                }
-                
-            case .jumpIfFalse:
-                let firstParameter: Int = {
-                    if operation.parameterModes[0] == 1 {
-                        return parameters[0]
-                    }
-                    
-                    return program[parameters[0]]
-                }()
-                let secondParameter: Int = {
-                    if operation.parameterModes[1] == 1 {
-                        return parameters[1]
-                    }
-                    
-                    return program[parameters[1]]
-                }()
-                
-                if firstParameter == 0 {
-                    instructionPointer = secondParameter
-                    continue
-                }
-                
-            case .lessThan:
-                let firstParameter: Int = {
-                    if operation.parameterModes[0] == 1 {
-                        return parameters[0]
-                    }
-                    
-                    return program[parameters[0]]
-                }()
-                let secondParameter: Int = {
-                    if operation.parameterModes[1] == 1 {
-                        return parameters[1]
-                    }
-                    
-                    return program[parameters[1]]
-                }()
-                let outputAddress = parameters[2]
-                
-                
-                if firstParameter < secondParameter {
-                    program[outputAddress] = 1
-                }
-                else {
-                    program[outputAddress] = 0
-                }
-                
-            case .equals:
-                let firstParameter: Int = {
-                    if operation.parameterModes[0] == 1 {
-                        return parameters[0]
-                    }
-                    
-                    return program[parameters[0]]
-                }()
-                let secondParameter: Int = {
-                    if operation.parameterModes[1] == 1 {
-                        return parameters[1]
-                    }
-                    
-                    return program[parameters[1]]
-                }()
-                let outputAddress = parameters[2]
-                
-                
-                if firstParameter == secondParameter {
-                    program[outputAddress] = 1
-                }
-                else {
-                    program[outputAddress] = 0
-                }
+                return outputs
             }
-            
-            instructionPointer += operation.code.parameterCount + 1
         }
         
-        return output
+        return outputs
     }
     
-    // MARK: - Operation
+    func step() throws -> Int? {
+        while true {
+            let instruction = try nextInstruction()
+            let result = execute(instruction)
+            
+            switch result {
+            case .continue:
+                continue
+            case .outputAndContinue(let output):
+                return output
+            case .halt:
+                return nil
+            }
+        }
+    }
     
-    private struct Operation: RawRepresentable {
+    fileprivate func nextInstruction() throws -> Instruction {
+        guard program.indices.contains(instructionPointer) else {
+            throw Error.invalidPointer
+        }
+        
+        let fullCode = program[instructionPointer]
+        let rawValue = fullCode % 100
+        
+        guard let code = Instruction.Code(rawValue: rawValue) else {
+            throw Error.invalidOperationCode(rawValue)
+        }
+
+        let parameterModes = (2...4).map({ fullCode.digit(at: $0) })
+        
+        return Instruction(
+            code: code,
+            parameterModes: parameterModes,
+            startingPosition: instructionPointer
+        )
+    }
+    
+    fileprivate func execute(_ instruction: Instruction) -> InstructionResult {
+        let offset = instruction.startingPosition + 1
+        let rangeOfParameters = offset ..< (offset + instruction.code.parameterCount)
+        let parameters = Array(program[rangeOfParameters])
+        
+        switch instruction.code {
+        case .add:
+            let firstParameter: Int = {
+                if instruction.parameterModes[0] == 1 {
+                    return parameters[0]
+                }
+                return program[parameters[0]]
+            }()
+            let secondParameter: Int = {
+                if instruction.parameterModes[1] == 1 {
+                    return parameters[1]
+                }
+                return program[parameters[1]]
+            }()
+            let outputAddress = parameters[2]
+            
+            program[outputAddress] = firstParameter + secondParameter
+            
+        case .multiply:
+            let firstParameter: Int = {
+                if instruction.parameterModes[0] == 1 {
+                    return parameters[0]
+                }
+                return program[parameters[0]]
+            }()
+            let secondParameter: Int = {
+                if instruction.parameterModes[1] == 1 {
+                    return parameters[1]
+                }
+                return program[parameters[1]]
+            }()
+            let outputAddress = parameters[2]
+            
+            program[outputAddress] = firstParameter * secondParameter
+            
+        case .input:
+            let parameter = parameters[0]
+            
+            program[parameter] = inputs.removeFirst()
+            
+        case .output:
+            let parameter = parameters[0]
+            let output = program[parameter]
+            
+            instructionPointer += instruction.code.stride
+            return .outputAndContinue(output)
+            
+        case .jumpIfTrue:
+            let firstParameter: Int = {
+                if instruction.parameterModes[0] == 1 {
+                    return parameters[0]
+                }
+                return program[parameters[0]]
+            }()
+            let secondParameter: Int = {
+                if instruction.parameterModes[1] == 1 {
+                    return parameters[1]
+                }
+                return program[parameters[1]]
+            }()
+            
+            if firstParameter != 0 {
+                instructionPointer = secondParameter
+                return .continue
+            }
+            
+        case .jumpIfFalse:
+            let firstParameter: Int = {
+                if instruction.parameterModes[0] == 1 {
+                    return parameters[0]
+                }
+                return program[parameters[0]]
+            }()
+            let secondParameter: Int = {
+                if instruction.parameterModes[1] == 1 {
+                    return parameters[1]
+                }
+                return program[parameters[1]]
+            }()
+            
+            if firstParameter == 0 {
+                instructionPointer = secondParameter
+                return .continue
+            }
+            
+        case .lessThan:
+            let firstParameter: Int = {
+                if instruction.parameterModes[0] == 1 {
+                    return parameters[0]
+                }
+                return program[parameters[0]]
+            }()
+            let secondParameter: Int = {
+                if instruction.parameterModes[1] == 1 {
+                    return parameters[1]
+                }
+                return program[parameters[1]]
+            }()
+            let outputAddress = parameters[2]
+            
+            if firstParameter < secondParameter {
+                program[outputAddress] = 1
+            }
+            else {
+                program[outputAddress] = 0
+            }
+            
+        case .equals:
+            let firstParameter: Int = {
+                if instruction.parameterModes[0] == 1 {
+                    return parameters[0]
+                }
+                return program[parameters[0]]
+            }()
+            let secondParameter: Int = {
+                if instruction.parameterModes[1] == 1 {
+                    return parameters[1]
+                }
+                return program[parameters[1]]
+            }()
+            let outputAddress = parameters[2]
+            
+            if firstParameter == secondParameter {
+                program[outputAddress] = 1
+            }
+            else {
+                program[outputAddress] = 0
+            }
+            
+        case .halt:
+            return .halt
+        }
+        
+        instructionPointer += instruction.code.stride
+        return .continue
+    }
+    
+    // MARK: - InstructionResult
+    
+    fileprivate enum InstructionResult {
+        case `continue`
+        case halt
+        case outputAndContinue(Int)
+    }
+    
+    // MARK: - Instruction
+    
+    fileprivate struct Instruction {
         let code: Code
         let parameterModes: [Int]
-        let rawValue: Int
+        let startingPosition: Int
         
-        enum Code {
-            case halt
-            case add
-            case multiply
-            case input
-            case output
-            case jumpIfTrue
-            case jumpIfFalse
-            case lessThan
-            case equals
-            
-            init?(_ integer: Int) {
-                switch integer {
-                case 1:
-                    self = .add
-                case 2:
-                    self = .multiply
-                case 3:
-                    self = .input
-                case 4:
-                    self = .output
-                case 5:
-                    self = .jumpIfTrue
-                case 6:
-                    self = .jumpIfFalse
-                case 7:
-                    self = .lessThan
-                case 8:
-                    self = .equals
-                case 99:
-                    self = .halt
-                    
-                default:
-                    return nil
-                }
-            }
+        init(code: Code, parameterModes: [Int], startingPosition: Int) {
+            self.code = code
+            self.parameterModes = parameterModes
+            self.startingPosition = startingPosition
+        }
+        
+        enum Code: Int {
+            case add = 1
+            case multiply = 2
+            case input = 3
+            case output = 4
+            case jumpIfTrue = 5
+            case jumpIfFalse = 6
+            case lessThan = 7
+            case equals = 8
+            case halt = 99
             
             var parameterCount: Int {
                 switch self {
                 case .halt:
                     return 0
-                    
+
                 case .add,
                      .multiply,
                      .lessThan,
@@ -248,21 +276,16 @@ final class Computer {
                     return 2
                 }
             }
-        }
-        
-        init?(rawValue: Int) {
-            let codeRawValue = rawValue.digit(at: 0) + rawValue.digit(at: 1)
             
-            guard let code = Code(codeRawValue) else {
-                return nil
+            var stride: Int {
+                return parameterCount + 1
             }
-            
-            let parameterModes = (2...4).map({ rawValue.digit(at: $0) })
-            
-            self.code = code
-            self.parameterModes = parameterModes
-            self.rawValue = rawValue
         }
+    }
+    
+    enum Error: Swift.Error {
+        case invalidPointer
+        case invalidOperationCode(Int)
     }
 }
 
