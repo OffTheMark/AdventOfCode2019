@@ -60,7 +60,7 @@ final class Part2: Part {
             var amplifierIndex = 0
             
             var hasGivenPhaseSettings: [Bool] = .init(repeating: false, count: 5)
-            var stateByAmplifier = [Int: (program: [Int], pointer: Int)]()
+            var stateByAmplifier = [Int: Computer.State]()
             
             while true {
                 let phaseSetting = permutation[amplifierIndex]
@@ -72,18 +72,14 @@ final class Part2: Part {
                 else {
                     inputs = [feedback]
                 }
-                let state: (program: [Int], pointer: Int) = stateByAmplifier[amplifierIndex] ?? (program, 0)
+                let state: Computer.State = stateByAmplifier[amplifierIndex] ?? .init(program: program)
                 
-                let computer = Computer(
-                    program: state.program,
-                    instructionPointer: state.pointer,
-                    inputs: inputs
-                )
+                let computer = Computer(state: state, inputs: inputs)
                 guard let output = try computer.step() else {
                     break
                 }
                 
-                stateByAmplifier[amplifierIndex] = (computer.program, computer.instructionPointer)
+                stateByAmplifier[amplifierIndex] = computer.state
                 feedback = output
                 amplifierIndex = (amplifierIndex + 1) % 5
             }

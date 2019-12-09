@@ -25,6 +25,18 @@ final class Computer {
         self.inputs = inputs
     }
     
+    convenience init(state: State, inputs: [Int]) {
+        self.init(
+            program: state.program,
+            instructionPointer: state.instructionPointer,
+            inputs: inputs
+        )
+    }
+    
+    var state: State {
+        return State(program: program, instructionPointer: instructionPointer)
+    }
+    
     func run() throws -> [Int] {
         var outputs = [Int]()
         
@@ -226,7 +238,23 @@ final class Computer {
         return .continue
     }
     
-    // MARK: - InstructionResult
+    // MARK: - Computer.State
+    
+    struct State {
+        fileprivate let program: [Int]
+        fileprivate let instructionPointer: Int
+        
+        fileprivate init(program: [Int], instructionPointer: Int) {
+            self.program = program
+            self.instructionPointer = instructionPointer
+        }
+        
+        init(program: [Int]) {
+            self.init(program: program, instructionPointer: 0)
+        }
+    }
+    
+    // MARK: - Computer.InstructionResult
     
     fileprivate enum InstructionResult {
         case `continue`
@@ -234,7 +262,7 @@ final class Computer {
         case outputAndContinue(Int)
     }
     
-    // MARK: - Instruction
+    // MARK: - Computer.Instruction
     
     fileprivate struct Instruction {
         let code: Code
@@ -283,21 +311,11 @@ final class Computer {
         }
     }
     
+    // MARK: - Computer.Error
+    
     enum Error: Swift.Error {
         case invalidPointer
         case invalidOperationCode(Int)
-    }
-}
-
-// MARK: - InvalidOperationError
-
-struct InvalidOperationError: LocalizedError {
-    let operation: Int
-    
-    // MARK: LocalizedError
-    
-    var localizedDescription: String {
-        return "Invalid operation: \(operation)"
     }
 }
 
