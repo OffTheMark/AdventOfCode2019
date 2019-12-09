@@ -35,6 +35,9 @@
 		2C36B26D23954BDF002FB26A /* Computer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C36B26C23954BDF002FB26A /* Computer.swift */; };
 		2C46959F239EBABA00C47FB5 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C46959E239EBABA00C47FB5 /* main.swift */; };
 		2C4695A4239EBAD600C47FB5 /* Computer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4695A3239EBAD600C47FB5 /* Computer.swift */; };
+		2C4695A6239EC5DA00C47FB5 /* Parts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4695A5239EC5DA00C47FB5 /* Parts.swift */; };
+		2C4695A7239EC5E200C47FB5 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAA63B3238DA39F008FDB31 /* Common.framework */; };
+		2C4695A8239EC5E200C47FB5 /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAA63B3238DA39F008FDB31 /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C4BA1BD239547A900EF72B5 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAA63B3238DA39F008FDB31 /* Common.framework */; };
 		2C4BA1BE239547A900EF72B5 /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAA63B3238DA39F008FDB31 /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C4BA1C2239547B400EF72B5 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAA63B3238DA39F008FDB31 /* Common.framework */; };
@@ -96,6 +99,13 @@
 			remoteInfo = Geometry;
 		};
 		2C1F152F2396980D00047D7C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2CAA638D238DA2CA008FDB31 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2CAA63B2238DA39F008FDB31;
+			remoteInfo = Common;
+		};
+		2C4695A9239EC5E200C47FB5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2CAA638D238DA2CA008FDB31 /* Project object */;
 			proxyType = 1;
@@ -222,6 +232,17 @@
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 1;
+		};
+		2C4695AB239EC5E200C47FB5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2C4695A8239EC5E200C47FB5 /* Common.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2C4BA1C1239547A900EF72B5 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -379,6 +400,7 @@
 		2C46959C239EBABA00C47FB5 /* Day9 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Day9; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C46959E239EBABA00C47FB5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		2C4695A3239EBAD600C47FB5 /* Computer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Computer.swift; sourceTree = "<group>"; };
+		2C4695A5239EC5DA00C47FB5 /* Parts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parts.swift; sourceTree = "<group>"; };
 		2CAA63B3238DA39F008FDB31 /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CAA63B5238DA39F008FDB31 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		2CAA63B6238DA39F008FDB31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -464,6 +486,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C4695A7239EC5E200C47FB5 /* Common.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -620,6 +643,7 @@
 			children = (
 				2C46959E239EBABA00C47FB5 /* main.swift */,
 				2C4695A3239EBAD600C47FB5 /* Computer.swift */,
+				2C4695A5239EC5DA00C47FB5 /* Parts.swift */,
 			);
 			path = Day9;
 			sourceTree = "<group>";
@@ -891,10 +915,12 @@
 				2C469598239EBABA00C47FB5 /* Sources */,
 				2C469599239EBABA00C47FB5 /* Frameworks */,
 				2C46959A239EBABA00C47FB5 /* CopyFiles */,
+				2C4695AB239EC5E200C47FB5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2C4695AA239EC5E200C47FB5 /* PBXTargetDependency */,
 			);
 			name = Day9;
 			productName = Day9;
@@ -1230,6 +1256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C4695A4239EBAD600C47FB5 /* Computer.swift in Sources */,
+				2C4695A6239EC5DA00C47FB5 /* Parts.swift in Sources */,
 				2C46959F239EBABA00C47FB5 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1338,6 +1365,11 @@
 			isa = PBXTargetDependency;
 			target = 2CAA63B2238DA39F008FDB31 /* Common */;
 			targetProxy = 2C1F152F2396980D00047D7C /* PBXContainerItemProxy */;
+		};
+		2C4695AA239EC5E200C47FB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2CAA63B2238DA39F008FDB31 /* Common */;
+			targetProxy = 2C4695A9239EC5E200C47FB5 /* PBXContainerItemProxy */;
 		};
 		2C4BA1BC2395470F00EF72B5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
