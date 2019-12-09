@@ -8,6 +8,7 @@
 
 import Foundation
 import Common
+import IntCode
 
 // MARK: Part1
 
@@ -75,7 +76,7 @@ final class Part2: Part {
                 let state: Computer.State = stateByAmplifier[amplifierIndex] ?? .init(program: program)
                 
                 let computer = Computer(state: state, inputs: inputs)
-                guard let output = try computer.step() else {
+                guard let output = try computer.nextOutput() else {
                     break
                 }
                 

@@ -8,6 +8,7 @@
 
 import Foundation
 import Common
+import IntCode
 
 // MARK: Part1
 

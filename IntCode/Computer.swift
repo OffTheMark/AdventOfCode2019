@@ -1,6 +1,6 @@
 //
 //  Computer.swift
-//  Day9
+//  IntCode
 //
 //  Created by Marc-Antoine Malépart on 2019-12-09.
 //  Copyright © 2019 Marc-Antoine Malépart. All rights reserved.
@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: Computer
 
-final class Computer {
+public final class Computer {
     // MARK: Properties
     
     private(set) var program: [Int]
@@ -20,7 +20,7 @@ final class Computer {
 
     // MARK: Create a Computer
     
-    init(
+    public init(
         program: [Int],
         instructionPointer: Int = 0,
         relativeBase: Int = 0,
@@ -32,7 +32,7 @@ final class Computer {
         self.inputs = inputs
     }
     
-    convenience init(state: State, inputs: [Int]) {
+    public convenience init(state: State, inputs: [Int]) {
         self.init(
             program: state.program,
             instructionPointer: state.instructionPointer,
@@ -43,13 +43,13 @@ final class Computer {
     
     // MARK: Get Internal State
     
-    var state: State {
+    public var state: State {
         return State(program: program, instructionPointer: instructionPointer, relativeBase: relativeBase)
     }
     
     // MARK: Run Program
 
-    func run() throws -> [Int] {
+    public func run() throws -> [Int] {
         var outputs = [Int]()
 
         while true {
@@ -71,7 +71,7 @@ final class Computer {
         return outputs
     }
 
-    func step() throws -> Int? {
+    public func nextOutput() throws -> Int? {
         while true {
             let instruction = try nextInstruction()
             let result = execute(instruction)
@@ -79,8 +79,10 @@ final class Computer {
             switch result {
             case .continue:
                 continue
+                
             case .outputAndContinue(let output):
                 return output
+                
             case .halt:
                 return nil
             }
@@ -89,7 +91,7 @@ final class Computer {
     
     // MARK: Execute Instructions
 
-    fileprivate func nextInstruction() throws -> Instruction {
+    private func nextInstruction() throws -> Instruction {
         guard program.indices.contains(instructionPointer) else {
             throw Error.invalidPointer
         }
@@ -114,7 +116,7 @@ final class Computer {
         )
     }
 
-    fileprivate func execute(_ instruction: Instruction) -> InstructionResult {
+    private func execute(_ instruction: Instruction) -> InstructionResult {
         let offset = instruction.startingPosition + 1
         let rangeOfParameters = offset ..< (offset + instruction.code.parameterCount)
         let parameters = Array(program[rangeOfParameters])
@@ -247,7 +249,7 @@ final class Computer {
     
     // MARK: - Computer.State
     
-    struct State {
+    public struct State {
         fileprivate let program: [Int]
         fileprivate let instructionPointer: Int
         fileprivate let relativeBase: Int
@@ -258,7 +260,7 @@ final class Computer {
             self.relativeBase = relativeBase
         }
         
-        init(program: [Int]) {
+        public init(program: [Int]) {
             self.init(program: program, instructionPointer: 0, relativeBase: 0)
         }
     }
@@ -333,7 +335,7 @@ final class Computer {
 
     // MARK: - Computer.Error
     
-    enum Error: Swift.Error {
+    public enum Error: Swift.Error {
         case invalidPointer
         case invalidOperationCode(Int)
     }
