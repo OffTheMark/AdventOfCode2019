@@ -78,7 +78,8 @@ final class Computer {
             throw Error.invalidOperationCode(rawValue)
         }
 
-        let parameterModes: [ParameterMode] = (2...4).map({ position in
+        let digitPlaces = 2 ..< (2 + code.parameterCount)
+        let parameterModes: [ParameterMode] = digitPlaces.map({ position in
             let rawValue = fullCode.digit(at: position)
             return ParameterMode(rawValue: rawValue) ?? .position
         })
@@ -97,33 +98,33 @@ final class Computer {
 
         switch instruction.code {
         case .add:
-            let firstParameter = parameterForReading(parameters[0], mode: instruction.parameterModes[0])
-            let secondParameter = parameterForReading(parameters[1], mode: instruction.parameterModes[1])
-            let outputAddress = parameterForWriting(parameters[2], mode: instruction.parameterModes[2])
+            let firstParameter = interpretedParameter(parameters[0], mode: instruction.parameterModes[0])
+            let secondParameter = interpretedParameter(parameters[1], mode: instruction.parameterModes[1])
+            let address = literalParameter(parameters[2], mode: instruction.parameterModes[2])
 
-            write(firstParameter + secondParameter, to: outputAddress)
+            write(firstParameter + secondParameter, to: address)
 
         case .multiply:
-            let firstParameter = parameterForReading(parameters[0], mode: instruction.parameterModes[0])
-            let secondParameter = parameterForReading(parameters[1], mode: instruction.parameterModes[1])
-            let outputAddress = parameterForWriting(parameters[2], mode: instruction.parameterModes[2])
+            let firstParameter = interpretedParameter(parameters[0], mode: instruction.parameterModes[0])
+            let secondParameter = interpretedParameter(parameters[1], mode: instruction.parameterModes[1])
+            let address = literalParameter(parameters[2], mode: instruction.parameterModes[2])
 
-            write(firstParameter * secondParameter, to: outputAddress)
+            write(firstParameter * secondParameter, to: address)
 
         case .input:
-            let address = parameterForWriting(parameters[0], mode: instruction.parameterModes[0])
+            let address = literalParameter(parameters[0], mode: instruction.parameterModes[0])
 
             write(inputs.removeFirst(), to: address)
 
         case .output:
-            let output = parameterForReading(parameters[0], mode: instruction.parameterModes[0])
+            let output = interpretedParameter(parameters[0], mode: instruction.parameterModes[0])
 
             instructionPointer += instruction.code.stride
             return .outputAndContinue(output)
 
         case .jumpIfTrue:
-            let firstParameter = parameterForReading(parameters[0], mode: instruction.parameterModes[0])
-            let secondParameter = parameterForReading(parameters[1], mode: instruction.parameterModes[1])
+            let firstParameter = interpretedParameter(parameters[0], mode: instruction.parameterModes[0])
+            let secondParameter = interpretedParameter(parameters[1], mode: instruction.parameterModes[1])
 
             if firstParameter != 0 {
                 instructionPointer = secondParameter
@@ -131,8 +132,8 @@ final class Computer {
             }
 
         case .jumpIfFalse:
-            let firstParameter = parameterForReading(parameters[0], mode: instruction.parameterModes[0])
-            let secondParameter = parameterForReading(parameters[1], mode: instruction.parameterModes[1])
+            let firstParameter = interpretedParameter(parameters[0], mode: instruction.parameterModes[0])
+            let secondParameter = interpretedParameter(parameters[1], mode: instruction.parameterModes[1])
 
             if firstParameter == 0 {
                 instructionPointer = secondParameter
@@ -140,9 +141,9 @@ final class Computer {
             }
 
         case .lessThan:
-            let firstParameter = parameterForReading(parameters[0], mode: instruction.parameterModes[0])
-            let secondParameter = parameterForReading(parameters[1], mode: instruction.parameterModes[1])
-            let outputAddress = parameterForWriting(parameters[2], mode: instruction.parameterModes[2])
+            let firstParameter = interpretedParameter(parameters[0], mode: instruction.parameterModes[0])
+            let secondParameter = interpretedParameter(parameters[1], mode: instruction.parameterModes[1])
+            let outputAddress = literalParameter(parameters[2], mode: instruction.parameterModes[2])
 
             if firstParameter < secondParameter {
                 write(1, to: outputAddress)
@@ -152,9 +153,9 @@ final class Computer {
             }
 
         case .equals:
-            let firstParameter = parameterForReading(parameters[0], mode: instruction.parameterModes[0])
-            let secondParameter = parameterForReading(parameters[1], mode: instruction.parameterModes[1])
-            let outputAddress = parameterForWriting(parameters[2], mode: instruction.parameterModes[2])
+            let firstParameter = interpretedParameter(parameters[0], mode: instruction.parameterModes[0])
+            let secondParameter = interpretedParameter(parameters[1], mode: instruction.parameterModes[1])
+            let outputAddress = literalParameter(parameters[2], mode: instruction.parameterModes[2])
 
             if firstParameter == secondParameter {
                 write(1, to: outputAddress)
@@ -164,7 +165,8 @@ final class Computer {
             }
 
         case .adjustRelativeBase:
-            relativeBase += parameters[0]
+            let firstParameter = interpretedParameter(parameters[0], mode: instruction.parameterModes[0])
+            relativeBase += firstParameter
 
         case .halt:
             return .halt
@@ -174,7 +176,7 @@ final class Computer {
         return .continue
     }
 
-    private func parameterForReading(_ value: Int, mode: ParameterMode) -> Int {
+    private func interpretedParameter(_ value: Int, mode: ParameterMode) -> Int {
         switch mode {
         case .position:
             return read(at: value)
@@ -187,16 +189,13 @@ final class Computer {
         }
     }
 
-    private func parameterForWriting(_ value: Int, mode: ParameterMode) -> Int {
+    private func literalParameter(_ value: Int, mode: ParameterMode) -> Int {
         switch mode {
-        case .position:
+        case .position, .immediate:
             return value
 
         case .relative:
             return relativeBase + value
-
-        default:
-            return value
         }
     }
 
