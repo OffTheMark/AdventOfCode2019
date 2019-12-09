@@ -17,7 +17,8 @@ let program = puzzleInput.components(separatedBy: ",").compactMap({ Int($0) })
 print("Part 1")
 let part1 = Part1(program: program)
 do {
-    try part1.solve()
+    let output = try part1.solve()
+    print(output)
 }
 catch {
     print(error.localizedDescription)
@@ -28,7 +29,8 @@ print()
 print("Part 2")
 let part2 = Part2(program: program)
 do {
-    try part2.solve()
+    let output = try part2.solve()
+    print(output)
 }
 catch {
     print(error.localizedDescription)

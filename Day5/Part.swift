@@ -8,6 +8,7 @@
 
 import Foundation
 import Common
+import IntCode
 
 // MARK: Part 1
 
@@ -18,9 +19,9 @@ final class Part1: Part {
         self.program = program
     }
     
-    func solve() throws {
-        let computer = Computer(program: program, input: 1)
-        try computer.run()
+    func solve() throws -> [Int] {
+        let computer = Computer(program: program, inputs: [1])
+        return try computer.run()
     }
 }
 
@@ -33,8 +34,8 @@ final class Part2: Part {
         self.program = program
     }
     
-    func solve() throws {
-        let computer = Computer(program: program, input: 5)
-        try computer.run()
+    func solve() throws-> [Int] {
+        let computer = Computer(program: program, inputs: [5])
+        return try computer.run()
     }
 }
