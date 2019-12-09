@@ -52,3 +52,13 @@ do {
 catch {
     print(error)
 }
+
+print("\nPart2")
+let part2 = Part2(program: program)
+do {
+    let solution = try part2.solve()
+    print(solution)
+}
+catch {
+    print(error)
+}

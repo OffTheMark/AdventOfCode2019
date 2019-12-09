@@ -9,6 +9,8 @@
 import Foundation
 import Common
 
+// MARK: Part1
+
 final class Part1: Part {
     let program: [Int]
 
@@ -18,6 +20,21 @@ final class Part1: Part {
 
     func solve() throws -> [Int] {
         let computer = Computer(program: program, inputs: [1])
+        return try computer.run()
+    }
+}
+
+// MARK: Part2
+
+final class Part2: Part {
+    let program: [Int]
+    
+    init(program: [Int]) {
+        self.program = program
+    }
+    
+    func solve() throws -> [Int] {
+        let computer = Computer(program: program, inputs: [2])
         return try computer.run()
     }
 }
