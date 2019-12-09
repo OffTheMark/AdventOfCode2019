@@ -11,11 +11,15 @@ import Foundation
 // MARK: Computer
 
 final class Computer {
+    // MARK: Properties
+    
     private(set) var program: [Int]
     private(set) var instructionPointer: Int
     private(set) var relativeBase: Int
     private(set) var inputs: [Int]
 
+    // MARK: Create a Computer
+    
     init(
         program: [Int],
         instructionPointer: Int = 0,
@@ -27,6 +31,23 @@ final class Computer {
         self.relativeBase = relativeBase
         self.inputs = inputs
     }
+    
+    convenience init(state: State, inputs: [Int]) {
+        self.init(
+            program: state.program,
+            instructionPointer: state.instructionPointer,
+            relativeBase: state.relativeBase,
+            inputs: inputs
+        )
+    }
+    
+    // MARK: Get Internal State
+    
+    var state: State {
+        return State(program: program, instructionPointer: instructionPointer, relativeBase: relativeBase)
+    }
+    
+    // MARK: Run Program
 
     func run() throws -> [Int] {
         var outputs = [Int]()
@@ -65,6 +86,8 @@ final class Computer {
             }
         }
     }
+    
+    // MARK: Execute Instructions
 
     fileprivate func nextInstruction() throws -> Instruction {
         guard program.indices.contains(instructionPointer) else {
@@ -175,6 +198,8 @@ final class Computer {
         instructionPointer += instruction.code.stride
         return .continue
     }
+    
+    // MARK: Read/Write Values in Program
 
     private func interpretedParameter(_ value: Int, mode: ParameterMode) -> Int {
         switch mode {
@@ -219,11 +244,26 @@ final class Computer {
 
         return program[position]
     }
-
-    fileprivate enum Access {
-        case read
-        case write
+    
+    // MARK: - Computer.State
+    
+    struct State {
+        fileprivate let program: [Int]
+        fileprivate let instructionPointer: Int
+        fileprivate let relativeBase: Int
+        
+        fileprivate init(program: [Int], instructionPointer: Int, relativeBase: Int) {
+            self.program = program
+            self.instructionPointer = instructionPointer
+            self.relativeBase = relativeBase
+        }
+        
+        init(program: [Int]) {
+            self.init(program: program, instructionPointer: 0, relativeBase: 0)
+        }
     }
+    
+    // MARK: - Computer.ParameterMode
 
     fileprivate enum ParameterMode: Int {
         case position = 0
@@ -231,7 +271,7 @@ final class Computer {
         case relative = 2
     }
 
-    // MARK: - InstructionResult
+    // MARK: - Computer.InstructionResult
 
     fileprivate enum InstructionResult {
         case `continue`
@@ -239,7 +279,7 @@ final class Computer {
         case outputAndContinue(Int)
     }
 
-    // MARK: - Instruction
+    // MARK: - Computer.Instruction
 
     fileprivate struct Instruction {
         let code: Code
@@ -291,21 +331,11 @@ final class Computer {
         }
     }
 
+    // MARK: - Computer.Error
+    
     enum Error: Swift.Error {
         case invalidPointer
         case invalidOperationCode(Int)
-    }
-}
-
-// MARK: - InvalidOperationError
-
-struct InvalidOperationError: LocalizedError {
-    let operation: Int
-
-    // MARK: LocalizedError
-
-    var localizedDescription: String {
-        return "Invalid operation: \(operation)"
     }
 }
 
