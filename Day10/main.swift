@@ -77,7 +77,7 @@ let puzzleInput = """
 """
 
 let parser = Parser()
-let asteroids = parser.asteroids(in: testInput1)
+let asteroids = parser.asteroids(in: puzzleInput)
 
 let part1 = Part1(asteroids: asteroids)
 let part1Solution = part1.solve()

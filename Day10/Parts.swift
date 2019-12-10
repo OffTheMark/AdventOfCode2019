@@ -32,21 +32,22 @@ final class Part1: Part {
 
     private func asteroidsInLineOfSight(of asteroid: Point) -> Set<Point> {
         let others: Set<Point> = asteroids.subtracting([asteroid])
-        let asteroidsBySlope: [Point: Set<Point>] = others
+        let asteroidsBySlope: [Float: Set<Point>] = others
             .reduce(into: [:], { result, otherAsteroid in
-                let slope = otherAsteroid - asteroid
+                let slope = otherAsteroid.slope(to: asteroid)
                 result[slope, default: []].insert(otherAsteroid)
             })
+
         let asteroidsInLineOfSign: Set<Point> = asteroidsBySlope.reduce(into: [], { result, element in
             let (_, asteroidsInSlope) = element
-            let closestOrNil = asteroidsInSlope.min(by: { first, second in
-                return first.linearDistance(to: asteroid) < second.linearDistance(to: asteroid)
-            })
-            guard let closest = closestOrNil else {
+            
+            guard let closest = asteroidsInSlope.min(by: { return $0.linearDistance(to: asteroid) < $1.linearDistance(to: asteroid) }) else {
                 return
             }
+
             result.insert(closest)
         })
+
         return asteroidsInLineOfSign
     }
 }

@@ -30,6 +30,12 @@ public struct Point {
     public static var zero: Point {
         return Point(x: 0, y: 0)
     }
+
+    public func slope(to other: Point) -> Float {
+        let deltaX = other.x - self.x
+        let deltaY = other.y - self.y
+        return atan2(deltaX, deltaY)
+    }
 }
 
 // MARK: Hashable
@@ -39,11 +45,3 @@ extension Point: Hashable {}
 // MARK: Equatable
 
 extension Point: Equatable {}
-
-public extension Point {
-    static func - (lhs: Point, rhs: Point) -> Point {
-        let deltaX = lhs.x - rhs.x
-        let deltaY = lhs.y - rhs.y
-        return Point(x: deltaX, y: deltaY)
-    }
-}
