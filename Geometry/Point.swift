@@ -39,3 +39,11 @@ extension Point: Hashable {}
 // MARK: Equatable
 
 extension Point: Equatable {}
+
+public extension Point {
+    static func - (lhs: Point, rhs: Point) -> Point {
+        let deltaX = lhs.x - rhs.x
+        let deltaY = lhs.y - rhs.y
+        return Point(x: deltaX, y: deltaY)
+    }
+}
