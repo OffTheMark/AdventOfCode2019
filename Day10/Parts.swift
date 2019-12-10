@@ -17,28 +17,28 @@ final class Part1: Part {
         self.asteroids = asteroids
     }
 
-    func solve() -> Int {
+    func solve() throws -> (station: Point, others: Set<Point>) {
         let asteroidsInLineOfSightByAsteroid: [Point: Set<Point>] = asteroids
             .reduce(into: [:], { result, asteroid in
                 result[asteroid] = asteroidsInLineOfSight(of: asteroid)
             })
 
         guard let maximum = asteroidsInLineOfSightByAsteroid.max(by: { return $0.value.count < $1.value.count}) else {
-            return 0
+            throw Error.couldNotFindMaximum
         }
 
-        return maximum.value.count
+        return (maximum.key, maximum.value)
     }
 
     private func asteroidsInLineOfSight(of asteroid: Point) -> Set<Point> {
         let others: Set<Point> = asteroids.subtracting([asteroid])
-        let asteroidsBySlope: [Float: Set<Point>] = others
-            .reduce(into: [:], { result, otherAsteroid in
-                let slope = otherAsteroid.slope(to: asteroid)
-                result[slope, default: []].insert(otherAsteroid)
+        let asteroidsByAngle: [Float: Set<Point>] = others
+            .reduce(into: [:], { result, other in
+                let angle = other.angle(to: asteroid)
+                result[angle, default: []].insert(other)
             })
 
-        let asteroidsInLineOfSign: Set<Point> = asteroidsBySlope.reduce(into: [], { result, element in
+        let asteroidsInLineOfSign: Set<Point> = asteroidsByAngle.reduce(into: [], { result, element in
             let (_, asteroidsInSlope) = element
             
             guard let closest = asteroidsInSlope.min(by: { return $0.linearDistance(to: asteroid) < $1.linearDistance(to: asteroid) }) else {
@@ -49,5 +49,35 @@ final class Part1: Part {
         })
 
         return asteroidsInLineOfSign
+    }
+
+    enum Error: Swift.Error {
+        case couldNotFindMaximum
+    }
+}
+
+final class Part2: Part {
+    let asteroids: Set<Point>
+    let station: Point
+
+    init(asteroids: Set<Point>, station: Point) {
+        self.asteroids = asteroids
+        self.station = station
+    }
+
+    func solve() -> Int {
+        var asteroidsByAngle = self.asteroidsByAngle(around: station)
+        
+
+        return 0
+    }
+
+    private func asteroidsByAngle(around station: Point) -> [Float: Set<Point>] {
+        let others: Set<Point> = asteroids.subtracting([station])
+
+        return others.reduce(into: [:], { result, other in
+            let angle = other.angle(to: station)
+            result[angle, default: []].insert(other)
+        })
     }
 }
