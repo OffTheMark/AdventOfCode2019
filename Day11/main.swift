@@ -14,7 +14,16 @@ let puzzleInput = """
 
 let program = puzzleInput.components(separatedBy: ",").compactMap({ Int($0) })
 
-print("Part 1")
+let title = "Day 11"
+print(title, String(repeating: "=", count: title.count), separator: "\n", terminator: "\n\n")
+
+let firstSubtitle = "Part 1"
+print(firstSubtitle, String(repeating: "-", count: firstSubtitle.count), separator: "\n")
 let part1 = Part1(program: program)
-let solution = try part1.solve()
-print(solution)
+do {
+    let solution = try part1.solve()
+    print(solution)
+}
+catch {
+    print(error)
+}

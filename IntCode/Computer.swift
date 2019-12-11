@@ -55,29 +55,27 @@ public final class Computer {
     
     // MARK: Run Program
 
-    public func run() throws -> (outputs: [Int], pause: Pause) {
+    public func run() throws -> Result {
         var outputs = [Int]()
 
         while true {
             let instruction = try nextInstruction()
             let result = execute(instruction)
-
+            
             switch result {
             case .continue:
                 continue
-
+                
             case .outputAndContinue(let output):
                 outputs.append(output)
-
+                
             case .halt:
-                return (outputs, .halted)
+                return Result(outputs: outputs, endState: .halted)
                 
             case .waitingForInput:
-                return (outputs, .waitingForInput)
+                return Result(outputs: outputs, endState: .waitingForInput)
             }
         }
-
-        return (outputs, .halted)
     }
 
     public func nextOutput() throws -> Int? {
@@ -287,7 +285,16 @@ public final class Computer {
         case waitingForInput
     }
     
-    public enum Pause {
+    // MARK: - Computer.Result
+    
+    public struct Result {
+        public let outputs: [Int]
+        public let endState: EndState
+    }
+    
+    // MARK: - Computer.EndState
+    
+    public enum EndState {
         case halted
         case waitingForInput
     }

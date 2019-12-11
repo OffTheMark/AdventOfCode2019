@@ -19,23 +19,29 @@ final class Part1: Part {
 
     func solve() throws -> Int {
         var colorByPosition: [Coordinate: Color] = [:]
-        var currentPosition: Coordinate = .zero
+        var position: Coordinate = .zero
         var direction: Direction = .up
-        var currentColor = colorByPosition[currentPosition, default: .black]
-        let computer = Computer(program: program, inputs: [currentColor.rawValue])
-        var result = try computer.run()
+        
+        let computer = Computer(program: program, inputs: [Color.black.rawValue])
 
-        while result.outputs.count == 2, result.pause != .halted {
-            let colorToPaint = Color(rawValue: result.outputs[0])!
-            let turn = Turn(rawValue: result.outputs[1])!
-
+        while true {
+            let result = try computer.run()
+            
+            if result.endState == .halted {
+                break
+            }
+            
+            let outputs = result.outputs
+            let colorToPaint = Color(rawValue: outputs[0])!
+            let turn = Turn(rawValue: outputs[1])!
+            
+            colorByPosition[position] = colorToPaint
             direction.makeTurn(turn)
-            colorByPosition[currentPosition] = colorToPaint
-            currentPosition += direction.coordinate
-
-            currentColor = colorByPosition[currentPosition, default: .black]
+            position += direction.coordinate
+            
+            let currentColor = colorByPosition[position, default: .black]
             computer.addInput(currentColor.rawValue)
-            result = try computer.run()
+            
         }
 
         return colorByPosition.count
