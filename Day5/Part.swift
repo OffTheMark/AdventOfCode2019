@@ -22,7 +22,7 @@ final class Part1: Part {
     func solve() throws -> [Int] {
         let computer = Computer(program: program, inputs: [1])
         let result = try computer.run()
-        return try result.outputs
+        return result.outputs
     }
 }
 
@@ -38,6 +38,6 @@ final class Part2: Part {
     func solve() throws-> [Int] {
         let computer = Computer(program: program, inputs: [5])
         let result = try computer.run()
-        return try result.outputs
+        return result.outputs
     }
 }
