@@ -46,6 +46,12 @@ public final class Computer {
     public var state: State {
         return State(program: program, instructionPointer: instructionPointer, relativeBase: relativeBase)
     }
+
+    // MARK: Feed Input
+
+    func addInput(_ input: Int) {
+        inputs.append(input)
+    }
     
     // MARK: Run Program
 
