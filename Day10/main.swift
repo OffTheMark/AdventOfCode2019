@@ -81,7 +81,7 @@ let asteroids = parser.asteroids(in: puzzleInput)
 
 print("Part 1")
 let part1 = Part1(asteroids: asteroids)
-let part1Solution = try part1.solve()
+let part1Solution = part1.solve()
 print(part1Solution.others.count)
 
 print("\nPart 2")

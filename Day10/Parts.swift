@@ -17,43 +17,37 @@ final class Part1: Part {
         self.asteroids = asteroids
     }
 
-    func solve() throws -> (station: Point, others: Set<Point>) {
+    func solve() -> (station: Point, others: Set<Point>) {
         let asteroidsInLineOfSightByAsteroid: [Point: Set<Point>] = asteroids
             .reduce(into: [:], { result, asteroid in
                 result[asteroid] = asteroidsInLineOfSight(of: asteroid)
             })
 
-        guard let maximum = asteroidsInLineOfSightByAsteroid.max(by: { return $0.value.count < $1.value.count}) else {
-            throw Error.couldNotFindMaximum
-        }
+        let asteroidsForStation = asteroidsInLineOfSightByAsteroid.max(by: { return $0.value.count < $1.value.count})!
 
-        return (maximum.key, maximum.value)
+        return (asteroidsForStation.key, asteroidsForStation.value)
     }
 
     private func asteroidsInLineOfSight(of asteroid: Point) -> Set<Point> {
         let others: Set<Point> = asteroids.subtracting([asteroid])
         let asteroidsByAngle: [Float: Set<Point>] = others
             .reduce(into: [:], { result, other in
-                let angle = asteroid.normalizedAngle(to: other)
+                let angle = asteroid.angleRelativeToYAxis(to: other)
                 
                 result[angle, default: []].insert(other)
             })
 
-        let asteroidsInLineOfSign: Set<Point> = asteroidsByAngle.reduce(into: [], { result, element in
+        let asteroidsInLineOfSight: Set<Point> = asteroidsByAngle.reduce(into: [], { result, element in
             let (_, asteroidsInSlope) = element
             
-            guard let closest = asteroidsInSlope.min(by: { return $0.linearDistance(to: asteroid) < $1.linearDistance(to: asteroid) }) else {
+            guard let closest = asteroidsInSlope.min(by: { $0.linearDistance(to: asteroid) < $1.linearDistance(to: asteroid) }) else {
                 return
             }
 
             result.insert(closest)
         })
 
-        return asteroidsInLineOfSign
-    }
-
-    enum Error: Swift.Error {
-        case couldNotFindMaximum
+        return asteroidsInLineOfSight
     }
 }
 
@@ -98,7 +92,7 @@ final class Part2: Part {
 
         let asteroidsByAngle: [Float: Set<Point>] = others
             .reduce(into: [:], { result, other in
-                let angle = station.normalizedAngle(to: other)
+                let angle = station.angleRelativeToYAxis(to: other)
                 
                 result[angle, default: []].insert(other)
             })
@@ -108,7 +102,7 @@ final class Part2: Part {
 }
 
 extension Point {
-    func normalizedAngle(to other: Point) -> Float {
+    func angleRelativeToYAxis(to other: Point) -> Float {
         let deltaX = other.x - self.x
         let deltaY = other.y - self.y
         
