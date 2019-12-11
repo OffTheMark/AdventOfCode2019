@@ -34,7 +34,8 @@ final class Part1: Part {
         let others: Set<Point> = asteroids.subtracting([asteroid])
         let asteroidsByAngle: [Float: Set<Point>] = others
             .reduce(into: [:], { result, other in
-                let angle = other.angle(to: asteroid)
+                let angle = asteroid.normalizedAngle(to: other)
+                
                 result[angle, default: []].insert(other)
             })
 
@@ -67,17 +68,54 @@ final class Part2: Part {
 
     func solve() -> Int {
         var asteroidsByAngle = self.asteroidsByAngle(around: station)
+        var remainingToRemove = 200
         
+        while remainingToRemove > asteroidsByAngle.count {
+            let removedCount = asteroidsByAngle.count
+            
+            asteroidsByAngle = asteroidsByAngle.reduce(into: [:], { result, element in
+                guard let closest = element.value.min(by: { $0.linearDistance(to: station) < $1.linearDistance(to: station) }) else {
+                    return
+                }
+                
+                result[element.key] = element.value.subtracting([closest])
+            })
+            
+            remainingToRemove -= removedCount
+        }
+        
+        let asteroidsBySortedAngle = asteroidsByAngle.sorted(by: { $0.key < $1.key })
+        let twoHundredthDestroyed = asteroidsBySortedAngle[remainingToRemove - 1].value
+            .min(by: { first, second in
+                return first.linearDistance(to: station) < second.linearDistance(to: station)
+            })!
 
-        return 0
+        return Int(twoHundredthDestroyed.x) * 100 + Int(twoHundredthDestroyed.y)
     }
 
     private func asteroidsByAngle(around station: Point) -> [Float: Set<Point>] {
         let others: Set<Point> = asteroids.subtracting([station])
 
-        return others.reduce(into: [:], { result, other in
-            let angle = other.angle(to: station)
-            result[angle, default: []].insert(other)
-        })
+        let asteroidsByAngle: [Float: Set<Point>] = others
+            .reduce(into: [:], { result, other in
+                let angle = station.normalizedAngle(to: other)
+                
+                result[angle, default: []].insert(other)
+            })
+        
+        return asteroidsByAngle
+    }
+}
+
+extension Point {
+    func normalizedAngle(to other: Point) -> Float {
+        let deltaX = other.x - self.x
+        let deltaY = other.y - self.y
+        
+        var angle = atan2(deltaX, -deltaY)
+        if angle < 0 {
+            angle += 2 * .pi
+        }
+        return angle
     }
 }

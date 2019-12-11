@@ -44,7 +44,7 @@ let program = puzzleInput
     .components(separatedBy: ",")
     .compactMap({ Int($0) })
 
-print("\nPart1")
+print("\nPart 1")
 let part1 = Part1(program: program)
 do {
     let solution = try part1.solve()
@@ -54,7 +54,7 @@ catch {
     print(error)
 }
 
-print("\nPart2")
+print("\nPart 2")
 let part2 = Part2(program: program)
 do {
     let solution = try part2.solve()

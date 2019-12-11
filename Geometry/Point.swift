@@ -30,12 +30,6 @@ public struct Point {
     public static var zero: Point {
         return Point(x: 0, y: 0)
     }
-
-    public func angle(to other: Point) -> Float {
-        let deltaX = other.x - self.x
-        let deltaY = other.y - self.y
-        return atan2(deltaX, deltaY)
-    }
 }
 
 // MARK: Hashable
