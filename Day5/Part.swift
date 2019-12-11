@@ -21,7 +21,8 @@ final class Part1: Part {
     
     func solve() throws -> [Int] {
         let computer = Computer(program: program, inputs: [1])
-        return try computer.run()
+        let result = try computer.run()
+        return try result.outputs
     }
 }
 
@@ -36,6 +37,7 @@ final class Part2: Part {
     
     func solve() throws-> [Int] {
         let computer = Computer(program: program, inputs: [5])
-        return try computer.run()
+        let result = try computer.run()
+        return try result.outputs
     }
 }

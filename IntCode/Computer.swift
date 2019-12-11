@@ -49,13 +49,13 @@ public final class Computer {
 
     // MARK: Feed Input
 
-    func addInput(_ input: Int) {
+    public func addInput(_ input: Int) {
         inputs.append(input)
     }
     
     // MARK: Run Program
 
-    public func run() throws -> [Int] {
+    public func run() throws -> (outputs: [Int], pause: Pause) {
         var outputs = [Int]()
 
         while true {
@@ -70,11 +70,14 @@ public final class Computer {
                 outputs.append(output)
 
             case .halt:
-                return outputs
+                return (outputs, .halted)
+                
+            case .waitingForInput:
+                return (outputs, .waitingForInput)
             }
         }
 
-        return outputs
+        return (outputs, .halted)
     }
 
     public func nextOutput() throws -> Int? {
@@ -89,7 +92,7 @@ public final class Computer {
             case .outputAndContinue(let output):
                 return output
                 
-            case .halt:
+            case .halt, .waitingForInput:
                 return nil
             }
         }
@@ -145,6 +148,10 @@ public final class Computer {
         case .input:
             let address = literalParameter(parameters[0], mode: instruction.parameterModes[0])
 
+            if inputs.isEmpty {
+                return .waitingForInput
+            }
+            
             write(inputs.removeFirst(), to: address)
 
         case .output:
@@ -271,72 +278,18 @@ public final class Computer {
         }
     }
     
-    // MARK: - Computer.ParameterMode
-
-    fileprivate enum ParameterMode: Int {
-        case position = 0
-        case immediate = 1
-        case relative = 2
-    }
-
     // MARK: - Computer.InstructionResult
 
-    fileprivate enum InstructionResult {
+    enum InstructionResult {
         case `continue`
         case halt
         case outputAndContinue(Int)
+        case waitingForInput
     }
-
-    // MARK: - Computer.Instruction
-
-    fileprivate struct Instruction {
-        let code: Code
-        let parameterModes: [ParameterMode]
-        let startingPosition: Int
-
-        init(code: Code, parameterModes: [ParameterMode], startingPosition: Int) {
-            self.code = code
-            self.parameterModes = parameterModes
-            self.startingPosition = startingPosition
-        }
-
-        enum Code: Int {
-            case add = 1
-            case multiply = 2
-            case input = 3
-            case output = 4
-            case jumpIfTrue = 5
-            case jumpIfFalse = 6
-            case lessThan = 7
-            case equals = 8
-            case adjustRelativeBase = 9
-            case halt = 99
-
-            var parameterCount: Int {
-                switch self {
-                case .halt:
-                    return 0
-
-                case .add,
-                     .multiply,
-                     .lessThan,
-                     .equals:
-                    return 3
-
-                case .input,
-                     .output,
-                     .adjustRelativeBase:
-                    return 1
-
-                case .jumpIfTrue, .jumpIfFalse:
-                    return 2
-                }
-            }
-
-            var stride: Int {
-                return parameterCount + 1
-            }
-        }
+    
+    public enum Pause {
+        case halted
+        case waitingForInput
     }
 
     // MARK: - Computer.Error
@@ -344,22 +297,5 @@ public final class Computer {
     public enum Error: Swift.Error {
         case invalidPointer
         case invalidOperationCode(Int)
-    }
-}
-
-// MARK: - Int
-
-fileprivate extension Int {
-    func digit(at decimalPlace: Int) -> Int {
-        let power = pow(10, decimalPlace).integer
-        return (self / power) % 10
-    }
-}
-
-// MARK: - Decimal
-
-fileprivate extension Decimal {
-    var integer: Int {
-        return NSDecimalNumber(decimal: self).intValue
     }
 }

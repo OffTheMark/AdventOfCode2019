@@ -30,8 +30,8 @@ final class Part1: Part {
             
             for phaseSetting in permutation {
                 let computer = Computer(program: program, inputs: [phaseSetting, feedback])
-                let outputs = try computer.run()
-                feedback = outputs.last!
+                let result = try computer.run()
+                feedback = result.outputs.last!
             }
             
             outputByPermutation[permutation] = feedback
