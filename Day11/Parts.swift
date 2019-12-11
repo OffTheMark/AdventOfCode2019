@@ -22,20 +22,20 @@ final class Part1: Part {
         var currentPosition: Coordinate = .zero
         var direction: Direction = .up
         var currentColor = colorByPosition[currentPosition, default: .black]
-        var computer = Computer(program: program, inputs: [currentColor.rawValue])
-        var output = try computer.run()
+        let computer = Computer(program: program, inputs: [currentColor.rawValue])
+        var result = try computer.run()
 
-        while output.count == 2 {
-            let colorToPaint = Color(rawValue: output[0])!
-            let turn = Turn(rawValue: output[1])!
+        while result.outputs.count == 2, result.pause != .halted {
+            let colorToPaint = Color(rawValue: result.outputs[0])!
+            let turn = Turn(rawValue: result.outputs[1])!
 
             direction.makeTurn(turn)
             colorByPosition[currentPosition] = colorToPaint
             currentPosition += direction.coordinate
 
             currentColor = colorByPosition[currentPosition, default: .black]
-            let previousState = computer.state
-            computer = Computer(state: previousState, inputs: [currentColor.rawValue])
+            computer.addInput(currentColor.rawValue)
+            result = try computer.run()
         }
 
         return colorByPosition.count
