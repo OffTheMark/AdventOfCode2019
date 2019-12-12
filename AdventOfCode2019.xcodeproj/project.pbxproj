@@ -10,8 +10,8 @@
 		2C0DE6D82397E84400127D6D /* Geometry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0DE6CF2397E84400127D6D /* Geometry.framework */; };
 		2C0DE6DD2397E84400127D6D /* GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DE6DC2397E84400127D6D /* GeometryTests.swift */; };
 		2C0DE6DF2397E84400127D6D /* Geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0DE6D12397E84400127D6D /* Geometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2C0DE6E62397E84C00127D6D /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F151E239696AD00047D7C /* Point.swift */; };
-		2C0DE6E72397E85400127D6D /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340B1F5123975B1E0003F389 /* Line.swift */; };
+		2C0DE6E62397E84C00127D6D /* Point2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F151E239696AD00047D7C /* Point2D.swift */; };
+		2C0DE6E72397E85400127D6D /* Line2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340B1F5123975B1E0003F389 /* Line2D.swift */; };
 		2C0DE6E82397E86600127D6D /* Geometry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0DE6CF2397E84400127D6D /* Geometry.framework */; };
 		2C0DE6E92397E86600127D6D /* Geometry.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0DE6CF2397E84400127D6D /* Geometry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C0DE6F92398069E00127D6D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DE6F82398069E00127D6D /* main.swift */; };
@@ -496,7 +496,7 @@
 		2C0DE6F82398069E00127D6D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		2C0DE6FD239806E400127D6D /* Part.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Part.swift; sourceTree = "<group>"; };
 		2C0DE701239811EA00127D6D /* Password.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Password.swift; sourceTree = "<group>"; };
-		2C1F151E239696AD00047D7C /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		2C1F151E239696AD00047D7C /* Point2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point2D.swift; sourceTree = "<group>"; };
 		2C1F1524239697D100047D7C /* Day3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Day3; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C1F1526239697D100047D7C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		2C1F152B2396980500047D7C /* Move.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Move.swift; sourceTree = "<group>"; };
@@ -544,7 +544,7 @@
 		2CAA6421238EC113008FDB31 /* LinkedListRemoveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedListRemoveTests.swift; sourceTree = "<group>"; };
 		2CAA6423238ECDD6008FDB31 /* LinkedListAccessElementsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedListAccessElementsTests.swift; sourceTree = "<group>"; };
 		2CC44BBB23A2A582006C20A3 /* Point3D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point3D.swift; sourceTree = "<group>"; };
-		340B1F5123975B1E0003F389 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
+		340B1F5123975B1E0003F389 /* Line2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line2D.swift; sourceTree = "<group>"; };
 		34BB5EE8239EF869008D1ABF /* IntCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IntCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		34BB5EEA239EF869008D1ABF /* IntCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntCode.h; sourceTree = "<group>"; };
 		34BB5EEB239EF869008D1ABF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -716,8 +716,8 @@
 			isa = PBXGroup;
 			children = (
 				2C0DE6D12397E84400127D6D /* Geometry.h */,
-				2C1F151E239696AD00047D7C /* Point.swift */,
-				340B1F5123975B1E0003F389 /* Line.swift */,
+				2C1F151E239696AD00047D7C /* Point2D.swift */,
+				340B1F5123975B1E0003F389 /* Line2D.swift */,
 				2C0DE6D22397E84400127D6D /* Info.plist */,
 				2CC44BBB23A2A582006C20A3 /* Point3D.swift */,
 			);
@@ -1488,9 +1488,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C0DE6E62397E84C00127D6D /* Point.swift in Sources */,
+				2C0DE6E62397E84C00127D6D /* Point2D.swift in Sources */,
 				2CC44BBC23A2A582006C20A3 /* Point3D.swift in Sources */,
-				2C0DE6E72397E85400127D6D /* Line.swift in Sources */,
+				2C0DE6E72397E85400127D6D /* Line2D.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

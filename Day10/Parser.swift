@@ -10,13 +10,13 @@ import Foundation
 import Geometry
 
 final class Parser {
-    func asteroids(in input: String) -> Set<Point> {
+    func asteroids(in input: String) -> Set<Point2D> {
         return input
             .components(separatedBy: .newlines)
             .enumerated()
             .reduce(into: [], { result, element in
                 let (y, line) = element
-                let asteroids: [Point] = line
+                let asteroids: [Point2D] = line
                     .enumerated()
                     .compactMap({ x, character in
                         guard let element = Element(rawValue: character) else {
@@ -27,7 +27,7 @@ final class Parser {
                             return nil
                         }
 
-                        return Point(x: Float(x), y: Float(y))
+                        return Point2D(x: Float(x), y: Float(y))
                     })
                 result.formUnion(asteroids)
             })
