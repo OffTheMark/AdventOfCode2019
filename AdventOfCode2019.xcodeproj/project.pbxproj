@@ -68,6 +68,7 @@
 		2CAA6420238EBCF7008FDB31 /* LinkedListAddTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA641F238EBCF7008FDB31 /* LinkedListAddTests.swift */; };
 		2CAA6422238EC113008FDB31 /* LinkedListRemoveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA6421238EC113008FDB31 /* LinkedListRemoveTests.swift */; };
 		2CAA6424238ECDD6008FDB31 /* LinkedListAccessElementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA6423238ECDD6008FDB31 /* LinkedListAccessElementsTests.swift */; };
+		2CC44BBC23A2A582006C20A3 /* Point3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC44BBB23A2A582006C20A3 /* Point3D.swift */; };
 		340B1F53239861C10003F389 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAA63B3238DA39F008FDB31 /* Common.framework */; };
 		340B1F54239861C10003F389 /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAA63B3238DA39F008FDB31 /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		34BB5EEC239EF869008D1ABF /* IntCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 34BB5EEA239EF869008D1ABF /* IntCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -542,6 +543,7 @@
 		2CAA641F238EBCF7008FDB31 /* LinkedListAddTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedListAddTests.swift; sourceTree = "<group>"; };
 		2CAA6421238EC113008FDB31 /* LinkedListRemoveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedListRemoveTests.swift; sourceTree = "<group>"; };
 		2CAA6423238ECDD6008FDB31 /* LinkedListAccessElementsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedListAccessElementsTests.swift; sourceTree = "<group>"; };
+		2CC44BBB23A2A582006C20A3 /* Point3D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point3D.swift; sourceTree = "<group>"; };
 		340B1F5123975B1E0003F389 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		34BB5EE8239EF869008D1ABF /* IntCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IntCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		34BB5EEA239EF869008D1ABF /* IntCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntCode.h; sourceTree = "<group>"; };
@@ -717,6 +719,7 @@
 				2C1F151E239696AD00047D7C /* Point.swift */,
 				340B1F5123975B1E0003F389 /* Line.swift */,
 				2C0DE6D22397E84400127D6D /* Info.plist */,
+				2CC44BBB23A2A582006C20A3 /* Point3D.swift */,
 			);
 			path = Geometry;
 			sourceTree = "<group>";
@@ -1486,6 +1489,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C0DE6E62397E84C00127D6D /* Point.swift in Sources */,
+				2CC44BBC23A2A582006C20A3 /* Point3D.swift in Sources */,
 				2C0DE6E72397E85400127D6D /* Line.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
