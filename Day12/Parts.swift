@@ -23,40 +23,40 @@ final class Part1: Part {
         let moons: [Moon] = positionOfMoons.map({ position in
             return Moon(position: position, velocity: .zero)
         })
-        let permutationsOfMoons = Array(moons.indices).permutationsWithoutRepetition(ofSize: 2)
+        let combinationsOfMoons = Array(moons.indices).combinations(ofSize: 2)
 
         for _ in 0..<numberOfSteps {
             var deltaVelocities: [Velocity3D] = .init(repeating: .zero, count: moons.count)
 
-            for permutation in permutationsOfMoons {
-                let firstIndex = permutation[0]
-                let secondIndex = permutation[1]
+            for combination in combinationsOfMoons {
+                let firstIndex = combination[0]
+                let secondIndex = combination[1]
                 let first = moons[firstIndex]
                 let second = moons[secondIndex]
 
                 if first.position.x > second.position.x {
-                    deltaVelocities[firstIndex].x += 1
-                    deltaVelocities[secondIndex].x -= 1
-                }
-                if first.position.x < second.position.x {
                     deltaVelocities[firstIndex].x -= 1
                     deltaVelocities[secondIndex].x += 1
                 }
-                if first.position.y > second.position.y {
-                    deltaVelocities[firstIndex].y += 1
-                    deltaVelocities[secondIndex].y -= 1
+                if first.position.x < second.position.x {
+                    deltaVelocities[firstIndex].x += 1
+                    deltaVelocities[secondIndex].x -= 1
                 }
-                if first.position.y < second.position.y {
+                if first.position.y > second.position.y {
                     deltaVelocities[firstIndex].y -= 1
                     deltaVelocities[secondIndex].y += 1
                 }
-                if first.position.z > second.position.z {
-                    deltaVelocities[firstIndex].z += 1
-                    deltaVelocities[secondIndex].z -= 1
+                if first.position.y < second.position.y {
+                    deltaVelocities[firstIndex].y += 1
+                    deltaVelocities[secondIndex].y -= 1
                 }
-                if first.position.z < second.position.z {
+                if first.position.z > second.position.z {
                     deltaVelocities[firstIndex].z -= 1
                     deltaVelocities[secondIndex].z += 1
+                }
+                if first.position.z < second.position.z {
+                    deltaVelocities[firstIndex].z += 1
+                    deltaVelocities[secondIndex].z -= 1
                 }
             }
 
@@ -64,7 +64,8 @@ final class Part1: Part {
                 let moon = moons[index]
                 let deltaVelocity = deltaVelocities[index]
 
-                moon.position += deltaVelocity
+                moon.velocity += deltaVelocity
+                moon.position += moon.velocity
             }
         }
 

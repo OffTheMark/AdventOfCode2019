@@ -9,7 +9,7 @@
 import Foundation
 import Geometry
 
-final class Moon: NSObject {
+final class Moon {
     var position: Point3D
     var velocity: Velocity3D
 

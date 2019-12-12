@@ -23,7 +23,7 @@ let puzzleInput = """
 <x=18, y=1, z=16>
 """
 
-let positionOfMoons = testInput
+let positionOfMoons = puzzleInput
     .components(separatedBy: .newlines)
     .compactMap({ Point3D(string: $0) })
 
@@ -32,6 +32,6 @@ print(title, String(repeating: "=", count: title.count), separator: "\n", termin
 
 let firstSubtitle = "Part 1"
 print(firstSubtitle, String(repeating: "-", count: firstSubtitle.count), separator: "\n")
-let part1 = Part1(positionOfMoons: positionOfMoons, numberOfSteps: 10)
+let part1 = Part1(positionOfMoons: positionOfMoons, numberOfSteps: 1000)
 let part1Solution = part1.solve()
 print(part1Solution)

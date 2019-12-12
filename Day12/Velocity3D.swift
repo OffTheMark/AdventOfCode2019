@@ -31,3 +31,19 @@ struct Velocity3D {
 }
 
 extension Velocity3D: Hashable {}
+
+extension Velocity3D {
+    static func += (lhs: inout Velocity3D, rhs: Velocity3D) {
+        lhs.x += rhs.x
+        lhs.y += rhs.y
+        lhs.z += rhs.z
+    }
+
+    static func + (lhs: inout Velocity3D, rhs: Velocity3D) -> Velocity3D {
+        return Velocity3D(
+            x: lhs.x + rhs.x,
+            y: lhs.y + rhs.y,
+            z: lhs.z + rhs.z
+        )
+    }
+}
