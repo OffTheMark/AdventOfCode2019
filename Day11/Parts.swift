@@ -96,18 +96,15 @@ final class Part2: Part {
         let minY = allYs.min()!
         let maxY = allYs.max()!
         
-        var lines: [String] = []
-        for y in minY ... maxY {
-            var line = ""
-    
-            for x in minX ... maxX {
+        let lines: [String] = (minY...maxY).map({ y in
+            let line: String = (minX ... maxX).reduce(into: "", { result, x in
                 let coordinate = Coordinate(x: x, y: y)
                 let color = colorsByPosition[coordinate, default: .black]
-                line.append(color.emoji)
-            }
+                result.append(color.emoji)
+            })
             
-            lines.append(line)
-        }
+            return line
+        })
         
         return lines.joined(separator: "\n")
     }
