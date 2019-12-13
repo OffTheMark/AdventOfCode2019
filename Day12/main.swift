@@ -35,3 +35,16 @@ print(firstSubtitle, String(repeating: "-", count: firstSubtitle.count), separat
 let part1 = Part1(positionOfMoons: positionOfMoons, numberOfSteps: 1000)
 let part1Solution = part1.solve()
 print(part1Solution)
+
+print()
+
+let secondSubtitle = "Part 2"
+print(secondSubtitle, String(repeating: "-", count: secondSubtitle.count), separator: "\n")
+let part2 = Part2(positionOfMoons: positionOfMoons)
+do {
+    let part2Solution = try part2.solve()
+    print(part2Solution)
+}
+catch {
+    print(error)
+}
