@@ -20,14 +20,12 @@ final class Part1: Part {
     }
 
     func solve() -> Int {
-        let moons: [Moon] = positionOfMoons.map({ position in
+        var moons: [Moon] = positionOfMoons.map({ position in
             return Moon(position: position, velocity: .zero)
         })
         let combinationsOfMoons = Array(moons.indices).combinations(ofSize: 2)
 
         for _ in 0..<numberOfSteps {
-            var deltaVelocities: [Velocity3D] = .init(repeating: .zero, count: moons.count)
-
             for combination in combinationsOfMoons {
                 let firstIndex = combination[0]
                 let secondIndex = combination[1]
@@ -35,37 +33,33 @@ final class Part1: Part {
                 let second = moons[secondIndex]
 
                 if first.position.x > second.position.x {
-                    deltaVelocities[firstIndex].x -= 1
-                    deltaVelocities[secondIndex].x += 1
+                    moons[firstIndex].velocity.x -= 1
+                    moons[secondIndex].velocity.x += 1
                 }
                 if first.position.x < second.position.x {
-                    deltaVelocities[firstIndex].x += 1
-                    deltaVelocities[secondIndex].x -= 1
+                    moons[firstIndex].velocity.x += 1
+                    moons[secondIndex].velocity.x -= 1
                 }
                 if first.position.y > second.position.y {
-                    deltaVelocities[firstIndex].y -= 1
-                    deltaVelocities[secondIndex].y += 1
+                    moons[firstIndex].velocity.y -= 1
+                    moons[secondIndex].velocity.y += 1
                 }
                 if first.position.y < second.position.y {
-                    deltaVelocities[firstIndex].y += 1
-                    deltaVelocities[secondIndex].y -= 1
+                    moons[firstIndex].velocity.y += 1
+                    moons[secondIndex].velocity.y -= 1
                 }
                 if first.position.z > second.position.z {
-                    deltaVelocities[firstIndex].z -= 1
-                    deltaVelocities[secondIndex].z += 1
+                    moons[firstIndex].velocity.z -= 1
+                    moons[secondIndex].velocity.z += 1
                 }
                 if first.position.z < second.position.z {
-                    deltaVelocities[firstIndex].z += 1
-                    deltaVelocities[secondIndex].z -= 1
+                    moons[firstIndex].velocity.z += 1
+                    moons[secondIndex].velocity.z -= 1
                 }
             }
 
             for index in moons.indices {
-                let moon = moons[index]
-                let deltaVelocity = deltaVelocities[index]
-
-                moon.velocity += deltaVelocity
-                moon.position += moon.velocity
+                moons[index].position += moons[index].velocity
             }
         }
 

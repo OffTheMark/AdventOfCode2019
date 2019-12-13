@@ -9,7 +9,7 @@
 import Foundation
 import Geometry
 
-final class Moon {
+struct Moon {
     var position: Point3D
     var velocity: Velocity3D
 
@@ -22,3 +22,7 @@ final class Moon {
         return position.potentialEnergy * velocity.kineticEnergy
     }
 }
+
+// MARK: Moon
+
+extension Moon: Hashable {}
