@@ -22,7 +22,7 @@ final class Part1: Part {
     }
 
     func solve() throws -> Float {
-        var segmentPairs = [(first: Line, second: Line)]()
+        var segmentPairs = [(first: Line2D, second: Line2D)]()
         for firstSegment in firstWire.segments {
             for secondSegment in secondWire.segments {
                 segmentPairs.append((firstSegment, secondSegment))
@@ -40,7 +40,7 @@ final class Part1: Part {
             throw CouldNotFindClosestPointError()
         }
 
-        let sortedDistances: [(point: Point, distance: Float)] = intersections
+        let sortedDistances: [(point: Point2D, distance: Float)] = intersections
             .map({ point in
                 let distance = point.manhattanDistance(to: .zero)
                 return (point, distance)
@@ -65,14 +65,14 @@ final class Part2: Part {
     }
 
     func solve() throws -> Float {
-        var segmentPairs = [(first: Line, second: Line)]()
+        var segmentPairs = [(first: Line2D, second: Line2D)]()
         for firstSegment in firstWire.segments {
             for secondSegment in secondWire.segments {
                 segmentPairs.append((firstSegment, secondSegment))
             }
         }
 
-        let intersectionsWithSegments: [(intersection: Point, first: Line, second: Line)] = segmentPairs
+        let intersectionsWithSegments: [(intersection: Point2D, first: Line2D, second: Line2D)] = segmentPairs
             .compactMap({ first, second in
                 guard let intersection = first.intersection(with: second), intersection != .zero else {
                     return nil
@@ -85,7 +85,7 @@ final class Part2: Part {
             throw CouldNotFindClosestPointError()
         }
 
-        let intersectionsWithSteps: [(intersection: Point, steps: Float)] = intersectionsWithSegments
+        let intersectionsWithSteps: [(intersection: Point2D, steps: Float)] = intersectionsWithSegments
             .compactMap({ point, first, second in
                 guard let firstSteps = firstWire.steps(to: point) else {
                     return nil

@@ -12,20 +12,20 @@ import Geometry
 // MARK: Wire
 
 struct Wire {
-    let segments: [Line]
+    let segments: [Line2D]
     
-    init(segments: [Line]) {
+    init(segments: [Line2D]) {
         self.segments = segments
     }
     
-    init(origin: Point, moves: [Move]) {
-        var segments = [Line]()
+    init(origin: Point2D, moves: [Move]) {
+        var segments = [Line2D]()
         var currentPoint = origin
         
         for move in moves {
             let start = currentPoint
             let end = currentPoint.applying(move)
-            let segment = Line(start: start, end: end)
+            let segment = Line2D(start: start, end: end)
             
             segments.append(segment)
             currentPoint = end
@@ -34,7 +34,7 @@ struct Wire {
         self.init(segments: segments)
     }
     
-    func steps(to point: Point) -> Float? {
+    func steps(to point: Point2D) -> Float? {
         guard let firstIndex = segments.firstIndex(where: { $0.intersects(with: point) }) else {
             return nil
         }

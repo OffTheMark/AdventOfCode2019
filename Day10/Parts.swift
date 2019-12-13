@@ -11,14 +11,14 @@ import Common
 import Geometry
 
 final class Part1: Part {
-    let asteroids: Set<Point>
+    let asteroids: Set<Point2D>
 
-    init(asteroids: Set<Point>) {
+    init(asteroids: Set<Point2D>) {
         self.asteroids = asteroids
     }
 
-    func solve() -> (station: Point, others: Set<Point>) {
-        let asteroidsInLineOfSightByAsteroid: [Point: Set<Point>] = asteroids
+    func solve() -> (station: Point2D, others: Set<Point2D>) {
+        let asteroidsInLineOfSightByAsteroid: [Point2D: Set<Point2D>] = asteroids
             .reduce(into: [:], { result, asteroid in
                 result[asteroid] = asteroidsInLineOfSight(of: asteroid)
             })
@@ -28,16 +28,16 @@ final class Part1: Part {
         return (asteroidsForStation.key, asteroidsForStation.value)
     }
 
-    private func asteroidsInLineOfSight(of asteroid: Point) -> Set<Point> {
-        let others: Set<Point> = asteroids.subtracting([asteroid])
-        let asteroidsByAngle: [Float: Set<Point>] = others
+    private func asteroidsInLineOfSight(of asteroid: Point2D) -> Set<Point2D> {
+        let others: Set<Point2D> = asteroids.subtracting([asteroid])
+        let asteroidsByAngle: [Float: Set<Point2D>] = others
             .reduce(into: [:], { result, other in
                 let angle = asteroid.angleRelativeToYAxis(to: other)
                 
                 result[angle, default: []].insert(other)
             })
 
-        let asteroidsInLineOfSight: Set<Point> = asteroidsByAngle.reduce(into: [], { result, element in
+        let asteroidsInLineOfSight: Set<Point2D> = asteroidsByAngle.reduce(into: [], { result, element in
             let (_, asteroidsInSlope) = element
             
             guard let closest = asteroidsInSlope.min(by: { $0.linearDistance(to: asteroid) < $1.linearDistance(to: asteroid) }) else {
@@ -52,10 +52,10 @@ final class Part1: Part {
 }
 
 final class Part2: Part {
-    let asteroids: Set<Point>
-    let station: Point
+    let asteroids: Set<Point2D>
+    let station: Point2D
 
-    init(asteroids: Set<Point>, station: Point) {
+    init(asteroids: Set<Point2D>, station: Point2D) {
         self.asteroids = asteroids
         self.station = station
     }
@@ -87,10 +87,10 @@ final class Part2: Part {
         return Int(twoHundredthDestroyed.x) * 100 + Int(twoHundredthDestroyed.y)
     }
 
-    private func asteroidsByAngle(around station: Point) -> [Float: Set<Point>] {
-        let others: Set<Point> = asteroids.subtracting([station])
+    private func asteroidsByAngle(around station: Point2D) -> [Float: Set<Point2D>] {
+        let others: Set<Point2D> = asteroids.subtracting([station])
 
-        let asteroidsByAngle: [Float: Set<Point>] = others
+        let asteroidsByAngle: [Float: Set<Point2D>] = others
             .reduce(into: [:], { result, other in
                 let angle = station.angleRelativeToYAxis(to: other)
                 
@@ -101,8 +101,8 @@ final class Part2: Part {
     }
 }
 
-extension Point {
-    func angleRelativeToYAxis(to other: Point) -> Float {
+extension Point2D {
+    func angleRelativeToYAxis(to other: Point2D) -> Float {
         let deltaX = other.x - self.x
         let deltaY = other.y - self.y
         
