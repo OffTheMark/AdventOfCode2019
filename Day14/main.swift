@@ -86,4 +86,11 @@ print(firstSubtitle, String(repeating: "-", count: firstSubtitle.count), separat
 
 let part1 = Part1(reactionsByOutput: reactionsByOutput)
 let part1Solution = part1.solve()
-print(part1Solution)
+print(part1Solution, terminator: "\n\n")
+
+let secondSubtitle = "Part 2"
+print(secondSubtitle, String(repeating: "-", count: secondSubtitle.count), separator: "\n")
+
+let part2 = Part2(reactionsByOutput: reactionsByOutput)
+let part2Solution = part2.solve()
+print(part2Solution)
