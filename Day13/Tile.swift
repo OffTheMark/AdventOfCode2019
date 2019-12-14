@@ -34,4 +34,23 @@ enum Tile: Int {
             return false
         }
     }
+    
+    var character: Character {
+        switch self {
+        case .empty:
+            return " "
+            
+        case .wall:
+            return "#"
+            
+        case .block:
+            return "X"
+            
+        case .horizontalPaddle:
+            return "-"
+            
+        case .ball:
+            return "o"
+        }
+    }
 }

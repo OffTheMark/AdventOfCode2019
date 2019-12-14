@@ -27,3 +27,6 @@ do {
 catch {
     print(error)
 }
+
+let part2 = Part2(program: program)
+try part2.solve()
