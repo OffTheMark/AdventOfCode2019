@@ -14,14 +14,14 @@ import DataStructures
 
 final class Part1: Part {
     let program: [Int]
+    private(set) var maze: [Point2D: Status] = [:]
     
-    init(program: [Int]) {
+    init(program: [Int]) throws {
         self.program = program
+        self.maze = try breadthFirstSearch()
     }
     
     func solve() throws -> Int {
-        let maze = try breadthFirstSearch()
-        
         draw(maze)
         
         guard let pathToOxygenSystem = dijkstra(maze) else {
