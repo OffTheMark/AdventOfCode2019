@@ -33,3 +33,7 @@ catch {
 
 let secondSubtitle = "Part 2"
 print(secondSubtitle, String(repeating: "-", count: secondSubtitle.count), separator: "\n")
+
+let part2 = Part2(maze: part1.maze)
+let part2Solution = part2.solve()
+print(part2Solution)

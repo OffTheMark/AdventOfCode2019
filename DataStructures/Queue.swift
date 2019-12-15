@@ -104,3 +104,13 @@ extension Queue: Collection {
         return contents.isEmpty
     }
 }
+
+// MARK: ExpressibleByArrayLiteral
+
+extension Queue: ExpressibleByArrayLiteral {
+    public typealias ArrayLiteralElement = Element
+
+    public init(arrayLiteral elements: Element...) {
+        self.init(elements)
+    }
+}

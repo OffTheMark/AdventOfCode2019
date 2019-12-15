@@ -18,13 +18,13 @@ final class Part1: Part {
     
     init(program: [Int]) throws {
         self.program = program
-        self.maze = try breadthFirstSearch()
+        self.maze = try mapMazeUsingBreadthFirstSearch()
     }
     
     func solve() throws -> Int {
         draw(maze)
         
-        guard let pathToOxygenSystem = dijkstra(maze) else {
+        guard let pathToOxygenSystem = findPathToOxygenSystemUsingDijkstra(maze) else {
             return 0
         }
         
@@ -59,7 +59,7 @@ final class Part1: Part {
     }
     
     
-    private func breadthFirstSearch() throws -> [Point2D: Status] {
+    private func mapMazeUsingBreadthFirstSearch() throws -> [Point2D: Status] {
         var queue = Queue<Node>()
         let initial = Node(position: .zero, status: .empty, computer: Computer(program: program, inputs: []))
         queue.enqueue(initial)
@@ -80,7 +80,7 @@ final class Part1: Part {
         return maze
     }
     
-    private func dijkstra(_ maze: [Point2D: Status]) -> [Point2D]? {
+    private func findPathToOxygenSystemUsingDijkstra(_ maze: [Point2D: Status]) -> [Point2D]? {
         var frontier: [[Point2D]] = [[.zero]] {
             didSet {
                 frontier.sort(by: { $0.count < $1.count })
@@ -118,6 +118,74 @@ final class Part1: Part {
         }
         
         return nil
+    }
+}
+
+final class Part2: Part {
+    let maze: [Point2D: Status]
+    
+    init(maze: [Point2D: Status]) {
+        self.maze = maze
+    }
+    
+    func solve() -> Int {
+        var oxygenatedMaze: [Point2D: OxygenStatus] = maze.mapValues({ status in
+            switch status {
+            case .oxygenSystem:
+                return .oxygen
+            case .empty:
+                return .empty
+            case .wall:
+                return .wall
+            }
+        })
+        
+        for index in 0... {
+            if oxygenatedMaze.values.allSatisfy({ $0 != .empty }) {
+                draw(oxygenatedMaze)
+                return index
+            }
+            
+            for element in oxygenatedMaze where element.value == .oxygen {
+                let position = element.key
+                
+                let neighbors = MovementCommand.allCases
+                    .map({ command in
+                        return position + command.move
+                    })
+                
+                for neighbor in neighbors {
+                    if oxygenatedMaze[neighbor] == .empty {
+                        oxygenatedMaze[neighbor] = .oxygen
+                    }
+                }
+            }
+        }
+        
+        return 0
+    }
+    
+    private func draw(_ oxygenatedMaze: [Point2D: OxygenStatus]) {
+        let allXCoordinates = oxygenatedMaze.keys.map({ Int($0.x) })
+        let minX = allXCoordinates.min()!
+        let maxX = allXCoordinates.max()!
+        
+        let allYCoordinates = oxygenatedMaze.keys.map({ Int($0.x) })
+        let minY = allYCoordinates.min()!
+        let maxY = allYCoordinates.max()!
+        
+        var drawnMaze = ""
+        for y in minY ... maxY {
+            for x in minX ... maxX {
+                let position = Point2D(x: Float(x), y: Float(y))
+                let status = oxygenatedMaze[position, default: .empty]
+                
+                drawnMaze.append(status.character)
+            }
+            drawnMaze.append("\n")
+        }
+        
+        print(drawnMaze)
     }
 }
 

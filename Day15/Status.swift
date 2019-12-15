@@ -29,6 +29,25 @@ enum Status: Int {
     }
 }
 
+enum OxygenStatus {
+    case wall
+    case empty
+    case oxygen
+    
+    var character: Character {
+        switch self {
+        case .wall:
+            return "◻️"
+            
+        case .empty:
+            return "⬛️"
+            
+        case .oxygen:
+            return "🔵"
+        }
+    }
+}
+
 // MARK: - MovementCommand
 
 enum MovementCommand: Int {
