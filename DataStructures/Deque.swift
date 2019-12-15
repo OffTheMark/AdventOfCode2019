@@ -104,7 +104,7 @@ extension Deque: Sequence {
     }
 }
 
-// MARK: Deque
+// MARK: Collection
 
 extension Deque: Collection {
     public typealias Index = Int
