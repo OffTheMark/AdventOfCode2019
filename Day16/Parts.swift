@@ -80,20 +80,24 @@ final class Part2: Part {
         
         for iteration in 0 ..< phaseCount {
             relevantElements = phase(relevantElements)
+            print(iteration)
         }
         
         return firstEightDigits(of: relevantElements)
     }
     
     private func phase(_ signal: [Int]) -> [Int] {
-        var output = Array(repeating: 0, count: signal.count)
+        var output = signal
         
-        var sequenceSum = signal.reduce(into: 0, { result, digit in
-            result += digit
-        })
-        for index in signal.indices {
-            output[index] = sequenceSum % 10
-            sequenceSum -= signal[index]
+        for index in signal.indices.reversed() {
+            let partialSum: Int
+            if index == signal.count - 1 {
+                partialSum = output[index]
+            }
+            else {
+                partialSum = output[index] + output[index + 1]
+            }
+            output[index] = abs(partialSum) % 10
         }
         
         return output
