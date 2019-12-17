@@ -22,6 +22,13 @@ let inputSignal: [Int: Int] = puzzleInput.enumerated().reduce(into: [:], { resul
     result[index] = digit
 })
 
+let inputList: [Int] = puzzleInput.reduce(into: [], { result, digit in
+    guard let digit = Int(String(digit)) else {
+        return
+    }
+    result.append(digit)
+})
+
 let title = "Day 16"
 print(title, String(repeating: "=", count: title.count), separator: "\n", terminator: "\n\n")
 
@@ -30,4 +37,11 @@ print(firstSubtitle, String(repeating: "-", count: firstSubtitle.count), separat
 
 let part1 = Part1(inputSignal: inputSignal, phaseCount: 100)
 let part1Solution = part1.solve()
-print(part1Solution)
+print(part1Solution, terminator: "\n\n")
+
+let secondSubtitle = "Part 2"
+print(secondSubtitle, String(repeating: "-", count: secondSubtitle.count), separator: "\n")
+
+let part2 = Part2(inputSignal: inputList, phaseCount: 100)
+let part2Solution = part2.solve()
+print(part2Solution)
