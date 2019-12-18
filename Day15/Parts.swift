@@ -36,7 +36,7 @@ final class Part1: Part {
         let minX = allXCoordinates.min()!
         let maxX = allXCoordinates.max()!
         
-        let allYCoordinates = maze.keys.map({ Int($0.x) })
+        let allYCoordinates = maze.keys.map({ Int($0.y) })
         let minY = allYCoordinates.min()!
         let maxY = allYCoordinates.max()!
         
@@ -170,7 +170,7 @@ final class Part2: Part {
         let minX = allXCoordinates.min()!
         let maxX = allXCoordinates.max()!
         
-        let allYCoordinates = oxygenatedMaze.keys.map({ Int($0.x) })
+        let allYCoordinates = oxygenatedMaze.keys.map({ Int($0.y) })
         let minY = allYCoordinates.min()!
         let maxY = allYCoordinates.max()!
         
