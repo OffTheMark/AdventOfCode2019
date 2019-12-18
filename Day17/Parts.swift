@@ -75,7 +75,7 @@ final class Part1: Part {
         let minX = allXCoordinates.min()!
         let maxX = allXCoordinates.max()!
         
-        let allYCoordinates = scaffoldView.keys.map({ Int($0.x) })
+        let allYCoordinates = scaffoldView.keys.map({ Int($0.y) })
         let minY = allYCoordinates.min()!
         let maxY = allYCoordinates.max()!
         
