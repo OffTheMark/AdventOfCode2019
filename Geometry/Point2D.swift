@@ -18,6 +18,11 @@ public struct Point2D {
         self.x = x
         self.y = y
     }
+    
+    public init(x: Int, y: Int) {
+        self.x = Float(x)
+        self.y = Float(y)
+    }
 
     public func manhattanDistance(to other: Self) -> Float {
         return abs(other.x - self.x) + abs(other.y - self.y)
@@ -39,3 +44,19 @@ extension Point2D: Hashable {}
 // MARK: Equatable
 
 extension Point2D: Equatable {}
+
+// MARK: Operations
+
+public extension Point2D {
+    static func + (lhs: Point2D, rhs: Point2D) -> Point2D {
+        return Point2D(
+            x: lhs.x + rhs.x,
+            y: lhs.y + rhs.y
+        )
+    }
+    
+    static func += (lhs: inout Point2D, rhs: Point2D) {
+        lhs.x += rhs.x
+        lhs.y += rhs.y
+    }
+}
