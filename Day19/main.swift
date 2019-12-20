@@ -28,3 +28,17 @@ do {
 catch {
     print(error)
 }
+
+print()
+
+let secondSubtitle = "Part 2"
+print(secondSubtitle, String(repeating: "-", count: firstSubtitle.count), separator: "\n")
+
+let part2 = Part2(program: program, statesByPosition: part1.statesByPosition)
+do {
+    let part2Solution = try part2.solve()
+    print(part2Solution)
+}
+catch {
+    print(error)
+}

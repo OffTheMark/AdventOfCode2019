@@ -15,6 +15,7 @@ import Common
 
 final class Part1: Part {
     let program: Program
+    private(set) var statesByPosition = [Point2D: DroneState]()
     
     init(program: Program) {
         self.program = program
@@ -23,7 +24,7 @@ final class Part1: Part {
     func solve() throws -> Int {
         let coordinateRange = 0 ..< 50
         
-        let statesByPosition: [Point2D: DroneState] = try coordinateRange.reduce(into: [:], { result, y in
+        statesByPosition = try coordinateRange.reduce(into: [:], { result, y in
             for x in coordinateRange {
                 let computer = Computer(program: program, inputs: [x, y])
                 let position = Point2D(x: x, y: y)
@@ -69,6 +70,60 @@ final class Part1: Part {
         }
         
         print(drawnMaze)
+    }
+}
+
+final class Part2: Part {
+    let program: Program
+    let apex: Point2D
+    
+    init(program: Program, statesByPosition: [Point2D: DroneState]) {
+        let apex: Point2D = statesByPosition
+            .filter({ $0.value == .pulled })
+            .keys
+            .sorted(by: { $0.x < $1.x })[1]
+        
+        
+        self.program = program
+        self.apex = apex
+    }
+    
+    func solve() throws -> Int {
+        var bottomLeft = apex
+        
+        while true {
+            if bottomLeft.y >= 99 {
+                let topRight = Point2D(x: bottomLeft.x + 99, y: bottomLeft.y - 99)
+                let stateForBottomLeft = try state(for: bottomLeft)
+                let stateForTopRight = try state(for: topRight)
+                
+                if stateForBottomLeft == .pulled, stateForTopRight == .pulled {
+                    break
+                }
+            }
+            
+            let bottom = Point2D(x: bottomLeft.x, y: bottomLeft.y + 1)
+            let stateOfBottom = try state(for: bottom)
+            
+            if stateOfBottom == .pulled {
+                bottomLeft.y += 1
+            }
+            else {
+                bottomLeft.x += 1
+            }
+        }
+        
+        let topLeft = Point2D(x: bottomLeft.x, y: bottomLeft.y - 99)
+        
+        return Int(topLeft.x * 10_000 + topLeft.y)
+    }
+    
+    private func state(for position: Point2D) throws -> DroneState {
+        let inputs = [position.x, position.y].map({ Int($0) })
+        let computer = Computer(program: program, inputs: inputs)
+        let result = try computer.run()
+        
+        return DroneState(rawValue: result.outputs[0])!
     }
 }
 
