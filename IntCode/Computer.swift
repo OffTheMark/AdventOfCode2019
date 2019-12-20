@@ -8,12 +8,14 @@
 
 import Foundation
 
+public typealias Program = [Int]
+
 // MARK: Computer
 
 public final class Computer {
     // MARK: Properties
     
-    private(set) var program: [Int]
+    private(set) var program: Program
     private(set) var instructionPointer: Int
     private(set) var relativeBase: Int
     private(set) var inputs: [Int]
@@ -21,7 +23,7 @@ public final class Computer {
     // MARK: Create a Computer
     
     public init(
-        program: [Int],
+        program: Program,
         instructionPointer: Int = 0,
         relativeBase: Int = 0,
         inputs: [Int]
