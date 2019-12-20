@@ -40,11 +40,7 @@ final class Part1: Part {
 
         draw(statesByPosition)
         
-        let countOfPulled = statesByPosition
-            .filter({ element in
-                return element.value == .pulled
-            })
-            .count
+        let countOfPulled = statesByPosition.count(where: { $0.value == .pulled })
         
         return countOfPulled
     }

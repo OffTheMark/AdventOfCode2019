@@ -36,7 +36,7 @@ final class Part1: Part {
             tilesByPosition[point] = tile
         }
 
-        return tilesByPosition.filter({ $0.value == .block }).count
+        return tilesByPosition.count(where: { $0.value == .block })
     }
 }
 
