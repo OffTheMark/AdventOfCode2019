@@ -47,12 +47,12 @@ final class Part2: Part {
         self.program = program
     }
     
-    func solve() throws -> Int {
+    func solve() throws {
         var program = self.program
         program[0] = 2
         
         let player = try Player(program: program)
-        return try player.beatGame()
+        try player.beatGame()
     }
 }
 
