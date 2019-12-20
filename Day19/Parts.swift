@@ -93,7 +93,7 @@ final class Part2: Part {
         
         while true {
             if bottomLeft.y >= 99 {
-                let topRight = Point2D(x: bottomLeft.x + 99, y: bottomLeft.y - 99)
+                let topRight = bottomLeft.translated(byX: 99, y: -99)
                 let stateForBottomLeft = try state(for: bottomLeft)
                 let stateForTopRight = try state(for: topRight)
                 
@@ -102,8 +102,8 @@ final class Part2: Part {
                 }
             }
             
-            let bottom = Point2D(x: bottomLeft.x, y: bottomLeft.y + 1)
-            let stateOfBottom = try state(for: bottom)
+            let underneathBottomLeft = bottomLeft.translated(byX: 0, y: 1)
+            let stateOfBottom = try state(for: underneathBottomLeft)
             
             if stateOfBottom == .pulled {
                 bottomLeft.y += 1
@@ -113,7 +113,7 @@ final class Part2: Part {
             }
         }
         
-        let topLeft = Point2D(x: bottomLeft.x, y: bottomLeft.y - 99)
+        let topLeft = bottomLeft.translated(byX: 0, y: -99)
         
         return Int(topLeft.x * 10_000 + topLeft.y)
     }

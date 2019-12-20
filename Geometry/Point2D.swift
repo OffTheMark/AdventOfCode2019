@@ -35,6 +35,17 @@ public struct Point2D {
     public static var zero: Self {
         return Point2D(x: 0, y: 0)
     }
+    
+    public func translated(byX x: Float, y: Float) -> Point2D {
+        var translated = self
+        translated.x += x
+        translated.y += y
+        return translated
+    }
+    
+    public func translated(byX x: Int, y: Int) -> Point2D {
+        return translated(byX: Float(x), y: Float(y))
+    }
 }
 
 // MARK: Hashable
