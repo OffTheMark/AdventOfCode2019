@@ -55,6 +55,10 @@ public final class Computer {
         inputs.append(input)
     }
     
+    public func addInputs(_ inputs: [Int]) {
+        self.inputs.append(contentsOf: inputs)
+    }
+    
     // MARK: Run Program
 
     public func run() throws -> Result {

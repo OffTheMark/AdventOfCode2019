@@ -21,13 +21,15 @@ print(title, String(repeating: "=", count: title.count), separator: "\n", termin
 let firstSubtitle = "Part 1"
 print(firstSubtitle, String(repeating: "-", count: firstSubtitle.count), separator: "\n")
 
-let part1 = Part1(program: program)
-do {
-    let part1Solution = try part1.solve()
-    print(part1Solution)
-}
-catch {
-    print(error)
-}
+let part1 = try Part1(program: program)
+let part1Solution = try part1.solve()
+print(part1Solution)
 
 print()
+
+let secondSubtitle = "Part 2"
+print(secondSubtitle, String(repeating: "-", count: secondSubtitle.count), separator: "\n")
+
+let part2 = Part2(program: program, scaffoldView: part1.scaffoldView)
+let part2Solution = try part2.solve()
+print(part2Solution)

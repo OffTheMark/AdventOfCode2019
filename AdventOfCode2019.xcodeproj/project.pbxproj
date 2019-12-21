@@ -127,6 +127,7 @@
 		343C05E923A6997C00010CCB /* IntCode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 34BB5EE8239EF869008D1ABF /* IntCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		343C05EC23A69C8700010CCB /* DataStructures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAA6402238EB8DE008FDB31 /* DataStructures.framework */; };
 		343C05ED23A69C8700010CCB /* DataStructures.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAA6402238EB8DE008FDB31 /* DataStructures.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		345121BE23ADB0BC00C99321 /* Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345121BD23ADB0BC00C99321 /* Orientation.swift */; };
 		34BB5EEC239EF869008D1ABF /* IntCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 34BB5EEA239EF869008D1ABF /* IntCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		34BB5EF1239EF87B008D1ABF /* Computer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BB5EF0239EF87B008D1ABF /* Computer.swift */; };
 		34BB5EF2239EF925008D1ABF /* IntCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BB5EE8239EF869008D1ABF /* IntCode.framework */; };
@@ -905,6 +906,7 @@
 		343C05E223A68EF700010CCB /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		343C05E423A68FF900010CCB /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		343C05E623A6946C00010CCB /* Parts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parts.swift; sourceTree = "<group>"; };
+		345121BD23ADB0BC00C99321 /* Orientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Orientation.swift; sourceTree = "<group>"; };
 		34BB5EE8239EF869008D1ABF /* IntCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IntCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		34BB5EEA239EF869008D1ABF /* IntCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntCode.h; sourceTree = "<group>"; };
 		34BB5EEB239EF869008D1ABF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1411,6 +1413,7 @@
 				3429098123A9B3F30016F501 /* main.swift */,
 				3408F6AF23A9B53900C74283 /* Parts.swift */,
 				3408F6B123A9B59900C74283 /* Point2DExtensions.swift */,
+				345121BD23ADB0BC00C99321 /* Orientation.swift */,
 			);
 			path = Day17;
 			sourceTree = "<group>";
@@ -2343,6 +2346,7 @@
 				3408F6B023A9B53900C74283 /* Parts.swift in Sources */,
 				3408F6B223A9B59900C74283 /* Point2DExtensions.swift in Sources */,
 				3429098223A9B3F30016F501 /* main.swift in Sources */,
+				345121BE23ADB0BC00C99321 /* Orientation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
