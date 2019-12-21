@@ -36,7 +36,7 @@ final class Part1: Part {
             tilesByPosition[point] = tile
         }
 
-        return tilesByPosition.filter({ $0.value == .block }).count
+        return tilesByPosition.count(where: { $0.value == .block })
     }
 }
 
@@ -47,12 +47,12 @@ final class Part2: Part {
         self.program = program
     }
     
-    func solve() throws -> Int {
+    func solve() throws {
         var program = self.program
         program[0] = 2
         
         let player = try Player(program: program)
-        return try player.beatGame()
+        try player.beatGame()
     }
 }
 

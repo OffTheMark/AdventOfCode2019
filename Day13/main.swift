@@ -19,6 +19,7 @@ print(title, String(repeating: "=", count: title.count), separator: "\n", termin
 
 let firstSubtitle = "Part 1"
 print(firstSubtitle, String(repeating: "-", count: firstSubtitle.count), separator: "\n")
+
 let part1 = Part1(program: program)
 do {
     let part1Solution = try part1.solve()
@@ -27,6 +28,9 @@ do {
 catch {
     print(error)
 }
+
+let secondSubtitle = "Part 2"
+print(secondSubtitle, String(repeating: "-", count: firstSubtitle.count), separator: "\n")
 
 let part2 = Part2(program: program)
 try part2.solve()
